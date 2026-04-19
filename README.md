@@ -34,3 +34,13 @@ A "Green AI" initiative that predicts the carbon and water footprints of code ex
 - **Web:** React, Glassmorphism UI, Dark Mode Aesthetics
 - **Tools:** Git, GitHub, Postman (API Fundamentals Student Expert)
 
+## 📫 Contact
+
+Let's connect! You can find me on:
+
+- **LinkedIn:** [Ananya Joshi](https://www.linkedin.com/in/ananya-joshi-cseai/)
+- **GitHub:** [@ananyajoshi-cseai](https://github.com/ananyajoshi-cseai)
+- **LeetCode:** [Profile](https://leetcode.com/ananyajoshi-cseai/)
+
+---
+*Created with 💻 and ☕ by Ananya Joshi.*
