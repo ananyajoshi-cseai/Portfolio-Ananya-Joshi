@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ananya Joshi | AI Developer</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -36,7 +34,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none; /* Hide default cursor for custom cursor */
+            cursor: none;
         }
 
         html {
@@ -162,6 +160,32 @@
         }
 
         /* =========================================
+           DOCUMENT BUTTONS (NEW)
+        ========================================= */
+        .btn-doc {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            color: var(--text-main);
+            text-decoration: none;
+            transition: var(--transition);
+            margin-top: 1rem;
+            width: max-content;
+        }
+        
+        .btn-doc:hover {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--neon-blue);
+            color: var(--neon-blue);
+        }
+
+        /* =========================================
            NAVIGATION
         ========================================= */
         nav {
@@ -201,7 +225,7 @@
         .nav-links a {
             color: var(--text-main);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-family: var(--font-mono);
             transition: var(--transition);
             position: relative;
@@ -395,18 +419,63 @@
 
         .about-visual {
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .code-window {
-            background: #1e1e1e;
+        .profile-img-wrapper {
+            position: relative;
+            width: 80%;
+            max-width: 320px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--surface-border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            z-index: 1;
+        }
+
+        .profile-img-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-img-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        .profile-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5,5,8,0.8) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .about-visual .code-window {
+            position: absolute;
+            bottom: -40px;
+            right: -5%;
+            width: 85%;
+            z-index: 2;
+            background: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
             border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
+        }
+
+        .about-visual .code-window:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 240, 255, 0.3);
         }
 
         .window-header {
-            background: #2d2d2d;
+            background: rgba(45, 45, 45, 0.9);
             padding: 10px;
             display: flex;
             gap: 8px;
@@ -424,7 +493,7 @@
         .code-content {
             padding: 20px;
             font-family: var(--font-mono);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #d4d4d4;
         }
 
@@ -831,12 +900,12 @@
             gap: 2rem;
             flex-shrink: 0;
             animation: scroll-left 40s linear infinite;
-            padding-left: 2rem; /* Initial offset for gap */
+            padding-left: 2rem;
         }
         
         @keyframes scroll-left {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-50% - 1rem)); } /* -50% of content + half the gap */
+            100% { transform: translateX(calc(-50% - 1rem)); }
         }
         
         .marquee-container:hover .marquee-content {
@@ -866,6 +935,23 @@
             font-size: 0.85rem;
             color: var(--text-muted);
             font-family: var(--font-mono);
+            margin-bottom: 1rem;
+        }
+
+        .cert-link {
+            margin-top: auto; 
+            display: inline-block;
+            padding-top: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--neon-purple);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .cert-link:hover {
+            color: var(--neon-blue);
         }
 
         /* =========================================
@@ -950,6 +1036,22 @@
                 grid-template-columns: 1fr;
             }
 
+            .about-visual {
+                flex-direction: column;
+                margin-top: 2rem;
+            }
+            .profile-img-wrapper {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 2rem;
+            }
+            .about-visual .code-window {
+                position: relative;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+            }
+
             .timeline::after {
                 left: 31px;
             }
@@ -987,29 +1089,25 @@
 </head>
 <body>
 
-    <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
 
-    <!-- Particle Background -->
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Navigation -->
     <nav id="navbar">
         <a href="#" class="logo">AJ.</a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
             <li><a href="#stack">Tech</a></li>
             <li><a href="#profiles">Profiles</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#hackathons">Journey</a></li>
             <li><a href="#projects">Work</a></li>
             <li><a href="#certifications">Certs</a></li>
-            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Hero Section -->
     <section id="hero" class="section">
         <div class="reveal">
             <p class="hero-mono">Hi, my name is</p>
@@ -1027,7 +1125,6 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
     <section id="stats" class="section reveal">
         <div class="stats-grid">
             <div class="stat-card glass-panel">
@@ -1053,7 +1150,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="section">
         <h2 class="section-title reveal">About Me</h2>
         <div class="about-content reveal">
@@ -1067,7 +1163,13 @@
                     <p>Researching Graph Neural Networks & optimizing real-time data ingestion pipelines.</p>
                 </div>
             </div>
-            <div class="about-visual glass-panel">
+            
+            <div class="about-visual">
+                <div class="profile-img-wrapper">
+                    <img src="compressed dp.jpg" alt="Ananya Joshi">
+                    <div class="profile-img-overlay"></div>
+                </div>
+                
                 <div class="code-window">
                     <div class="window-header">
                         <div class="dot red"></div>
@@ -1088,10 +1190,55 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- Tech Stack Section -->
+    <section id="education" class="section">
+        <h2 class="section-title reveal">Academic Background</h2>
+        <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; width: 100%;">
+            
+            <div class="glass-panel reveal" style="padding: 2.5rem; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon-blue);"></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h3 style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 0.2rem;">Indira Gandhi Delhi Technical University for Women (IGDTUW)</h3>
+                        <p style="color: var(--neon-blue); font-family: var(--font-mono); font-size: 0.95rem; margin-bottom: 1rem;">B.Tech in Computer Science and Artificial Intelligence (CSE AI)</p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">
+                            <strong>Current Semester:</strong> II (First Year) <br>
+                            <strong>SGPA:</strong> 9.14 / 10.0
+                        </p>
+                        <a href="#" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Latest Transcript</a>
+                    </div>
+                    <div style="text-align: right; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;">
+                        <p>New Delhi, India</p>
+                        <p>2025 – 2029</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel reveal" style="padding: 2.5rem; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--surface-border);"></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h3 style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 0.2rem;">Hope Hall Foundation School</h3>
+                        <p style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.95rem; margin-bottom: 1rem;">CBSE Board — Science Stream</p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">
+                            <strong>Percentage:</strong> 91% (Top 10% of Class)<br>
+                            <strong>Class X:</strong> Top 5% of the batch
+                        </p>
+                        <a href="#" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Marksheet</a>
+                    </div>
+                    <div style="text-align: right; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;">
+                        <p>R.K. Puram, Delhi</p>
+                        <p>Graduated 2025</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <section id="stack" class="section">
         <h2 class="section-title reveal">Technical Arsenal</h2>
         <div class="tech-categories reveal">
@@ -1135,11 +1282,9 @@
         </div>
     </section>
 
-    <!-- Profiles Section -->
     <section id="profiles" class="section">
         <h2 class="section-title reveal">Developer Profiles</h2>
         <div class="profile-detailed-grid reveal">
-            <!-- LeetCode Details -->
             <div class="glass-panel profile-card leetcode">
                 <div class="profile-header">
                     <i class="fa-solid fa-code profile-icon"></i>
@@ -1178,7 +1323,6 @@
                 </div>
             </div>
 
-            <!-- GitHub Details -->
             <div class="glass-panel profile-card github">
                 <div class="profile-header">
                     <i class="fa-brands fa-github profile-icon"></i>
@@ -1213,7 +1357,6 @@
                 </div>
             </div>
 
-            <!-- Kaggle Details (from Screenshot) -->
             <div class="glass-panel profile-card kaggle" style="grid-column: 1 / -1;">
                 <div class="profile-header">
                     <i class="fa-brands fa-kaggle profile-icon"></i>
@@ -1248,12 +1391,10 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
     <section id="experience" class="section">
         <h2 class="section-title reveal">Professional Experience</h2>
         <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.5rem; width: 100%;">
             
-            <!-- PRAM Edu -->
             <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
                 <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gradient-primary);"></div>
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
@@ -1274,9 +1415,9 @@
                     <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--neon-blue);"><i class="fa-solid fa-angle-right"></i></span> Executed comprehensive test cases for core modules, ensuring high-fidelity user synchronization.</li>
                     <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--neon-blue);"><i class="fa-solid fa-angle-right"></i></span> Collaborated with developers to translate user-facing issues into technical bug reports, streamlining the SDLC.</li>
                 </ul>
+                <a href="PRAM edu internship.jpeg" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Internship Certificate</a>
             </div>
 
-            <!-- GSSoC -->
             <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
                 <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gradient-primary);"></div>
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
@@ -1297,12 +1438,12 @@
                     <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);"><i class="fa-solid fa-angle-right"></i></span> Enhancing project features, optimizing codebases, and resolving critical issues across multiple tech stacks.</li>
                     <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);"><i class="fa-solid fa-angle-right"></i></span> Collaborating with project maintainers and global developers to build scalable open-source software.</li>
                 </ul>
+                <a href="#" target="_blank" class="btn-doc"><i class="fa-solid fa-link"></i> View Acceptance Proof</a>
             </div>
 
         </div>
     </section>
 
-    <!-- Hackathon Timeline -->
     <section id="hackathons" class="section">
         <h2 class="section-title reveal">Hackathon Journey</h2>
         <div class="timeline reveal">
@@ -1317,6 +1458,7 @@
                         <li>Mapped conceptual FLOPs to real-world carbon intensity.</li>
                         <li><strong>Learning:</strong> Built scalable, research-backed AI systems under extreme time pressure.</li>
                     </ul>
+                    <a href="#" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
                 </div>
             </div>
 
@@ -1330,6 +1472,7 @@
                         <li><strong>Role:</strong> Lead Developer (AI & Graph). Built the Python/Flask REST API and integrated TigerGraph Cloud.</li>
                         <li>Mapped 15+ injury types to muscle groups to dynamically prune contraindicated exercises (like Deadlifts for lower back pain) using GSQL.</li>
                     </ul>
+                    <a href="devcation participation certificate hackathon.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
                 </div>
             </div>
 
@@ -1341,6 +1484,7 @@
                         <li>Successfully participated in the intensive online quiz and coding challenge event hosted by HackerRank.</li>
                         <li>Demonstrated rapid problem-solving, debugging skills, and algorithmic thinking under timed constraints.</li>
                     </ul>
+                    <a href="Certificate of participation.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
                 </div>
             </div>
 
@@ -1353,17 +1497,16 @@
                         <li><strong>Built:</strong> StyloGuard, a forensic stylometry tool designed to verify authorship by analyzing subconscious linguistic patterns.</li>
                         <li><strong>Experience:</strong> 24-hour live coding sprint on campus, focusing on backend architecture and prototype execution.</li>
                     </ul>
+                    <a href="https://www.linkedin.com/in/ananya-joshi-cseai/" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin"></i> View LinkedIn Post</a>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="section">
         <h2 class="section-title reveal">Deployed Impact</h2>
         <div class="projects-grid reveal">
-            <!-- Project 1 -->
             <div class="project-card glass-panel">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
@@ -1380,12 +1523,11 @@
                 </div>
             </div>
 
-            <!-- Project 2 -->
             <div class="project-card glass-panel">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
                     <div class="project-links">
-                        <a href="https://github.com/ananyajoshi-cseai/Health-Hack" target="_blank"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://github.com/Eesha0407/Health-Hack" target="_blank"><i class="fa-brands fa-github"></i></a>
                     </div>
                 </div>
                 <h3 class="project-title">HealthHack 2.0</h3>
@@ -1397,7 +1539,6 @@
                 </div>
             </div>
 
-            <!-- Project 3 -->
             <div class="project-card glass-panel">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
@@ -1414,7 +1555,6 @@
                 </div>
             </div>
 
-            <!-- Project 4 -->
             <div class="project-card glass-panel">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
@@ -1431,7 +1571,6 @@
                 </div>
             </div>
 
-            <!-- Project 5 -->
             <div class="project-card glass-panel">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
@@ -1448,7 +1587,6 @@
                 </div>
             </div>
 
-            <!-- Project 6 -->
             <div class="project-card glass-panel">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
@@ -1465,12 +1603,11 @@
                 </div>
             </div>
 
-            <!-- Project 7 -->
             <div class="project-card glass-panel">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
                     <div class="project-links">
-                        <a href="https://github.com/ananyajoshi-cseai/Python-10-in-1-Game-Collection" target="_blank"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://github.com/ananyajoshi-cseai" target="_blank"><i class="fa-brands fa-github"></i></a>
                     </div>
                 </div>
                 <h3 class="project-title">Python 10-in-1 Game Collection</h3>
@@ -1484,7 +1621,6 @@
         </div>
     </section>
 
-    <!-- Certifications Marquee Section -->
     <section id="certifications" class="section reveal">
         <div class="max-w-7xl mx-auto w-full px-6">
             <h2 class="section-title">Licenses & Certifications</h2>
@@ -1493,97 +1629,108 @@
         <div class="marquee-container">
             <div class="marquee-content">
                 
-                <!-- Set 1 of Cards -->
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-solid fa-shield-halved" style="color: var(--neon-blue);"></i>
                     <h4>Cyber Security with AI</h4>
                     <p>Internshala Trainings • Top Performer (96%)</p>
+                    <a href="Cyber Security with AI Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
                     <h4>SQL (Advanced)</h4>
                     <p>HackerRank • Verified proficiency in complex query optimization</p>
+                    <a href="sql_advanced certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-solid fa-laptop-code" style="color: #0056D2;"></i>
                     <h4>Software Dev Simulation</h4>
                     <p>Forage (Datacom) • Root cause analysis & fixing bugs</p>
+                    <a href="Software Development job simulation certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-free-code-camp" style="color: #006400;"></i>
                     <h4>Machine Learning</h4>
                     <p>freeCodeCamp • 300-hour ML with Python certification</p>
+                    <a href="#" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-kaggle" style="color: #20BEFF;"></i>
                     <h4>Python Coder Badge</h4>
                     <p>Kaggle • Verified coding capabilities</p>
+                    <a href="Python Coder.jpg" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-solid fa-rocket" style="color: #FF6C37;"></i>
                     <h4>API Fundamentals</h4>
                     <p>Postman • Student Expert Validation</p>
+                    <a href="#" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-solid fa-brain" style="color: var(--neon-purple);"></i>
                     <h4>Gen AI Foundations</h4>
                     <p>Microsoft & upGrad • Advanced Prompting</p>
+                    <a href="#" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Set 2 (Duplicated for seamless infinite loop) -->
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-solid fa-shield-halved" style="color: var(--neon-blue);"></i>
                     <h4>Cyber Security with AI</h4>
                     <p>Internshala Trainings • Top Performer (96%)</p>
+                    <a href="Cyber Security with AI Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
                     <h4>SQL (Advanced)</h4>
                     <p>HackerRank • Verified proficiency in complex query optimization</p>
+                    <a href="sql_advanced certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-solid fa-laptop-code" style="color: #0056D2;"></i>
                     <h4>Software Dev Simulation</h4>
                     <p>Forage (Datacom) • Root cause analysis & fixing bugs</p>
+                    <a href="Software Development job simulation certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-free-code-camp" style="color: #006400;"></i>
                     <h4>Machine Learning</h4>
                     <p>freeCodeCamp • 300-hour ML with Python certification</p>
+                    <a href="#" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-kaggle" style="color: #20BEFF;"></i>
                     <h4>Python Coder Badge</h4>
                     <p>Kaggle • Verified coding capabilities</p>
+                    <a href="Python Coder.jpg" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-solid fa-rocket" style="color: #FF6C37;"></i>
                     <h4>API Fundamentals</h4>
                     <p>Postman • Student Expert Validation</p>
+                    <a href="#" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-solid fa-brain" style="color: var(--neon-purple);"></i>
                     <h4>Gen AI Foundations</h4>
                     <p>Microsoft & upGrad • Advanced Prompting</p>
+                    <a href="#" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="reveal">
             <h2 class="section-title">Let's Build Something</h2>
@@ -1613,7 +1760,6 @@
         <p style="margin-top: 5px; color: var(--neon-blue); opacity: 0.7;">Architecting the future, one node at a time.</p>
     </footer>
 
-    <!-- JavaScript -->
     <script>
         // --- Custom Cursor ---
         const cursorDot = document.querySelector('.cursor-dot');
