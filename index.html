@@ -428,6 +428,9 @@
             position: relative;
             width: 80%;
             max-width: 320px;
+            /* Added aspect-ratio to prevent the box from collapsing if the image breaks */
+            aspect-ratio: 3 / 4; 
+            background-color: rgba(255, 255, 255, 0.02); /* Subtle placeholder background */
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--surface-border);
@@ -437,7 +440,7 @@
 
         .profile-img-wrapper img {
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
             object-fit: cover;
             transition: transform 0.5s ease;
@@ -1176,7 +1179,8 @@
             
             <div class="about-visual">
                 <div class="profile-img-wrapper">
-                    <img src="compressed dp.jpg" alt="Ananya Joshi">
+                    <!-- Added an onerror fallback to try both your old and new file names -->
+                    <img src="profile.png" onerror="this.onerror=null; this.src='compressed%20dp.jpg';" alt="Ananya Joshi">
                     <div class="profile-img-overlay"></div>
                 </div>
                 
