@@ -238,8 +238,41 @@
         /* =========================================
            HERO SECTION
         ========================================= */
-        #hero {
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4rem;
+            width: 100%;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
             align-items: flex-start;
+            width: 100%;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        @media (min-width: 992px) {
+            .hero-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .hero-text {
+                flex: 1.2;
+                padding-right: 2rem;
+            }
+            .hero-visual {
+                flex: 0.8;
+                justify-content: flex-end;
+            }
         }
 
         .hero-mono {
@@ -333,6 +366,39 @@
             gap: 1.5rem;
         }
 
+        /* Profile Image Styling (Moved to Hero) */
+        .profile-img-wrapper {
+            position: relative;
+            width: 80%;
+            max-width: 320px;
+            aspect-ratio: 3 / 4; 
+            background-color: rgba(255, 255, 255, 0.02); /* Subtle placeholder background */
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--surface-border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            z-index: 1;
+        }
+
+        .profile-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-img-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        .profile-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5,5,8,0.8) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
         /* =========================================
            STATS SECTION
         ========================================= */
@@ -424,45 +490,9 @@
             align-items: center;
         }
 
-        .profile-img-wrapper {
-            position: relative;
-            width: 80%;
-            max-width: 320px;
-            /* Added aspect-ratio to prevent the box from collapsing if the image breaks */
-            aspect-ratio: 3 / 4; 
-            background-color: rgba(255, 255, 255, 0.02); /* Subtle placeholder background */
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--surface-border);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-            z-index: 1;
-        }
-
-        .profile-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .profile-img-wrapper:hover img {
-            transform: scale(1.03);
-        }
-
-        .profile-img-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(5,5,8,0.8) 0%, transparent 40%);
-            pointer-events: none;
-        }
-
         .about-visual .code-window {
-            position: absolute;
-            bottom: -40px;
-            right: -5%;
-            width: 85%;
-            z-index: 2;
+            width: 100%;
+            max-width: 500px;
             background: rgba(30, 30, 30, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 8px;
@@ -1050,19 +1080,12 @@
             }
 
             .about-visual {
-                flex-direction: column;
                 margin-top: 2rem;
             }
             .profile-img-wrapper {
                 width: 100%;
                 max-width: 300px;
                 margin-bottom: 2rem;
-            }
-            .about-visual .code-window {
-                position: relative;
-                bottom: 0;
-                right: 0;
-                width: 100%;
             }
 
             .timeline::after {
@@ -1122,18 +1145,27 @@
     </nav>
 
     <section id="hero" class="section">
-        <div class="reveal">
-            <p class="hero-mono">Hi, my name is</p>
-            <h1 class="hero-title">Ananya Joshi.</h1>
-            <h2 class="hero-subtitle">Building Scalable <span class="gradient-text">Intelligent Systems</span>.</h2>
-            
-            <div class="typing-container">
-                <span id="typing-text"></span><span class="cursor"></span>
-            </div>
+        <div class="hero-container reveal">
+            <div class="hero-text">
+                <p class="hero-mono">Hi, my name is</p>
+                <h1 class="hero-title">Ananya Joshi.</h1>
+                <h2 class="hero-subtitle">Building Scalable <span class="gradient-text">Intelligent Systems</span>.</h2>
+                
+                <div class="typing-container">
+                    <span id="typing-text"></span><span class="cursor"></span>
+                </div>
 
-            <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn">Get In Touch</a>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="profile-img-wrapper">
+                    <img src="profile.png" onerror="this.onerror=null; this.src='compressed dp.jpg';" alt="Ananya Joshi">
+                    <div class="profile-img-overlay"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1178,12 +1210,6 @@
             </div>
             
             <div class="about-visual">
-                <div class="profile-img-wrapper">
-                    <!-- Added an onerror fallback to try both your old and new file names -->
-                    <img src="profile.png" onerror="this.onerror=null; this.src='compressed%20dp.jpg';" alt="Ananya Joshi">
-                    <div class="profile-img-overlay"></div>
-                </div>
-                
                 <div class="code-window">
                     <div class="window-header">
                         <div class="dot red"></div>
