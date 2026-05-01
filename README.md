@@ -11,6 +11,17 @@ Welcome to the repository for my personal portfolio. This project showcases my j
 You can explore the live version of my portfolio here:  
 **[portfolio-ananya-joshi.vercel.app](https://portfolio-ananya-joshi.vercel.app/)**
 
+---
+
+## 📸 A Glimpse of the Portfolio
+
+![Hero Section](portfolio%201.jpg)
+![Technical Arsenal Section](portfolio%202.jpg)
+![Deployed Impact Section](portfolio%204.jpg)
+![Licenses & Certifications Section](portfolio%203.jpg)
+
+---
+
 ## 👩‍💻 About Me
 
 I am a B.Tech student in **Computer Science and Artificial Intelligence (CSE AI)** at **Indira Gandhi Delhi Technical University for Women (IGDTUW)**. I am passionate about bridging the gap between technical data and human sentiment, with a primary focus on **Natural Language Processing (NLP)** and **Machine Learning**.
