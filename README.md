@@ -15,10 +15,10 @@ You can explore the live version of my portfolio here:
 
 ## 📸 A Glimpse of the Portfolio
 
-![Hero Section](portfolio%201.jpg)
-![Technical Arsenal Section](portfolio%202.jpg)
-![Deployed Impact Section](portfolio%204.jpg)
-![Licenses & Certifications Section](portfolio%203.jpg)
+![Hero Section](screenshots/portfolio%201.jpg)
+![Technical Arsenal Section](screenshots/portfolio%202.jpg)
+![Deployed Impact Section](screenshots/portfolio%204.jpg)
+![Licenses & Certifications Section](screenshots/portfolio%203.jpg)
 
 ---
 
