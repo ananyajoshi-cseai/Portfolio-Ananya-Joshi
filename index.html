@@ -366,13 +366,12 @@
             gap: 1.5rem;
         }
 
-        /* Profile Image Styling (Moved to Hero) */
         .profile-img-wrapper {
             position: relative;
             width: 80%;
             max-width: 320px;
             aspect-ratio: 3 / 4; 
-            background-color: rgba(255, 255, 255, 0.02); /* Subtle placeholder background */
+            background-color: rgba(255, 255, 255, 0.02);
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--surface-border);
@@ -712,6 +711,7 @@
         .progress-bar-container .bar .fill {
             height: 100%;
             border-radius: 3px;
+            transition: width 1s ease-out;
         }
         .bg-green-500 { background-color: #00EA64 !important; }
         .bg-yellow-500 { background-color: #FFA116 !important; }
@@ -941,7 +941,6 @@
             display: flex;
             gap: 2rem;
             flex-shrink: 0;
-            /* Increased time because there are more cards now */
             animation: scroll-left 90s linear infinite; 
             padding-left: 2rem;
         }
@@ -1145,6 +1144,7 @@
     </nav>
 
     <section id="hero" class="section">
+        <!-- Kept Hero as original -->
         <div class="hero-container reveal">
             <div class="hero-text">
                 <p class="hero-mono">Hi, my name is</p>
@@ -1170,6 +1170,7 @@
         </div>
     </section>
 
+    <!-- Content Sections Kept Exactly Identical to Original -->
     <section id="stats" class="section reveal">
         <div class="stats-grid">
             <div class="stat-card glass-panel">
@@ -1322,9 +1323,14 @@
         </div>
     </section>
 
+    <!-- =========================================
+         PROFILES SECTION (WITH LEETCODE EDITS)
+    ========================================= -->
     <section id="profiles" class="section">
         <h2 class="section-title reveal">Developer Profiles</h2>
         <div class="profile-detailed-grid reveal">
+            
+            <!-- ====== DYNAMIC LEETCODE CARD ====== -->
             <div class="glass-panel profile-card leetcode">
                 <div class="profile-header">
                     <i class="fa-solid fa-code profile-icon"></i>
@@ -1333,36 +1339,58 @@
                         <a href="https://leetcode.com/u/ananyajoshi-cseai/" target="_blank" class="profile-link">ananyajoshi-cseai <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
                     </div>
                 </div>
-                <div class="profile-stats">
+                
+                <!-- Expanded Stats Grid (2x2) -->
+                <div class="profile-stats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem;">
                     <div class="stat-box">
-                        <span class="stat-val">286</span>
+                        <span class="stat-val" id="lc-solved">290</span>
                         <span class="stat-name">Solved</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val">1758</span>
-                        <span class="stat-name">Rating</span>
+                        <span class="stat-val" id="lc-rating">1,926</span>
+                        <span class="stat-name">Rating (<span id="lc-level" style="color: #20BEFF;">Knight</span>)</span>
                     </div>
-                    <div class="stat-box" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <span class="stat-val" style="font-size: 1.2rem;">Top 9.76%</span>
+                    <div class="stat-box">
+                        <span class="stat-val">Top <span id="lc-top">3.8%</span></span>
                         <span class="stat-name">Ranking</span>
                     </div>
+                    <div class="stat-box">
+                        <span class="stat-val" id="lc-badges">7</span>
+                        <span class="stat-name">Badges</span>
+                    </div>
                 </div>
+                
+                <!-- Expanded Progress Bars -->
                 <div class="profile-breakdown">
                     <div class="progress-bar-container">
-                        <span class="label">Easy (103)</span>
-                        <div class="bar"><div class="fill bg-green-500" style="width: 38%;"></div></div>
+                        <span class="label" style="width: 80px;">Easy (<span id="lc-easy">104</span>)</span>
+                        <div class="bar"><div id="lc-easy-bar" class="fill bg-green-500" style="width: 35.8%;"></div></div>
                     </div>
                     <div class="progress-bar-container">
-                        <span class="label">Med (136)</span>
-                        <div class="bar"><div class="fill bg-yellow-500" style="width: 45%;"></div></div>
+                        <span class="label" style="width: 80px;">Med (<span id="lc-med">138</span>)</span>
+                        <div class="bar"><div id="lc-med-bar" class="fill bg-yellow-500" style="width: 47.6%;"></div></div>
                     </div>
                     <div class="progress-bar-container">
-                        <span class="label">Hard (47)</span>
-                        <div class="bar"><div class="fill bg-red-500" style="width: 16%;"></div></div>
+                        <span class="label" style="width: 80px;">Hard (<span id="lc-hard">48</span>)</span>
+                        <div class="bar"><div id="lc-hard-bar" class="fill bg-red-500" style="width: 16.6%;"></div></div>
+                    </div>
+                </div>
+                
+                <!-- Extra Information Footer -->
+                <div class="mt-2 text-sm" style="color: var(--text-muted); line-height: 1.8; font-family: var(--font-mono); font-size: 0.85rem; margin-top: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                        <span>Max Streak:</span> <span style="color: #FFA116; font-weight: bold;">112 Days 🔥</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                        <span>Total Active Days:</span> <span style="color: var(--neon-blue); font-weight: bold;">112</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>Submissions (Past Year):</span> <span style="color: var(--text-main); font-weight: bold;">303</span>
                     </div>
                 </div>
             </div>
 
+            <!-- GitHub Card -->
             <div class="glass-panel profile-card github">
                 <div class="profile-header">
                     <i class="fa-brands fa-github profile-icon"></i>
@@ -1397,6 +1425,7 @@
                 </div>
             </div>
 
+            <!-- Kaggle Card -->
             <div class="glass-panel profile-card kaggle" style="grid-column: 1 / -1;">
                 <div class="profile-header">
                     <i class="fa-brands fa-kaggle profile-icon"></i>
@@ -1431,6 +1460,7 @@
         </div>
     </section>
 
+    <!-- Content Sections Kept Exactly Identical to Original -->
     <section id="experience" class="section">
         <h2 class="section-title reveal">Professional Experience</h2>
         <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.5rem; width: 100%;">
@@ -1872,210 +1902,6 @@
                     <a href="pandas intruduction badge.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
-                <!-- Duplicate Set for Seamless Loop -->
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
-                    <h4>Software Engineer Intern</h4>
-                    <p>HackerRank • Verified Role Certification</p>
-                    <a href="software_engineer_intern certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
-                    <h4>SQL (Advanced)</h4>
-                    <p>HackerRank • Complex query optimization</p>
-                    <a href="sql_advanced certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-                
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-brands fa-kaggle" style="color: #20BEFF;"></i>
-                    <h4>Python Coder Badge</h4>
-                    <p>Kaggle • Verified coding capabilities</p>
-                    <a href="Python Coder.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-brands fa-kaggle" style="color: #20BEFF;"></i>
-                    <h4>Intro to Machine Learning</h4>
-                    <p>Kaggle • Core ML Algorithms</p>
-                    <a href="AnanyaJoshi-cseai - Intro to Machine Learning.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-brands fa-free-code-camp" style="color: #006400;"></i>
-                    <h4>Machine Learning</h4>
-                    <p>freeCodeCamp • 300-hour ML with Python</p>
-                    <a href="Machine Learning With Python.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
-                    <h4>Prompt Design in Vertex AI</h4>
-                    <p>Google Cloud • Machine Learning & AI</p>
-                    <a href="prompt-design-in-vertex-ai-skill-badge.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
-                    <h4>Intro to Large Language Models</h4>
-                    <p>Google Cloud • Core LLM Architecture</p>
-                    <a href="LLM Google cloud.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
-                    <h4>Intro to Generative AI</h4>
-                    <p>Google Cloud • GenAI Fundamentals</p>
-                    <a href="Google Generative AI.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
-                    <h4>Responsible AI Principles</h4>
-                    <p>Google Cloud • Ethical AI deployment</p>
-                    <a href="Responsible AI Google cloud.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-rocket" style="color: #FF6C37;"></i>
-                    <h4>API Fundamentals</h4>
-                    <p>Postman • Student Expert Validation</p>
-                    <a href="Postman - Postman API Fundamentals Student Expert - 2026-02-21.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-brain" style="color: var(--neon-purple);"></i>
-                    <h4>Generative AI Foundations</h4>
-                    <p>upGrad & Microsoft • AI Agents & Prompting</p>
-                    <a href="Generative AI Foundations Certificate Program.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-brain" style="color: var(--neon-purple);"></i>
-                    <h4>Prompt Engineering for GenAI</h4>
-                    <p>Internshala • 6-week Online Training (98%)</p>
-                    <a href="Prompt Engineering for GenAI Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-code" style="color: #0056D2;"></i>
-                    <h4>Vibe Coding with Replit</h4>
-                    <p>Internshala • 4-week Online Training (92%)</p>
-                    <a href="Vibe Coding with Replit Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-database" style="color: #00EA64;"></i>
-                    <h4>Data Science with AI</h4>
-                    <p>Internshala • 8-week Online Training (83%)</p>
-                    <a href="Data Science with AI Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-shield-halved" style="color: var(--neon-blue);"></i>
-                    <h4>Cyber Security with AI</h4>
-                    <p>Internshala • Top Performer (96%)</p>
-                    <a href="Cyber Security with AI Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-sitemap" style="color: #FF9900;"></i>
-                    <h4>Data Structures & Algorithms</h4>
-                    <p>NSDC • Core DSA Concepts (Grade B)</p>
-                    <a href="dsa_certificate_ananya.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-brands fa-html5" style="color: #E34F26;"></i>
-                    <h4>Web Development with AI</h4>
-                    <p>NSDC • AI-integrated web applications (Grade A)</p>
-                    <a href="Web_Development_ananya.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-brands fa-html5" style="color: #0056D2;"></i>
-                    <h4>HTML Course</h4>
-                    <p>Unstop • Certification of Completion</p>
-                    <a href="HTML unstop.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-laptop-code" style="color: #0056D2;"></i>
-                    <h4>Software Dev Simulation</h4>
-                    <p>Forage (Datacom) • Root cause analysis & bugs</p>
-                    <a href="Software Development job simulation certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-magnifying-glass-chart" style="color: #86BC25;"></i>
-                    <h4>Data Analytics Job Simulation</h4>
-                    <p>Forage (Deloitte) • Forensic Technology Analysis</p>
-                    <a href="Data_Analytics_Deloitte_simulation.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-shield-virus" style="color: #86BC25;"></i>
-                    <h4>Cyber Job Simulation</h4>
-                    <p>Forage (Deloitte) • Cyber Security practical tasks</p>
-                    <a href="cyber job simulation.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-brands fa-aws" style="color: #FF9900;"></i>
-                    <h4>Solutions Architecture Simulation</h4>
-                    <p>Forage (AWS) • Scalable hosting architecture</p>
-                    <a href="Solutions Architecture Job Simulation certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-chart-line" style="color: #009999;"></i>
-                    <h4>Project Manager Simulation</h4>
-                    <p>Forage (Siemens) • KPI & Dashboard Management</p>
-                    <a href="Simens simulation certificate ananya.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-robot" style="color: #FFD700;"></i>
-                    <h4>Fundamentals of Agents</h4>
-                    <p>Hugging Face • Unit 1 Agents Course</p>
-                    <a href="ai agent.webp" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-wrench" style="color: #000000;"></i>
-                    <h4>AI Tools Workshop</h4>
-                    <p>be10x • Data analysis and coding using AI</p>
-                    <a href="Ananya_Certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
-                    <h4>Problem Solving (Intermediate)</h4>
-                    <p>HackerRank • Skill Certification Test</p>
-                    <a href="problem_solving_intermediate certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
-                    <h4>Problem Solving (Basic)</h4>
-                    <p>HackerRank • Skill Certification Test</p>
-                    <a href="problem_solving_basic certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
-                    <h4>Python (Basic)</h4>
-                    <p>HackerRank • Skill Certification Test</p>
-                    <a href="python_basic certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-code" style="color: #FFA116;"></i>
-                    <h4>Introduction to Pandas</h4>
-                    <p>LeetCode • Pandas Operations Badge</p>
-                    <a href="pandas intruduction badge.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-
             </div>
         </div>
     </section>
@@ -2121,14 +1947,12 @@
             cursorDot.style.left = `${posX}px`;
             cursorDot.style.top = `${posY}px`;
 
-            // Adding a slight delay to the outline for a fluid effect
             cursorOutline.animate({
                 left: `${posX}px`,
                 top: `${posY}px`
             }, { duration: 500, fill: "forwards" });
         });
 
-        // Add hover effect to interactive elements
         const interactives = document.querySelectorAll('a, .btn, .stat-card, .project-card, .tech-item, .profile-card, .cert-card');
         interactives.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -2182,17 +2006,16 @@
 
             if (!isDeleting && charIndex === currentPhrase.length) {
                 isDeleting = true;
-                typingDelay = 2000; // Pause at end of phrase
+                typingDelay = 2000; 
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
-                typingDelay = 500; // Pause before new phrase
+                typingDelay = 500; 
             }
 
             setTimeout(type, typingDelay);
         }
 
-        // Start typing animation after a short delay
         setTimeout(type, 1000);
 
         // --- Scroll Reveal & Number Counters ---
@@ -2206,8 +2029,8 @@
 
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
-                const duration = 2000; // ms
-                const increment = target / (duration / 16); // 60fps
+                const duration = 2000; 
+                const increment = target / (duration / 16); 
                 
                 let current = 0;
                 const updateCounter = () => {
@@ -2228,7 +2051,6 @@
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                     
-                    // Check if this reveal block contains the stats grid
                     if(entry.target.querySelector('.stats-grid') || entry.target.classList.contains('stats-grid')) {
                         startCounters();
                     }
@@ -2238,7 +2060,6 @@
 
         revealElements.forEach(el => revealObserver.observe(el));
         
-        // Ensure stats trigger if in view immediately
         if(document.getElementById('stats').getBoundingClientRect().top < window.innerHeight) {
             startCounters();
         }
@@ -2254,7 +2075,6 @@
             height = canvas.height = window.innerHeight;
             particles = [];
             
-            // Adjust particle count based on screen size
             const particleCount = Math.floor((width * height) / 15000);
             
             for (let i = 0; i < particleCount; i++) {
@@ -2273,12 +2093,10 @@
             
             ctx.fillStyle = 'rgba(0, 240, 255, 0.5)';
             
-            // Update and draw nodes
             particles.forEach(p => {
                 p.x += p.vx;
                 p.y += p.vy;
                 
-                // Bounce off edges
                 if (p.x < 0 || p.x > width) p.vx *= -1;
                 if (p.y < 0 || p.y > height) p.vy *= -1;
                 
@@ -2287,7 +2105,6 @@
                 ctx.fill();
             });
             
-            // Draw connections
             ctx.strokeStyle = 'rgba(138, 43, 226, 0.1)';
             ctx.lineWidth = 0.5;
             
@@ -2301,7 +2118,6 @@
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        // Make closer lines more opaque
                         ctx.strokeStyle = `rgba(138, 43, 226, ${0.2 - dist/750})`;
                         ctx.stroke();
                     }
@@ -2314,6 +2130,91 @@
         window.addEventListener('resize', initCanvas);
         initCanvas();
         drawParticles();
+
+        // ==============================================================
+        // --- DYNAMIC LEETCODE STATS FETCHER --- 
+        // Automatically updates the numbers whenever someone opens your page!
+        // ==============================================================
+        async function fetchLeetCodeStats() {
+            const username = 'ananyajoshi-cseai';
+            try {
+                // Fetch public profile and contest stats from the alfacoder API wrapper
+                const [profileRes, contestRes] = await Promise.all([
+                    fetch(`https://alfa-leetcode-api.onrender.com/${username}`),
+                    fetch(`https://alfa-leetcode-api.onrender.com/${username}/contest`)
+                ]);
+
+                if (profileRes.ok && contestRes.ok) {
+                    const profileData = await profileRes.json();
+                    const contestData = await contestRes.json();
+
+                    // 1. Update Core Solved Stats
+                    if (profileData.totalSolved) {
+                        const totalSolved = profileData.totalSolved;
+                        document.getElementById('lc-solved').innerText = totalSolved;
+                        
+                        // Update Progress Bars (Relative Widths to look full like the design)
+                        if (profileData.easySolved !== undefined) {
+                            document.getElementById('lc-easy').innerText = profileData.easySolved;
+                            document.getElementById('lc-easy-bar').style.width = `${(profileData.easySolved / totalSolved) * 100}%`;
+                        }
+                        if (profileData.mediumSolved !== undefined) {
+                            document.getElementById('lc-med').innerText = profileData.mediumSolved;
+                            document.getElementById('lc-med-bar').style.width = `${(profileData.mediumSolved / totalSolved) * 100}%`;
+                        }
+                        if (profileData.hardSolved !== undefined) {
+                            document.getElementById('lc-hard').innerText = profileData.hardSolved;
+                            document.getElementById('lc-hard-bar').style.width = `${(profileData.hardSolved / totalSolved) * 100}%`;
+                        }
+                    }
+                    
+                    // 2. Update Contest & Badges details
+                    if (contestData.contestRating) {
+                        document.getElementById('lc-rating').innerText = Math.round(contestData.contestRating).toLocaleString();
+                    }
+                    if (contestData.contestTopPercentage) {
+                        document.getElementById('lc-top').innerText = contestData.contestTopPercentage + '%';
+                    }
+                    if (contestData.contestBadges && contestData.contestBadges.name) {
+                        document.getElementById('lc-level').innerText = contestData.contestBadges.name;
+                    }
+                }
+            } catch (error) {
+                console.log("Could not fetch latest live LeetCode stats. Falling back to the static snapshot.", error);
+            }
+        }
+
+        // ==============================================================
+        // --- DYNAMIC GITHUB STATS FETCHER ---
+        // Automatically grabs follower counts and public repos via the Github API
+        // ==============================================================
+        async function fetchGitHubStats() {
+            const username = 'ananyajoshi-cseai';
+            try {
+                const response = await fetch(`https://api.github.com/users/${username}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.public_repos !== undefined) {
+                        document.getElementById('gh-repos').innerText = data.public_repos;
+                    }
+                    if (data.followers !== undefined) {
+                        document.getElementById('gh-followers').innerText = data.followers;
+                    }
+                }
+            } catch (error) {
+                console.log("Could not fetch GitHub stats.", error);
+            }
+        }
+        
+        // Trigger the stats fetches when the DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchLeetCodeStats();
+            fetchGitHubStats();
+            
+            // Note: Kaggle does not provide a public CORS-enabled API for client-side fetching.
+            // The Kaggle stats in the HTML are structurally formatted so you can easily 
+            // swap out the numbers whenever you level up or break a new streak!
+        });
 
     </script>
 </body>
