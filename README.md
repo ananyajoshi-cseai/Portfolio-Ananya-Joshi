@@ -54,4 +54,3 @@ Let's connect! You can find me on:
 - **LeetCode:** [Profile](https://leetcode.com/ananyajoshi-cseai/)
 
 ---
-*Created with 💻 and ☕ by Ananya Joshi.*
