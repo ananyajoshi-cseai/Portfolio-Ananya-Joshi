@@ -30,13 +30,6 @@ I am a B.Tech student in **Computer Science and Artificial Intelligence (CSE AI)
 - 🌱 I’m learning more about Green AI and sustainable machine learning practices.
 - 💬 Ask me about Python, NLP, or my latest hackathon projects.
 
-## 🌟 Featured Projects
-
-### [YouTube Mood Ring](https://github.com/ananyajoshi-cseai/YouTube-Mood-Ring)
-A Python tool utilizing the YouTube Data API and VADER to analyze community sentiment and visualize the "mood" of comment sections.
-
-### [Hydro-Carbon AI](https://github.com/ananyajoshi-cseai/Hydro-Carbon-AI)
-A "Green AI" initiative that predicts the carbon and water footprints of code execution, recognized as a Top 10 Finalist at the NIT Delhi Hackathon.
 
 ## 🛠️ Tech Stack
 
