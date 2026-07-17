@@ -1,49 +1,2544 @@
-# Portfolio - Ananya Joshi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ananya Joshi | AI Developer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-[![Live Demo](https://img.shields.io/badge/demo-online-brightgreen.svg?style=for-the-badge&logo=vercel)](https://portfolio-ananya-joshi.vercel.app/)
-[![GitHub repo](https://img.shields.io/badge/repo-github-blue?style=for-the-badge&logo=github)](https://github.com/ananyajoshi-cseai/Portfolio-Ananya-Joshi)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+    <style>
+        /* =========================================
+           CSS VARIABLES & RESET
+        ========================================= */
+        :root {
+            --bg-color: #050508;
+            --surface-color: rgba(20, 20, 28, 0.6);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --neon-blue: #00f0ff;
+            --neon-purple: #8a2be2;
+            --gradient-primary: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            --font-sans: 'Inter', sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-Welcome to the repository for my personal portfolio. This project showcases my journey as a developer, highlighting my skills, technical projects, and academic background in Computer Science and Artificial Intelligence.
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
 
-## 🚀 Live Demo
+        html {
+            scroll-behavior: smooth;
+        }
 
-You can explore the live version of my portfolio here:  
-**[portfolio-ananya-joshi.vercel.app](https://portfolio-ananya-joshi.vercel.app/)**
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
----
+        ::selection {
+            background: rgba(0, 240, 255, 0.3);
+            color: #fff;
+        }
 
-## 📸 A Glimpse of the Portfolio
+        /* =========================================
+           CUSTOM CURSOR
+        ========================================= */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--neon-blue);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
 
-![Hero Section](screenshots/portfolio%201.jpg)
-![Technical Arsenal Section](screenshots/portfolio%202.jpg)
-![Deployed Impact Section](screenshots/portfolio%204.jpg)
-![Licenses & Certifications Section](screenshots/portfolio%203.jpg)
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(138, 43, 226, 0.5);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9998;
+            transition: width 0.15s, height 0.15s, background-color 0.15s;
+        }
 
----
+        /* =========================================
+           BACKGROUND CANVAS
+        ========================================= */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.7;
+        }
 
-## 👩‍💻 About Me
+        /* =========================================
+           TYPOGRAPHY & UTILITIES
+        ========================================= */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
 
-I am a B.Tech student in **Computer Science and Artificial Intelligence (CSE AI)** at **Indira Gandhi Delhi Technical University for Women (IGDTUW)**. I am passionate about bridging the gap between technical data and human sentiment, with a primary focus on **Natural Language Processing (NLP)** and **Machine Learning**.
+        .gradient-text {
+            background: linear-gradient(270deg, var(--neon-blue), var(--neon-purple), #ff00ff, var(--neon-blue));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            animation: gradient-shift 6s ease infinite;
+        }
 
-- 🔭 I’m currently working on enhancing sentiment analysis tools.
-- 🌱 I’m learning more about Green AI and sustainable machine learning practices.
-- 💬 Ask me about Python, NLP, or my latest hackathon projects.
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
+        .section {
+            padding: 100px 10vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
 
-## 🛠️ Tech Stack
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
 
-- **Languages:** Python, C++, JavaScript
-- **AI/ML:** NLP, VADER, Scikit-learn, Pandas
-- **Web:** React, Glassmorphism UI, Dark Mode Aesthetics
-- **Tools:** Git, GitHub, Postman (API Fundamentals Student Expert)
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
 
-## 📫 Contact
+        .glass-panel {
+            background: var(--surface-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
 
-Let's connect! You can find me on:
+        .glass-panel:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.1);
+            transform: translateY(-5px);
+        }
 
-- **LinkedIn:** [Ananya Joshi](https://www.linkedin.com/in/ananya-joshi-cseai/)
-- **GitHub:** [@ananyajoshi-cseai](https://github.com/ananyajoshi-cseai)
-- **LeetCode:** [Profile](https://leetcode.com/ananyajoshi-cseai/)
+        /* =========================================
+           DOCUMENT BUTTONS
+        ========================================= */
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
 
----
+        .btn-doc {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            color: var(--text-main);
+            text-decoration: none;
+            transition: var(--transition);
+            width: max-content;
+        }
+        
+        .btn-doc:hover {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--neon-blue);
+            color: var(--neon-blue);
+            transform: translateY(-2px);
+        }
+
+        /* =========================================
+           NAVIGATION
+        ========================================= */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 10vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(5, 5, 8, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--surface-border);
+            padding: 1rem 10vw;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+
+        /* =========================================
+           HERO SECTION & ANIMATIONS
+        ========================================= */
+        #hero {
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.03);
+            z-index: 0;
+            animation: float-around 15s infinite linear;
+            pointer-events: none;
+        }
+
+        .fi-1 { top: 15%; left: 10%; animation-duration: 18s; animation-direction: reverse; color: rgba(0, 240, 255, 0.05); }
+        .fi-2 { top: 70%; left: 15%; font-size: 6rem; animation-duration: 25s; }
+        .fi-3 { top: 20%; right: 10%; font-size: 5rem; animation-duration: 20s; color: rgba(138, 43, 226, 0.05); }
+        .fi-4 { top: 65%; right: 20%; font-size: 3.5rem; animation-duration: 22s; animation-direction: reverse; }
+
+        @keyframes float-around {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -40px) rotate(90deg); }
+            50% { transform: translate(-20px, -60px) rotate(180deg); }
+            75% { transform: translate(-50px, 20px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4rem;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.4) 0%, transparent 70%);
+            filter: blur(40px);
+            z-index: 0;
+            animation: pulse-glow 4s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        @media (min-width: 992px) {
+            .hero-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .hero-text {
+                flex: 1.2;
+                padding-right: 2rem;
+            }
+            .hero-visual {
+                flex: 0.8;
+                justify-content: flex-end;
+            }
+        }
+
+        .hero-mono {
+            font-family: var(--font-mono);
+            color: var(--neon-blue);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            animation: slideUp 1.2s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .typing-container {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            min-height: 30px;
+            margin-bottom: 3rem;
+            color: var(--text-muted);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2rem;
+            background-color: var(--neon-purple);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-family: var(--font-mono);
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 240, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary::before {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: slideUp 1.4s ease-out;
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+            width: 80%;
+            max-width: 320px;
+            aspect-ratio: 3 / 4; 
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+            z-index: 1;
+        }
+
+        .profile-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-img-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        .profile-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5,5,8,0.6) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        /* =========================================
+           STATS SECTION
+        ========================================= */
+        #stats {
+            min-height: auto;
+            padding: 4rem 10vw;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--neon-purple);
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .stat-plus {
+            color: var(--neon-blue);
+        }
+
+        .stat-label {
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* =========================================
+           ABOUT SECTION
+        ========================================= */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .highlight-text {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .now-building {
+            margin-top: 2rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--neon-blue);
+        }
+
+        .now-building h4 {
+            color: var(--neon-blue);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .about-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-visual .code-window {
+            width: 100%;
+            max-width: 550px;
+            background: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(16px);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
+        }
+
+        .about-visual .code-window:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 30px 60px -12px rgba(0,240,255,0.15);
+        }
+
+        .window-header {
+            background: rgba(45, 45, 45, 0.9);
+            padding: 12px;
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .code-content {
+            padding: 24px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: #d4d4d4;
+            line-height: 1.6;
+        }
+
+        .code-content .keyword { color: #c678dd; }
+        .code-content .string { color: #98c379; } 
+        .code-content .function { color: #61afef; } 
+        .code-content .comment { color: #5c6370; font-style: italic; }
+
+        /* =========================================
+           EDUCATION SECTION
+        ========================================= */
+        #education {
+            background: rgba(20, 20, 28, 0.2);
+            border-top: 1px solid var(--surface-border);
+            border-bottom: 1px solid var(--surface-border);
+        }
+
+        /* =========================================
+           TECH STACK
+        ========================================= */
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-category {
+            margin-bottom: 2rem;
+        }
+
+        .tech-category h3 {
+            font-family: var(--font-mono);
+            color: var(--neon-blue);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .tech-item:hover {
+            background: rgba(138, 43, 226, 0.15);
+            border-color: var(--neon-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.2);
+        }
+
+        /* =========================================
+           DEVELOPER PROFILES
+        ========================================= */
+        .profile-detailed-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--surface-border);
+        }
+
+        .profile-header i.profile-icon {
+            font-size: 2.5rem;
+            transition: var(--transition);
+        }
+
+        .profile-card.leetcode i.profile-icon { color: #FFA116; }
+        .profile-card.github i.profile-icon { color: #ffffff; }
+        .profile-card.kaggle i.profile-icon { color: #20BEFF; }
+
+        .profile-card:hover i.profile-icon {
+            transform: scale(1.1);
+        }
+
+        .profile-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+            color: var(--text-main);
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+
+        .profile-link {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .profile-link:hover {
+            color: var(--neon-blue);
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-box {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-box .stat-val {
+            display: block;
+            font-size: 1.5rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-box .stat-name {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        .profile-breakdown {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .progress-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .progress-bar-container .label {
+            width: 70px;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+        }
+
+        .progress-bar-container .bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-container .bar .fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 1s ease-out;
+        }
+        .bg-green-500 { background-color: #00EA64 !important; }
+        .bg-yellow-500 { background-color: #FFA116 !important; }
+        .bg-red-500 { background-color: #EF4743 !important; }
+
+        /* =========================================
+           HACKATHON TIMELINE
+        ========================================= */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: rgba(255,255,255,0.1);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-color);
+            border: 4px solid var(--neon-blue);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--surface-border);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--surface-border);
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--surface-border);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--surface-border) transparent transparent;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .timeline-subtitle {
+            font-family: var(--font-mono);
+            color: var(--neon-purple);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .timeline-content ul {
+            list-style-position: inside;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .timeline-content ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .timeline-content ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--neon-blue);
+        }
+
+        /* =========================================
+           PROJECTS GRID
+        ========================================= */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-top i.fa-folder {
+            font-size: 2rem;
+            color: var(--neon-blue);
+        }
+
+        .project-links a {
+            color: var(--text-main);
+            font-size: 1.2rem;
+            margin-left: 10px;
+            transition: var(--transition);
+        }
+
+        .project-links a:hover {
+            color: var(--neon-purple);
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .project-tech {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--neon-blue);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-tech span {
+            background: rgba(0, 240, 255, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        /* =========================================
+           MARQUEE CERTIFICATIONS
+        ========================================= */
+        #certifications {
+            min-height: auto;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+            width: 100%;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            padding: 2rem 0;
+        }
+        
+        .marquee-content {
+            display: flex;
+            gap: 2rem;
+            flex-shrink: 0;
+            animation: scroll-left 90s linear infinite; 
+            padding-left: 2rem;
+        }
+        
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 1rem)); }
+        }
+        
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+
+        .cert-card {
+            width: 320px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .cert-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-card h4 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            margin-bottom: 1rem;
+        }
+
+        .cert-link {
+            margin-top: auto; 
+            display: inline-block;
+            padding-top: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--neon-purple);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .cert-link:hover {
+            color: var(--neon-blue);
+        }
+
+        /* =========================================
+           CONTACT SECTION & FOOTER
+        ========================================= */
+        #contact {
+            text-align: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .contact-desc {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link:hover {
+            color: #fff;
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--surface-border);
+        }
+
+        /* =========================================
+           SCROLL REVEAL ANIMATIONS
+        ========================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+        ========================================= */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-container {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-text {
+                align-items: center;
+                padding: 0;
+            }
+            .hero-title {
+                text-align: center;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid var(--surface-border);
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--surface-border) transparent transparent;
+            }
+
+            .left::after, .right::after {
+                left: 21px;
+            }
+
+            .right {
+                left: 0%;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .section {
+                padding: 80px 5vw;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <nav id="navbar">
+        <a href="#" class="logo">AJ.</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#stack">Tech</a></li>
+            <li><a href="#profiles">Profiles</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#workshops">Workshops</a></li>
+            <li><a href="#hackathons">Journey</a></li>
+            <li><a href="#projects">Work</a></li>
+            <li><a href="#certifications">Certs</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero" class="section">
+        <i class="fa-brands fa-python floating-icon fi-1"></i>
+        <i class="fa-brands fa-react floating-icon fi-2"></i>
+        <i class="fa-solid fa-brain floating-icon fi-3"></i>
+        <i class="fa-solid fa-database floating-icon fi-4"></i>
+
+        <div class="hero-container reveal">
+            <div class="hero-text">
+                <p class="hero-mono">Hi, my name is</p>
+                <h1 class="hero-title"><span class="gradient-text">Ananya Joshi.</span></h1>
+                <h2 class="hero-subtitle">Building Scalable Intelligent Systems.</h2>
+                
+                <div class="typing-container">
+                    <span id="typing-text"></span><span class="cursor"></span>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="profile-img-wrapper">
+                    <img src="profile.png" onerror="this.onerror=null; this.src='compressed dp.jpg';" alt="Ananya Joshi">
+                    <div class="profile-img-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="section reveal">
+        <div class="stats-grid">
+            <div class="stat-card glass-panel">
+                <i class="fa-solid fa-code"></i>
+                <div class="stat-number"><span class="counter" data-target="370">0</span><span class="stat-plus">+</span></div>
+                <div class="stat-label">LeetCode Solved (178+ Med)</div>
+            </div>
+            <div class="stat-card glass-panel">
+                <i class="fa-solid fa-database"></i>
+                <div class="stat-number"><span class="counter" data-target="5000">0</span><span class="stat-plus">+</span></div>
+                <div class="stat-label">Data Points in NLP Pipelines</div>
+            </div>
+            <div class="stat-card glass-panel">
+                <i class="fa-solid fa-trophy"></i>
+                <div class="stat-number">Top <span class="counter" data-target="10">0</span></div>
+                <div class="stat-label">NIT Delhi Hackathon Finalist</div>
+            </div>
+            <div class="stat-card glass-panel">
+                <i class="fa-solid fa-microchip"></i>
+                <div class="stat-number"><span class="counter" data-target="9">0</span><span class="stat-plus">+</span></div>
+                <div class="stat-label">Data & Tech Projects Built</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2 class="section-title reveal">About Me</h2>
+        <div class="about-content reveal">
+            <div class="about-text">
+                <p>I am a first-year Computer Science (AI) student at <span class="highlight-text">IGDTUW (1st Year CGPA: ~9.1 | Sem 1: 9.14, Sem 2: 9.05)</span> based in Delhi, India. I don't just study algorithms; I apply them to build real-world AI systems that solve complex problems.</p>
+                <p>I thrive under pressure, actively participating in hackathons to turn abstract ideas into deployed products within strict time limits. My expertise bridges the gap between data science and robust software engineering.</p>
+                <p>Whether it's building NLP pipelines, optimizing decision engines, or developing sustainability-focused developer tools, I am execution-focused and driven by impact.</p>
+                
+                <div class="now-building">
+                    <h4>Currently Building</h4>
+                    <p>Researching Graph Neural Networks & optimizing real-time data ingestion pipelines.</p>
+                </div>
+            </div>
+            
+            <div class="about-visual">
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                    <div class="code-content">
+                        <span class="keyword">class</span> <span class="function">Developer</span>:
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>):
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">self</span>.name = <span class="string">"Ananya Joshi"</span>
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">self</span>.role = <span class="string">"AI Engineer"</span>
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">self</span>.passion = [<span class="string">"ML"</span>, <span class="string">"System Design"</span>, <span class="string">"Hackathons"</span>]
+                        <br><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> <span class="function">execute</span>(<span class="keyword">self</span>):
+                        <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Ideate -> Build -> Ship"</span>
+                        <br><br><span class="comment"># Initialize profile</span>
+                        <br>me = Developer()
+                        <br>me.execute() <span class="comment"># Output: High Impact</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <h2 class="section-title reveal">Academic Background</h2>
+        <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; width: 100%;">
+            
+            <div class="glass-panel reveal" style="padding: 2.5rem; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon-blue);"></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <h3 style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 0.2rem;">Indira Gandhi Delhi Technical University for Women (IGDTUW)</h3>
+                        <p style="color: var(--neon-blue); font-family: var(--font-mono); font-size: 0.95rem; margin-bottom: 1rem;">B.Tech in Computer Science and Artificial Intelligence (CSE AI)</p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">
+                            <strong>Current Semester:</strong> II (First Year) <br>
+                            <strong>CGPA:</strong> ~9.1 / 10.0 (Sem 1: 9.14, Sem 2: 9.05)
+                        </p>
+                        <a href="#" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Latest Transcript</a>
+                    </div>
+                    <div style="text-align: right; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;">
+                        <p>New Delhi, India</p>
+                        <p>2025 – 2029</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="stack" class="section">
+        <h2 class="section-title reveal">Technical Arsenal</h2>
+        <div class="tech-categories reveal">
+            <div class="tech-category glass-panel">
+                <h3><i class="fa-solid fa-code"></i> Languages</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><i class="fa-brands fa-python"></i> Python</div>
+                    <div class="tech-item"><i class="fa-brands fa-js"></i> JavaScript (ES6+)</div>
+                    <div class="tech-item"><i class="fa-solid fa-database"></i> SQL</div>
+                </div>
+            </div>
+            <div class="tech-category glass-panel">
+                <h3><i class="fa-solid fa-brain"></i> AI & Data</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Pandas</div>
+                    <div class="tech-item">NumPy</div>
+                    <div class="tech-item">Scikit-Learn</div>
+                    <div class="tech-item">NLTK</div>
+                    <div class="tech-item">Matplotlib</div>
+                </div>
+            </div>
+            <div class="tech-category glass-panel">
+                <h3><i class="fa-brands fa-react"></i> Web & Backend</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><i class="fa-brands fa-react"></i> React.js</div>
+                    <div class="tech-item">FastAPI</div>
+                    <div class="tech-item">Flask</div>
+                    <div class="tech-item">Tailwind CSS</div>
+                    <div class="tech-item">REST APIs</div>
+                </div>
+            </div>
+            <div class="tech-category glass-panel">
+                <h3><i class="fa-solid fa-screwdriver-wrench"></i> Tools</h3>
+                <div class="tech-grid">
+                    <div class="tech-item"><i class="fa-brands fa-git-alt"></i> Git/GitHub</div>
+                    <div class="tech-item">Tableau</div>
+                    <div class="tech-item">Postman</div>
+                    <div class="tech-item">VS Code</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="profiles" class="section">
+        <h2 class="section-title reveal">Developer Profiles</h2>
+        <div class="profile-detailed-grid reveal">
+            
+            <div class="glass-panel profile-card leetcode">
+                <div class="profile-header">
+                    <i class="fa-solid fa-code profile-icon"></i>
+                    <div>
+                        <h3>LeetCode</h3>
+                        <a href="https://leetcode.com/u/ananyajoshi-cseai/" target="_blank" class="profile-link">ananyajoshi-cseai <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
+                    </div>
+                </div>
+                
+                <div class="profile-stats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem;">
+                    <div class="stat-box">
+                        <span class="stat-val" id="lc-solved">372</span>
+                        <span class="stat-name">Solved</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-val" id="lc-rating">2109</span>
+                        <span class="stat-name">Rating (<span id="lc-level" style="color: #20BEFF;">Knight</span>)</span>
+                    </div>
+                    <div class="stat-box" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <span class="stat-val" style="font-size: 1.2rem;">Top <span id="lc-top">1.48%</span></span>
+                        <span class="stat-name">Ranking</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-val" id="lc-badges">9</span>
+                        <span class="stat-name">Badges</span>
+                    </div>
+                </div>
+                
+                <div class="profile-breakdown">
+                    <div class="progress-bar-container">
+                        <span class="label" style="width: 80px;">Easy (<span id="lc-easy">126</span>)</span>
+                        <div class="bar"><div id="lc-easy-bar" class="fill bg-green-500" style="width: 35%;"></div></div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <span class="label" style="width: 80px;">Med (<span id="lc-med">178</span>)</span>
+                        <div class="bar"><div id="lc-med-bar" class="fill bg-yellow-500" style="width: 48%;"></div></div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <span class="label" style="width: 80px;">Hard (<span id="lc-hard">68</span>)</span>
+                        <div class="bar"><div id="lc-hard-bar" class="fill bg-red-500" style="width: 17%;"></div></div>
+                    </div>
+                </div>
+                
+                <div class="mt-2 text-sm" style="color: var(--text-muted); line-height: 1.8; font-family: var(--font-mono); font-size: 0.85rem; margin-top: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                        <span>Max Streak:</span> <span style="color: #FFA116; font-weight: bold;">170 Days 🔥</span>
+                    </div>
+                </div>
+                
+                <div class="btn-container" style="margin-top: auto; padding-top: 1rem;">
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_leetcode-statics-activity-7457995134266167296-gHa2" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> View LinkedIn Update</a>
+                </div>
+            </div>
+
+            <div class="glass-panel profile-card github">
+                <div class="profile-header">
+                    <i class="fa-brands fa-github profile-icon"></i>
+                    <div>
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/ananyajoshi-cseai" target="_blank" class="profile-link">ananyajoshi-cseai <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
+                    </div>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat-box">
+                        <span class="stat-val">707</span>
+                        <span class="stat-name">Contributions</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-val">13</span>
+                        <span class="stat-name">Current Streak</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-val">78</span>
+                        <span class="stat-name">Longest Streak</span>
+                    </div>
+                </div>
+                <div class="mt-2 text-sm" style="color: var(--text-muted); line-height: 1.8;">
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                        <span>Current Streak:</span> <span style="color: var(--neon-purple); font-weight: bold;">13 Days 🔥</span>
+                    </div>
+                    <p style="margin-bottom: 0.5rem;">Consistent open-source contributor focused on NLP pipelines, intelligent AI systems, and robust APIs.</p>
+                </div>
+            </div>
+
+            <div class="glass-panel profile-card kaggle" style="grid-column: 1 / -1;">
+                <div class="profile-header">
+                    <i class="fa-brands fa-kaggle profile-icon"></i>
+                    <div>
+                        <h3>Kaggle</h3>
+                        <a href="https://www.kaggle.com/ananyajoshicseai" target="_blank" class="profile-link">ananyajoshicseai <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
+                    </div>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 0.5rem;">
+                    
+                    <div style="flex: 0 0 250px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                        <div style="font-size: 3rem; font-weight: bold; color: #20BEFF; line-height: 1;">129</div>
+                        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 1.5rem; margin-top: 0.5rem;">Day Login Streak 🔥</div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%;">
+                            <div style="background: rgba(255,255,255,0.05); padding: 5px; border-radius: 4px;">
+                                <div style="font-weight: bold; color: white;">20</div>
+                                <div style="font-size: 0.65rem; color: gray;">Notebooks</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.05); padding: 5px; border-radius: 4px;">
+                                <div style="font-weight: bold; color: white;">3</div>
+                                <div style="font-size: 0.65rem; color: gray;">Competitions</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
+                        <h4 style="font-family: var(--font-mono); font-size: 1.1rem; margin-bottom: 1rem; color: var(--neon-blue);">Featured: My AI & Data Science Skills Tracker</h4>
+                        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+                            I treated my learning journey like a Data Science problem! I built a personal analytics dataset to log technical skills, categorize them by domain, and track quantitative growth.
+                        </p>
+                        <ul style="font-size: 0.9rem; color: var(--text-muted); list-style-position: inside; margin-bottom: 1rem;">
+                            <li style="margin-bottom: 0.3rem;">Performed EDA using <strong>Python, Pandas, and Seaborn</strong>.</li>
+                            <li style="margin-bottom: 0.3rem;">Practiced structured data modeling & critical skill measurement.</li>
+                        </ul>
+                        
+                        <div class="btn-container" style="margin-top: auto;">
+                            <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_datascience-kaggle-python-activity-7430920796782460928-60cx" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Kaggle Post</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <h2 class="section-title reveal">Professional Experience</h2>
+        <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.5rem; width: 100%;">
+            
+            <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gradient-primary);"></div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 0.3rem;">Machine Learning & GenAI Intern</h3>
+                        <div style="color: var(--neon-blue); font-family: var(--font-mono); font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-microchip"></i> IGDTUW Anveshan Foundation & COE-AI
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-regular fa-calendar"></i> June 2026 – July 2026
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">
+                    Selected for a 6-week intensive program bridging industry-grade project development with academic research methodology.
+                </p>
+                <ul style="list-style-type: none; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--neon-blue);"><i class="fa-solid fa-angle-right"></i></span> <strong>Research Focus:</strong> Drafting and publishing research papers on algorithmic implementations.</li>
+                    <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--neon-blue);"><i class="fa-solid fa-angle-right"></i></span> <strong>Open Source:</strong> Committing production-grade code to the COE-AI GitHub repository via weekly PRs.</li>
+                </ul>
+                <div class="btn-container">
+                    <a href="MLinternship.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Acceptance Proof</a>
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_machinelearning-generativeai-researchanddevelopment-ugcPost-7467537846665392130-Pvyj" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Announcement</a>
+                </div>
+            </div>
+
+            <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--surface-border);"></div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 0.3rem;">Technical & Functional Testing Intern</h3>
+                        <div style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-building"></i> PRAM Edu <span style="font-size: 0.75rem; color: var(--text-muted); border: 1px solid var(--surface-border); padding: 2px 8px; border-radius: 12px; margin-left: 8px;">DPIIT Recognized</span>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-regular fa-calendar"></i> Jan 2026 – Mar 2026
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">
+                    Completed 150+ hours of On-The-Job training focused on technical and functional testing of the PRAM Edu Mobile App.
+                </p>
+                <div class="btn-container">
+                    <a href="PRAM edu internship.jpeg" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Internship Certificate</a>
+                </div>
+            </div>
+
+            <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--surface-border);"></div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 0.3rem;">Open Source Contributor</h3>
+                        <div style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-brands fa-osi"></i> GirlScript Summer of Code (GSSoC)
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-regular fa-calendar"></i> 2026
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">
+                    Actively contributing to open-source repositories as part of India's largest open-source program.
+                </p>
+                <ul style="list-style-type: none; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--text-muted);"><i class="fa-solid fa-angle-right"></i></span> Enhancing project features, optimizing codebases, and resolving critical issues across multiple tech stacks.</li>
+                </ul>
+                <div class="btn-container">
+                    <a href="gssoc.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Acceptance Proof</a>
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_gssoc2026-girlscript-opensource-activity-7452196981680021504-5Bkx" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Selection Post</a>
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_gssoc2026-opensource-softwareengineering-ugcPost-7464185080144355329-bQB6" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Dev Update Post</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="workshops" class="section">
+        <h2 class="section-title reveal">Workshops & Seminars</h2>
+        <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.5rem; width: 100%;">
+            
+            <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon-purple);"></div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 0.3rem;">NS2ML-DE 2026 National Workshop</h3>
+                        <div style="color: var(--neon-blue); font-family: var(--font-mono); font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-building-columns"></i> Indian Institute of Technology (IIT) Ropar
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-regular fa-calendar"></i> July 2026
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                    <div style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">
+                        <p style="margin-bottom: 1.5rem;">Selected to attend an intensive national workshop focusing on the intersection of foundational mathematics and cutting-edge AI architecture. Gained exposure to advanced concepts essential for scientific computing.</p>
+                        
+                        <h4 style="color: var(--text-main); margin-bottom: 0.8rem; font-family: var(--font-mono); font-size: 0.95rem;"><i class="fa-solid fa-lightbulb" style="color: #ffbd2e;"></i> Key Explorations:</h4>
+                        <ul style="list-style-type: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; padding-left: 0.5rem;">
+                            <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);">▹</span> <strong>Mathematical Foundations:</strong> Advanced PDEs and Finite Difference Methods.</li>
+                            <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);">▹</span> <strong>PINNs:</strong> Explored the exciting potential of Physics-Informed Neural Networks.</li>
+                            <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);">▹</span> <strong>Hands-on Labs:</strong> Practical coding translating dense theory into code using MATLAB and Python.</li>
+                        </ul>
+                        
+                        <p style="font-style: italic; color: rgba(255,255,255,0.7); font-size: 0.95rem; border-left: 2px solid var(--surface-border); padding-left: 1rem;">"Sometimes, the best way to grow is to purposely put yourself in a room where you are the least experienced person. Grateful for the exposure and the realization that the AI learning curve is incredibly exciting."</p>
+                    </div>
+                </div>
+                
+                <div class="btn-container">
+                    <a href="Workshop_certificate.jpeg" target="_blank" class="btn-doc"><i class="fa-solid fa-atom"></i> View Certificate</a>
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_machinelearning-artificialintelligence-iitropar-ugcPost-7482632257019740160-s5L6" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Insights on LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #00a4ef;"></div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 0.3rem;">Microsoft Ignite Room</h3>
+                        <div style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-brands fa-microsoft" style="color: #00a4ef;"></i> Women in Tech Connect
+                        </div>
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">
+                    Engaged with the global tech community in the Microsoft Ignite Room, exploring industry trends, cloud innovations, and the empowering journey of Women in Tech.
+                </p>
+                <div class="btn-container">
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_microsoft-igniteroom-womenintech-activity-7433750076352593920-NcQF" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post on LinkedIn</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="hackathons" class="section">
+        <h2 class="section-title reveal">Hackathon Journey</h2>
+        <div class="timeline reveal">
+            
+            <div class="timeline-item left">
+                <div class="timeline-content glass-panel">
+                    <h3>NIT Delhi Hackathon</h3>
+                    <span class="timeline-subtitle">Top 10 Finalist (150+ Teams)</span>
+                    <ul>
+                        <li><strong>Built:</strong> Hydro-Carbon AI (Green AI Linter) with <a href="https://utkarshbharadwaj.github.io/" target="_blank" style="color: var(--neon-blue); text-decoration: none;">Utkarsh Bharadwaj</a></li>
+                        <li>Used AST parsing to predict carbon footprint before code execution.</li>
+                        <li>Mapped conceptual FLOPs to real-world carbon intensity.</li>
+                    </ul>
+                    <div class="btn-container">
+                        <a href="nit delhi certificate.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Certificate</a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_hackathon-experience-nit-delhi-activity-7444579262743080960-iDhG" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content glass-panel">
+                    <h3>Devcation Hack 'N' Solve 2026</h3>
+                    <span class="timeline-subtitle">Top 50 Shortlist (GDG x IIT Delhi)</span>
+                    <ul>
+                        <li><strong>Track:</strong> TigerGraph</li>
+                        <li><strong>Built:</strong> HealthHack 2.0 (The Graph Edition). A graph-powered decision engine.</li>
+                        <li>Mapped 15+ injury types to muscle groups dynamically using GSQL.</li>
+                    </ul>
+                    <div class="btn-container">
+                        <a href="devcation participation certificate hackathon.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_devcation-tigergraph-healthtech-activity-7448415623438680064-rmJd" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content glass-panel">
+                    <h3>HackTheRank</h3>
+                    <span class="timeline-subtitle">HackerRank Online Event</span>
+                    <ul>
+                        <li>Intensive online quiz and coding challenge event.</li>
+                        <li>Demonstrated rapid problem-solving and algorithmic thinking.</li>
+                    </ul>
+                    <div class="btn-container">
+                        <a href="Certificate of participation.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content glass-panel">
+                    <h3>Vihaan 9.0 (DTU)</h3>
+                    <span class="timeline-subtitle">Top 100 Offline Hackathon</span>
+                    <ul>
+                        <li><strong>Team:</strong> Diazonium (Selected from 2,700+ applicants)</li>
+                        <li><strong>Built:</strong> StyloGuard, a forensic stylometry tool for verifying authorship.</li>
+                        <li><strong>Experience:</strong> 24-hour live coding sprint on campus.</li>
+                    </ul>
+                    <div class="btn-container">
+                        <a href="Vihaan_Certificate.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_vihaan9-ieeedtu-styloguard-activity-7449675963141074944-EQyZ" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2 class="section-title reveal">Deployed Impact</h2>
+        <div class="projects-grid reveal">
+
+            <div class="project-card glass-panel">
+                <div class="project-top">
+                    <i class="fa-regular fa-folder fa-folder"></i>
+                    <div class="project-links">
+                        <a href="https://bytenova.onrender.com" target="_blank" title="Live Website"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://github.com/ananyajoshi-cseai/ByteNova" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_asarai-bytenova-promptwars-share-7468362730605821952-LHZy" target="_blank" title="Read Post on LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">Asar AI (ByteNova)</h3>
+                <p class="project-desc">AI-powered platform for NGOs built to reduce operational chaos. Features Voice-Based Reporting (Gemini 1.5 Flash), Smart Emergency Routing via React-Leaflet, and Paper-Free verification.</p>
+                <div class="project-tech">
+                    <span>Gemini API</span>
+                    <span>React</span>
+                    <span>Flask</span>
+                </div>
+            </div>
+
+            <div class="project-card glass-panel">
+                <div class="project-top">
+                    <i class="fa-regular fa-folder fa-folder"></i>
+                    <div class="project-links">
+                        <a href="https://careerflow-ai.streamlit.app/" target="_blank" title="Live Website"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://github.com/ananyajoshi-cseai/CareerFlow-AI" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_the-verified-growth-slide-deck-structure-activity-7437837314506002432-B7WP" target="_blank" title="Read Growth Insights Post"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">CareerFlow AI</h3>
+                <p class="project-desc">GenAI-based career toolkit featuring an intelligent resume and cover letter generator coupled with automated job description analysis and a 'Battle Mode' for comparisons.</p>
+                <div class="project-tech">
+                    <span>GenAI</span>
+                    <span>Streamlit</span>
+                    <span>REST API</span>
+                </div>
+            </div>
+
+            <div class="project-card glass-panel">
+                <div class="project-top">
+                    <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: var(--neon-purple);"></i>
+                    <div class="project-links">
+                        <a href="https://utkarshbharadwaj.github.io/projects/cipherink.html" target="_blank" title="Project Details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://github.com/ananyajoshi-cseai/CipherInk" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">CipherInk</h3>
+                <p class="project-desc">Early-stage data security application prototype. Engineered foundational prototype logic prioritizing algorithmic efficiency and robust application structure within strict time constraints.</p>
+                <div style="margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">
+                    <i class="fa-solid fa-user-group" style="color: var(--neon-purple); margin-right: 5px;"></i> Built with <a href="https://utkarshbharadwaj.github.io" target="_blank" style="color: var(--neon-blue); text-decoration: none; border-bottom: 1px dashed var(--neon-blue);">Utkarsh Bharadwaj</a>
+                </div>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Cryptography</span>
+                    <span>Hackathon Prototype</span>
+                </div>
+            </div>
+
+            <div class="project-card glass-panel">
+                <div class="project-top">
+                    <i class="fa-regular fa-folder fa-folder"></i>
+                    <div class="project-links">
+                        <a href="https://after-feel-poetry-collection.vercel.app/" target="_blank" title="Live Website"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://github.com/ananyajoshi-cseai/After-Feel-Poetry-collection" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_python-ai-nlp-activity-7421477198735523840-i4S4" target="_blank" title="Read Post on LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">After-Feel</h3>
+                <p class="project-desc">An AI Poetry Engine combining deep NLP scoring with Text-to-Speech integration to create an immersive emotional analysis system.</p>
+                <div class="project-tech">
+                    <span>NLP</span>
+                    <span>TTS API</span>
+                    <span>Python</span>
+                </div>
+            </div>
+
+            <div class="project-card glass-panel">
+                <div class="project-top">
+                    <i class="fa-regular fa-folder fa-folder"></i>
+                    <div class="project-links">
+                        <a href="https://ananyajoshi-cseai.github.io/bcs102-prep-hub/" target="_blank" title="Live Website"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://github.com/ananyajoshi-cseai/BAS101-Exam-Dashboard" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_webdevelopment-frontend-sideprojects-activity-7423703378511458304-Huw8" target="_blank" title="Read Post on LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">IGDTUW Analytics Dashboard</h3>
+                <p class="project-desc">Interactive data insights platform built to process and visualize exam analytics for 500+ students with advanced charting.</p>
+                <div class="project-tech">
+                    <span>Data Viz</span>
+                    <span>Pandas</span>
+                    <span>JavaScript</span>
+                </div>
+            </div>
+
+            <div class="project-card glass-panel">
+                <div class="project-top">
+                    <i class="fa-regular fa-folder fa-folder"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/Eesha0407/Health-Hack" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_healthhack-pitch-deck-a-webcam-based-health-activity-7432801498012733441-xVnL" target="_blank" title="Read Post on LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">HealthHack 2.0</h3>
+                <p class="project-desc">Medical-grade fitness engine leveraging a Knowledge Graph for real-time injury-aware exercise pruning and recommendations.</p>
+                <div class="project-tech">
+                    <span>TigerGraph</span>
+                    <span>Flask</span>
+                    <span>GSQL</span>
+                </div>
+            </div>
+
+            <div class="project-card glass-panel">
+                <div class="project-top">
+                    <i class="fa-regular fa-folder fa-folder"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/ananyajoshi-cseai/Hydro-Carbon-AI" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">Hydro-Carbon AI</h3>
+                <p class="project-desc">Flagship AI-powered sustainability profiler. Predicts carbon and water footprint of code before execution using intelligent static analysis.</p>
+                <div style="margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">
+                    <i class="fa-solid fa-user-group" style="color: var(--neon-purple); margin-right: 5px;"></i> Built with <a href="https://utkarshbharadwaj.github.io" target="_blank" style="color: var(--neon-blue); text-decoration: none; border-bottom: 1px dashed var(--neon-blue);">Utkarsh Bharadwaj</a>
+                </div>
+                <div class="project-tech">
+                    <span>FastAPI</span>
+                    <span>React</span>
+                    <span>AST Parsing</span>
+                </div>
+            </div>
+
+            <div class="project-card glass-panel">
+                <div class="project-top">
+                    <i class="fa-regular fa-folder fa-folder"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/ananyajoshi-cseai/YouTube-Mood-Ring-Ananya" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">YouTube Mood Ring</h3>
+                <p class="project-desc">Robust NLP pipeline analyzing 5,000+ comments using VADER sentiment analysis. Reduced manual moderation effort by 80%.</p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>NLP</span>
+                    <span>NLTK (VADER)</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="certifications" class="section reveal">
+        <div class="max-w-7xl mx-auto w-full px-6">
+            <h2 class="section-title">Licenses & Certifications</h2>
+        </div>
+        
+        <div class="marquee-container">
+            <div class="marquee-content">
+                
+                <div class="glass-panel cert-card flex-shrink-0" style="border-color: var(--neon-purple);">
+                    <i class="fa-solid fa-atom" style="color: var(--neon-purple);"></i>
+                    <h4>NS2ML-DE 2026 Workshop</h4>
+                    <p>IIT Ropar • Foundational Math & PINNs</p>
+                    <a href="Workshop_certificate.jpeg" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
+                    <h4>Software Engineer Intern</h4>
+                    <p>HackerRank • Verified Role Certification</p>
+                    <a href="software_engineer_intern certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
+                    <h4>SQL (Advanced)</h4>
+                    <p>HackerRank • Complex query optimization</p>
+                    <a href="sql_advanced certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-kaggle" style="color: #20BEFF;"></i>
+                    <h4>Python Coder Badge</h4>
+                    <p>Kaggle • Verified coding capabilities</p>
+                    <a href="Python Coder.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-kaggle" style="color: #20BEFF;"></i>
+                    <h4>Intro to Machine Learning</h4>
+                    <p>Kaggle • Core ML Algorithms</p>
+                    <a href="AnanyaJoshi-cseai - Intro to Machine Learning.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-free-code-camp" style="color: #006400;"></i>
+                    <h4>Machine Learning</h4>
+                    <p>freeCodeCamp • 300-hour ML with Python</p>
+                    <a href="Machine Learning With Python.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
+                    <h4>Prompt Design in Vertex AI</h4>
+                    <p>Google Cloud • Machine Learning & AI</p>
+                    <a href="prompt-design-in-vertex-ai-skill-badge.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
+                    <h4>Intro to Large Language Models</h4>
+                    <p>Google Cloud • Core LLM Architecture</p>
+                    <a href="LLM Google cloud.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
+                    <h4>Intro to Generative AI</h4>
+                    <p>Google Cloud • GenAI Fundamentals</p>
+                    <a href="Google Generative AI.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
+                    <h4>Responsible AI Principles</h4>
+                    <p>Google Cloud • Ethical AI deployment</p>
+                    <a href="Responsible AI Google cloud.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-rocket" style="color: #FF6C37;"></i>
+                    <h4>API Fundamentals</h4>
+                    <p>Postman • Student Expert Validation</p>
+                    <a href="Postman - Postman API Fundamentals Student Expert - 2026-02-21.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-brain" style="color: var(--neon-purple);"></i>
+                    <h4>Generative AI Foundations</h4>
+                    <p>upGrad & Microsoft • AI Agents & Prompting</p>
+                    <a href="Generative AI Foundations Certificate Program.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-brain" style="color: var(--neon-purple);"></i>
+                    <h4>Prompt Engineering for GenAI</h4>
+                    <p>Internshala • 6-week Online Training (98%)</p>
+                    <a href="Prompt Engineering for GenAI Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-code" style="color: #0056D2;"></i>
+                    <h4>Vibe Coding with Replit</h4>
+                    <p>Internshala • 4-week Online Training (92%)</p>
+                    <a href="Vibe Coding with Replit Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-database" style="color: #00EA64;"></i>
+                    <h4>Data Science with AI</h4>
+                    <p>Internshala • 8-week Online Training (83%)</p>
+                    <a href="Data Science with AI Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-shield-halved" style="color: var(--neon-blue);"></i>
+                    <h4>Cyber Security with AI</h4>
+                    <p>Internshala • Top Performer (96%)</p>
+                    <a href="Cyber Security with AI Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-sitemap" style="color: #FF9900;"></i>
+                    <h4>Data Structures & Algorithms</h4>
+                    <p>NSDC • Core DSA Concepts (Grade B)</p>
+                    <a href="dsa_certificate_ananya.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-html5" style="color: #E34F26;"></i>
+                    <h4>Web Development with AI</h4>
+                    <p>NSDC • AI-integrated web applications (Grade A)</p>
+                    <a href="Web_Development_ananya.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-html5" style="color: #0056D2;"></i>
+                    <h4>HTML Course</h4>
+                    <p>Unstop • Certification of Completion</p>
+                    <a href="HTML unstop.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-laptop-code" style="color: #0056D2;"></i>
+                    <h4>Software Dev Simulation</h4>
+                    <p>Forage (Datacom) • Root cause analysis & bugs</p>
+                    <a href="Software Development job simulation certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-magnifying-glass-chart" style="color: #86BC25;"></i>
+                    <h4>Data Analytics Job Simulation</h4>
+                    <p>Forage (Deloitte) • Forensic Technology Analysis</p>
+                    <a href="Data_Analytics_Deloitte_simulation.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-shield-virus" style="color: #86BC25;"></i>
+                    <h4>Cyber Job Simulation</h4>
+                    <p>Forage (Deloitte) • Cyber Security practical tasks</p>
+                    <a href="cyber job simulation.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-aws" style="color: #FF9900;"></i>
+                    <h4>Solutions Architecture Simulation</h4>
+                    <p>Forage (AWS) • Scalable hosting architecture</p>
+                    <a href="Solutions Architecture Job Simulation certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-chart-line" style="color: #009999;"></i>
+                    <h4>Project Manager Simulation</h4>
+                    <p>Forage (Siemens) • KPI & Dashboard Management</p>
+                    <a href="Simens simulation certificate ananya.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-robot" style="color: #FFD700;"></i>
+                    <h4>Fundamentals of Agents</h4>
+                    <p>Hugging Face • Unit 1 Agents Course</p>
+                    <a href="ai agent.webp" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-wrench" style="color: #000000;"></i>
+                    <h4>AI Tools Workshop</h4>
+                    <p>be10x • Data analysis and coding using AI</p>
+                    <a href="Ananya_Certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
+                    <h4>Problem Solving (Intermediate)</h4>
+                    <p>HackerRank • Skill Certification Test</p>
+                    <a href="problem_solving_intermediate certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
+                    <h4>Problem Solving (Basic)</h4>
+                    <p>HackerRank • Skill Certification Test</p>
+                    <a href="problem_solving_basic certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
+                    <h4>Python (Basic)</h4>
+                    <p>HackerRank • Skill Certification Test</p>
+                    <a href="python_basic certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-code" style="color: #FFA116;"></i>
+                    <h4>Introduction to Pandas</h4>
+                    <p>LeetCode • Pandas Operations Badge</p>
+                    <a href="pandas intruduction badge.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Duplicate Set for Seamless Loop -->
+                <div class="glass-panel cert-card flex-shrink-0" style="border-color: var(--neon-purple);">
+                    <i class="fa-solid fa-atom" style="color: var(--neon-purple);"></i>
+                    <h4>NS2ML-DE 2026 Workshop</h4>
+                    <p>IIT Ropar • Foundational Math & PINNs</p>
+                    <a href="Workshop_certificate.jpeg" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
+                    <h4>Software Engineer Intern</h4>
+                    <p>HackerRank • Verified Role Certification</p>
+                    <a href="software_engineer_intern certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
+                    <h4>SQL (Advanced)</h4>
+                    <p>HackerRank • Complex query optimization</p>
+                    <a href="sql_advanced certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-kaggle" style="color: #20BEFF;"></i>
+                    <h4>Python Coder Badge</h4>
+                    <p>Kaggle • Verified coding capabilities</p>
+                    <a href="Python Coder.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-kaggle" style="color: #20BEFF;"></i>
+                    <h4>Intro to Machine Learning</h4>
+                    <p>Kaggle • Core ML Algorithms</p>
+                    <a href="AnanyaJoshi-cseai - Intro to Machine Learning.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-free-code-camp" style="color: #006400;"></i>
+                    <h4>Machine Learning</h4>
+                    <p>freeCodeCamp • 300-hour ML with Python</p>
+                    <a href="Machine Learning With Python.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
+                    <h4>Prompt Design in Vertex AI</h4>
+                    <p>Google Cloud • Machine Learning & AI</p>
+                    <a href="prompt-design-in-vertex-ai-skill-badge.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
+                    <h4>Intro to Large Language Models</h4>
+                    <p>Google Cloud • Core LLM Architecture</p>
+                    <a href="LLM Google cloud.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
+                    <h4>Intro to Generative AI</h4>
+                    <p>Google Cloud • GenAI Fundamentals</p>
+                    <a href="Google Generative AI.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-cloud" style="color: #4285F4;"></i>
+                    <h4>Responsible AI Principles</h4>
+                    <p>Google Cloud • Ethical AI deployment</p>
+                    <a href="Responsible AI Google cloud.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-rocket" style="color: #FF6C37;"></i>
+                    <h4>API Fundamentals</h4>
+                    <p>Postman • Student Expert Validation</p>
+                    <a href="Postman - Postman API Fundamentals Student Expert - 2026-02-21.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-brain" style="color: var(--neon-purple);"></i>
+                    <h4>Generative AI Foundations</h4>
+                    <p>upGrad & Microsoft • AI Agents & Prompting</p>
+                    <a href="Generative AI Foundations Certificate Program.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-brain" style="color: var(--neon-purple);"></i>
+                    <h4>Prompt Engineering for GenAI</h4>
+                    <p>Internshala • 6-week Online Training (98%)</p>
+                    <a href="Prompt Engineering for GenAI Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-code" style="color: #0056D2;"></i>
+                    <h4>Vibe Coding with Replit</h4>
+                    <p>Internshala • 4-week Online Training (92%)</p>
+                    <a href="Vibe Coding with Replit Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-database" style="color: #00EA64;"></i>
+                    <h4>Data Science with AI</h4>
+                    <p>Internshala • 8-week Online Training (83%)</p>
+                    <a href="Data Science with AI Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-shield-halved" style="color: var(--neon-blue);"></i>
+                    <h4>Cyber Security with AI</h4>
+                    <p>Internshala • Top Performer (96%)</p>
+                    <a href="Cyber Security with AI Training - Certificate of Completion.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-sitemap" style="color: #FF9900;"></i>
+                    <h4>Data Structures & Algorithms</h4>
+                    <p>NSDC • Core DSA Concepts (Grade B)</p>
+                    <a href="dsa_certificate_ananya.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-html5" style="color: #E34F26;"></i>
+                    <h4>Web Development with AI</h4>
+                    <p>NSDC • AI-integrated web applications (Grade A)</p>
+                    <a href="Web_Development_ananya.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-html5" style="color: #0056D2;"></i>
+                    <h4>HTML Course</h4>
+                    <p>Unstop • Certification of Completion</p>
+                    <a href="HTML unstop.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-laptop-code" style="color: #0056D2;"></i>
+                    <h4>Software Dev Simulation</h4>
+                    <p>Forage (Datacom) • Root cause analysis & bugs</p>
+                    <a href="Software Development job simulation certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-magnifying-glass-chart" style="color: #86BC25;"></i>
+                    <h4>Data Analytics Job Simulation</h4>
+                    <p>Forage (Deloitte) • Forensic Technology Analysis</p>
+                    <a href="Data_Analytics_Deloitte_simulation.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-shield-virus" style="color: #86BC25;"></i>
+                    <h4>Cyber Job Simulation</h4>
+                    <p>Forage (Deloitte) • Cyber Security practical tasks</p>
+                    <a href="cyber job simulation.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-aws" style="color: #FF9900;"></i>
+                    <h4>Solutions Architecture Simulation</h4>
+                    <p>Forage (AWS) • Scalable hosting architecture</p>
+                    <a href="Solutions Architecture Job Simulation certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-chart-line" style="color: #009999;"></i>
+                    <h4>Project Manager Simulation</h4>
+                    <p>Forage (Siemens) • KPI & Dashboard Management</p>
+                    <a href="Simens simulation certificate ananya.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-robot" style="color: #FFD700;"></i>
+                    <h4>Fundamentals of Agents</h4>
+                    <p>Hugging Face • Unit 1 Agents Course</p>
+                    <a href="ai agent.webp" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-wrench" style="color: #000000;"></i>
+                    <h4>AI Tools Workshop</h4>
+                    <p>be10x • Data analysis and coding using AI</p>
+                    <a href="Ananya_Certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
+                    <h4>Problem Solving (Intermediate)</h4>
+                    <p>HackerRank • Skill Certification Test</p>
+                    <a href="problem_solving_intermediate certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
+                    <h4>Problem Solving (Basic)</h4>
+                    <p>HackerRank • Skill Certification Test</p>
+                    <a href="problem_solving_basic certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
+                    <h4>Python (Basic)</h4>
+                    <p>HackerRank • Skill Certification Test</p>
+                    <a href="python_basic certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <div class="glass-panel cert-card flex-shrink-0">
+                    <i class="fa-solid fa-code" style="color: #FFA116;"></i>
+                    <h4>Introduction to Pandas</h4>
+                    <p>LeetCode • Pandas Operations Badge</p>
+                    <a href="pandas intruduction badge.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="reveal">
+            <h2 class="section-title">Let's Build Something</h2>
+            <p class="contact-desc">I'm currently open for new opportunities, collaborations, or hackathon teams. Whether you have a question or just want to talk about AI, feel free to drop a message!</p>
+            
+            <a href="mailto:ananyajoshi.cseai@gmail.com" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">Say Hello <i class="fa-regular fa-paper-plane" style="margin-left: 8px;"></i></a>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/ananya-joshi-cseai/" target="_blank" class="social-link" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/ananyajoshi-cseai" target="_blank" class="social-link" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://leetcode.com/u/ananyajoshi-cseai/" target="_blank" class="social-link" aria-label="LeetCode">
+                    <i class="fa-solid fa-code"></i>
+                </a>
+                <a href="https://www.kaggle.com/ananyajoshicseai" target="_blank" class="social-link" aria-label="Kaggle">
+                    <i class="fa-brands fa-kaggle"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Designed & Built by Ananya Joshi &copy; 2026</p>
+        <p style="margin-top: 5px; color: var(--neon-blue); opacity: 0.7;">Architecting the future, one node at a time.</p>
+    </footer>
+
+    <script>
+        // --- Custom Cursor ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        const interactives = document.querySelectorAll('a, .btn, .stat-card, .project-card, .tech-item, .profile-card, .cert-card');
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.width = '60px';
+                cursorOutline.style.height = '60px';
+                cursorOutline.style.backgroundColor = 'rgba(0, 240, 255, 0.1)';
+                cursorOutline.style.borderColor = 'var(--neon-blue)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.width = '40px';
+                cursorOutline.style.height = '40px';
+                cursorOutline.style.backgroundColor = 'transparent';
+                cursorOutline.style.borderColor = 'rgba(138, 43, 226, 0.5)';
+            });
+        });
+
+        // --- Sticky Navbar ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // --- Typing Animation ---
+        const typingText = document.getElementById('typing-text');
+        const phrases = [
+            "I build AI systems.",
+            "I ship fast.",
+            "I solve real problems."
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingDelay = 100;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typingDelay = 50;
+            } else {
+                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typingDelay = 100;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typingDelay = 2000; 
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingDelay = 500; 
+            }
+
+            setTimeout(type, typingDelay);
+        }
+
+        setTimeout(type, 1000);
+
+        // --- Scroll Reveal & Number Counters ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const counters = document.querySelectorAll('.counter');
+        let countersStarted = false;
+
+        function startCounters() {
+            if (countersStarted) return;
+            countersStarted = true;
+
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; 
+                const increment = target / (duration / 16); 
+                
+                let current = 0;
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    
+                    if(entry.target.querySelector('.stats-grid') || entry.target.classList.contains('stats-grid')) {
+                        startCounters();
+                    }
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+        
+        if(document.getElementById('stats').getBoundingClientRect().top < window.innerHeight) {
+            startCounters();
+        }
+
+        // --- Particle Network Background ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height, particles;
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = [];
+            
+            const particleCount = Math.floor((width * height) / 15000);
+            
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    radius: Math.random() * 1.5 + 0.5
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, width, height);
+            
+            ctx.fillStyle = 'rgba(0, 240, 255, 0.5)';
+            
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            ctx.strokeStyle = 'rgba(138, 43, 226, 0.1)';
+            ctx.lineWidth = 0.5;
+            
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(138, 43, 226, ${0.2 - dist/750})`;
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            requestAnimationFrame(drawParticles);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        drawParticles();
+
+    </script>
+</body>
+</html>
