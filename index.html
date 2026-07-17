@@ -106,7 +106,6 @@
             font-weight: 700;
         }
 
-        /* Animated Gradient Text */
         .gradient-text {
             background: linear-gradient(270deg, var(--neon-blue), var(--neon-purple), #ff00ff, var(--neon-blue));
             background-size: 300% 300%;
@@ -171,6 +170,13 @@
         /* =========================================
            DOCUMENT BUTTONS
         ========================================= */
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
         .btn-doc {
             display: inline-flex;
             align-items: center;
@@ -184,7 +190,6 @@
             color: var(--text-main);
             text-decoration: none;
             transition: var(--transition);
-            margin-top: 1rem;
             width: max-content;
         }
         
@@ -254,7 +259,6 @@
             overflow: hidden;
         }
 
-        /* Floating Background Icons */
         .floating-icon {
             position: absolute;
             font-size: 4rem;
@@ -300,7 +304,6 @@
             position: relative;
         }
 
-        /* Decorative glowing orb behind image */
         .hero-visual::before {
             content: '';
             position: absolute;
@@ -789,7 +792,6 @@
         .bg-green-500 { background-color: #00EA64 !important; }
         .bg-yellow-500 { background-color: #FFA116 !important; }
         .bg-red-500 { background-color: #EF4743 !important; }
-        .text-neon-blue { color: var(--neon-blue) !important; }
 
         /* =========================================
            HACKATHON TIMELINE
@@ -1216,15 +1218,14 @@
             <li><a href="#stack">Tech</a></li>
             <li><a href="#profiles">Profiles</a></li>
             <li><a href="#experience">Experience</a></li>
-            <li><a href="#hackathons">Journey</a></li>
             <li><a href="#workshops">Workshops</a></li>
+            <li><a href="#hackathons">Journey</a></li>
             <li><a href="#projects">Work</a></li>
             <li><a href="#certifications">Certs</a></li>
         </ul>
     </nav>
 
     <section id="hero" class="section">
-        <!-- Floating Animated Background Icons -->
         <i class="fa-brands fa-python floating-icon fi-1"></i>
         <i class="fa-brands fa-react floating-icon fi-2"></i>
         <i class="fa-solid fa-brain floating-icon fi-3"></i>
@@ -1248,7 +1249,6 @@
             
             <div class="hero-visual">
                 <div class="profile-img-wrapper">
-                    <!-- Updated file name and fallback to profile.png -->
                     <img src="profile.png" onerror="this.onerror=null; this.src='compressed dp.jpg';" alt="Ananya Joshi">
                     <div class="profile-img-overlay"></div>
                 </div>
@@ -1261,7 +1261,7 @@
             <div class="stat-card glass-panel">
                 <i class="fa-solid fa-code"></i>
                 <div class="stat-number"><span class="counter" data-target="370">0</span><span class="stat-plus">+</span></div>
-                <div class="stat-label">LeetCode Solved (178 Med)</div>
+                <div class="stat-label">LeetCode Solved (178+ Med)</div>
             </div>
             <div class="stat-card glass-panel">
                 <i class="fa-solid fa-database"></i>
@@ -1275,7 +1275,7 @@
             </div>
             <div class="stat-card glass-panel">
                 <i class="fa-solid fa-microchip"></i>
-                <div class="stat-number"><span class="counter" data-target="8">0</span><span class="stat-plus">+</span></div>
+                <div class="stat-number"><span class="counter" data-target="9">0</span><span class="stat-plus">+</span></div>
                 <div class="stat-label">Data & Tech Projects Built</div>
             </div>
         </div>
@@ -1285,7 +1285,7 @@
         <h2 class="section-title reveal">About Me</h2>
         <div class="about-content reveal">
             <div class="about-text">
-                <p>I am a Computer Science (AI) student at <span class="highlight-text">IGDTUW (1st Year CGPA: 9.1)</span> based in Delhi, India. I don't just study algorithms; I apply them to build real-world AI systems that solve complex problems.</p>
+                <p>I am a first-year Computer Science (AI) student at <span class="highlight-text">IGDTUW (1st Year CGPA: ~9.1 | Sem 1: 9.14, Sem 2: 9.05)</span> based in Delhi, India. I don't just study algorithms; I apply them to build real-world AI systems that solve complex problems.</p>
                 <p>I thrive under pressure, actively participating in hackathons to turn abstract ideas into deployed products within strict time limits. My expertise bridges the gap between data science and robust software engineering.</p>
                 <p>Whether it's building NLP pipelines, optimizing decision engines, or developing sustainability-focused developer tools, I am execution-focused and driven by impact.</p>
                 
@@ -1331,8 +1331,8 @@
                         <h3 style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 0.2rem;">Indira Gandhi Delhi Technical University for Women (IGDTUW)</h3>
                         <p style="color: var(--neon-blue); font-family: var(--font-mono); font-size: 0.95rem; margin-bottom: 1rem;">B.Tech in Computer Science and Artificial Intelligence (CSE AI)</p>
                         <p style="color: var(--text-muted); font-size: 0.95rem;">
-                            <strong>Current Year:</strong> Second Year (Completed 1st Year) <br>
-                            <strong>CGPA:</strong> 9.1 / 10.0 (Sem I: 9.14 | Sem II: 9.05)
+                            <strong>Current Semester:</strong> II (First Year) <br>
+                            <strong>CGPA:</strong> ~9.1 / 10.0 (Sem 1: 9.14, Sem 2: 9.05)
                         </p>
                         <a href="#" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Latest Transcript</a>
                     </div>
@@ -1393,7 +1393,6 @@
         <h2 class="section-title reveal">Developer Profiles</h2>
         <div class="profile-detailed-grid reveal">
             
-            <!-- LeetCode Details -->
             <div class="glass-panel profile-card leetcode">
                 <div class="profile-header">
                     <i class="fa-solid fa-code profile-icon"></i>
@@ -1425,7 +1424,7 @@
                 <div class="profile-breakdown">
                     <div class="progress-bar-container">
                         <span class="label" style="width: 80px;">Easy (<span id="lc-easy">126</span>)</span>
-                        <div class="bar"><div id="lc-easy-bar" class="fill bg-green-500" style="width: 34%;"></div></div>
+                        <div class="bar"><div id="lc-easy-bar" class="fill bg-green-500" style="width: 35%;"></div></div>
                     </div>
                     <div class="progress-bar-container">
                         <span class="label" style="width: 80px;">Med (<span id="lc-med">178</span>)</span>
@@ -1433,7 +1432,7 @@
                     </div>
                     <div class="progress-bar-container">
                         <span class="label" style="width: 80px;">Hard (<span id="lc-hard">68</span>)</span>
-                        <div class="bar"><div id="lc-hard-bar" class="fill bg-red-500" style="width: 18%;"></div></div>
+                        <div class="bar"><div id="lc-hard-bar" class="fill bg-red-500" style="width: 17%;"></div></div>
                     </div>
                 </div>
                 
@@ -1441,16 +1440,13 @@
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
                         <span>Max Streak:</span> <span style="color: #FFA116; font-weight: bold;">170 Days 🔥</span>
                     </div>
-                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-                        <span>Total Active Days:</span> <span style="color: var(--neon-blue); font-weight: bold;">170</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>Submissions (Past Year):</span> <span style="color: var(--text-main); font-weight: bold;">393</span>
-                    </div>
+                </div>
+                
+                <div class="btn-container" style="margin-top: auto; padding-top: 1rem;">
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_leetcode-statics-activity-7457995134266167296-gHa2" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> View LinkedIn Update</a>
                 </div>
             </div>
 
-            <!-- GitHub Card -->
             <div class="glass-panel profile-card github">
                 <div class="profile-header">
                     <i class="fa-brands fa-github profile-icon"></i>
@@ -1478,14 +1474,9 @@
                         <span>Current Streak:</span> <span style="color: var(--neon-purple); font-weight: bold;">13 Days 🔥</span>
                     </div>
                     <p style="margin-bottom: 0.5rem;">Consistent open-source contributor focused on NLP pipelines, intelligent AI systems, and robust APIs.</p>
-                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="font-size: 0.75rem; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);"><span style="color: #e34c26;">●</span> HTML (71%)</span>
-                        <span style="font-size: 0.75rem; background: rgba(255,255,255,0.05); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);"><span style="color: #3572A5;">●</span> Python (17%)</span>
-                    </div>
                 </div>
             </div>
 
-            <!-- Kaggle Card -->
             <div class="glass-panel profile-card kaggle" style="grid-column: 1 / -1;">
                 <div class="profile-header">
                     <i class="fa-brands fa-kaggle profile-icon"></i>
@@ -1512,7 +1503,7 @@
                         </div>
                     </div>
 
-                    <div style="flex: 1; min-width: 300px;">
+                    <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
                         <h4 style="font-family: var(--font-mono); font-size: 1.1rem; margin-bottom: 1rem; color: var(--neon-blue);">Featured: My AI & Data Science Skills Tracker</h4>
                         <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
                             I treated my learning journey like a Data Science problem! I built a personal analytics dataset to log technical skills, categorize them by domain, and track quantitative growth.
@@ -1520,12 +1511,10 @@
                         <ul style="font-size: 0.9rem; color: var(--text-muted); list-style-position: inside; margin-bottom: 1rem;">
                             <li style="margin-bottom: 0.3rem;">Performed EDA using <strong>Python, Pandas, and Seaborn</strong>.</li>
                             <li style="margin-bottom: 0.3rem;">Practiced structured data modeling & critical skill measurement.</li>
-                            <li style="margin-bottom: 0.3rem;">Designed as a "Living Resume" dashboard concept.</li>
                         </ul>
-                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                            <span style="padding: 3px 8px; background: rgba(0, 240, 255, 0.05); border-radius: 4px; font-size: 0.75rem; color: var(--neon-blue); border: 1px solid rgba(0, 240, 255, 0.2);">Data Visualization</span>
-                            <span style="padding: 3px 8px; background: rgba(0, 240, 255, 0.05); border-radius: 4px; font-size: 0.75rem; color: var(--neon-blue); border: 1px solid rgba(0, 240, 255, 0.2);">Pandas</span>
-                            <span style="padding: 3px 8px; background: rgba(0, 240, 255, 0.05); border-radius: 4px; font-size: 0.75rem; color: var(--neon-blue); border: 1px solid rgba(0, 240, 255, 0.2);">EDA</span>
+                        
+                        <div class="btn-container" style="margin-top: auto;">
+                            <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_datascience-kaggle-python-activity-7430920796782460928-60cx" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Kaggle Post</a>
                         </div>
                     </div>
                 </div>
@@ -1556,9 +1545,11 @@
                 <ul style="list-style-type: none; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
                     <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--neon-blue);"><i class="fa-solid fa-angle-right"></i></span> <strong>Research Focus:</strong> Drafting and publishing research papers on algorithmic implementations.</li>
                     <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--neon-blue);"><i class="fa-solid fa-angle-right"></i></span> <strong>Open Source:</strong> Committing production-grade code to the COE-AI GitHub repository via weekly PRs.</li>
-                    <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--neon-blue);"><i class="fa-solid fa-angle-right"></i></span> <strong>Pipelines:</strong> Optimizing classical machine learning models and modern Generative AI architectures in Python.</li>
                 </ul>
-                <a href="MLinternship.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Acceptance Proof</a>
+                <div class="btn-container">
+                    <a href="MLinternship.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Acceptance Proof</a>
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_machinelearning-generativeai-researchanddevelopment-ugcPost-7467537846665392130-Pvyj" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Announcement</a>
+                </div>
             </div>
 
             <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
@@ -1577,11 +1568,9 @@
                 <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">
                     Completed 150+ hours of On-The-Job training focused on technical and functional testing of the PRAM Edu Mobile App.
                 </p>
-                <ul style="list-style-type: none; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                    <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--text-muted);"><i class="fa-solid fa-angle-right"></i></span> Executed comprehensive test cases for core modules, ensuring high-fidelity user synchronization.</li>
-                    <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--text-muted);"><i class="fa-solid fa-angle-right"></i></span> Collaborated with developers to translate user-facing issues into technical bug reports, streamlining the SDLC.</li>
-                </ul>
-                <a href="PRAM edu internship.jpeg" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Internship Certificate</a>
+                <div class="btn-container">
+                    <a href="PRAM edu internship.jpeg" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Internship Certificate</a>
+                </div>
             </div>
 
             <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
@@ -1602,9 +1591,72 @@
                 </p>
                 <ul style="list-style-type: none; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
                     <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--text-muted);"><i class="fa-solid fa-angle-right"></i></span> Enhancing project features, optimizing codebases, and resolving critical issues across multiple tech stacks.</li>
-                    <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--text-muted);"><i class="fa-solid fa-angle-right"></i></span> Collaborating with project maintainers and global developers to build scalable open-source software.</li>
                 </ul>
-                <a href="gssoc.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Acceptance Proof</a>
+                <div class="btn-container">
+                    <a href="gssoc.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Acceptance Proof</a>
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_gssoc2026-girlscript-opensource-activity-7452196981680021504-5Bkx" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Selection Post</a>
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_gssoc2026-opensource-softwareengineering-ugcPost-7464185080144355329-bQB6" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Dev Update Post</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="workshops" class="section">
+        <h2 class="section-title reveal">Workshops & Seminars</h2>
+        <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.5rem; width: 100%;">
+            
+            <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon-purple);"></div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 0.3rem;">NS2ML-DE 2026 National Workshop</h3>
+                        <div style="color: var(--neon-blue); font-family: var(--font-mono); font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-building-columns"></i> Indian Institute of Technology (IIT) Ropar
+                        </div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-regular fa-calendar"></i> July 2026
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                    <div style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">
+                        <p style="margin-bottom: 1.5rem;">Selected to attend an intensive national workshop focusing on the intersection of foundational mathematics and cutting-edge AI architecture. Gained exposure to advanced concepts essential for scientific computing.</p>
+                        
+                        <h4 style="color: var(--text-main); margin-bottom: 0.8rem; font-family: var(--font-mono); font-size: 0.95rem;"><i class="fa-solid fa-lightbulb" style="color: #ffbd2e;"></i> Key Explorations:</h4>
+                        <ul style="list-style-type: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; padding-left: 0.5rem;">
+                            <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);">▹</span> <strong>Mathematical Foundations:</strong> Advanced PDEs and Finite Difference Methods.</li>
+                            <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);">▹</span> <strong>PINNs:</strong> Explored the exciting potential of Physics-Informed Neural Networks.</li>
+                            <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);">▹</span> <strong>Hands-on Labs:</strong> Practical coding translating dense theory into code using MATLAB and Python.</li>
+                        </ul>
+                        
+                        <p style="font-style: italic; color: rgba(255,255,255,0.7); font-size: 0.95rem; border-left: 2px solid var(--surface-border); padding-left: 1rem;">"Sometimes, the best way to grow is to purposely put yourself in a room where you are the least experienced person. Grateful for the exposure and the realization that the AI learning curve is incredibly exciting."</p>
+                    </div>
+                </div>
+                
+                <div class="btn-container">
+                    <a href="Workshop_certificate.jpeg" target="_blank" class="btn-doc"><i class="fa-solid fa-atom"></i> View Certificate</a>
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_machinelearning-artificialintelligence-iitropar-ugcPost-7482632257019740160-s5L6" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Insights on LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #00a4ef;"></div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 0.3rem;">Microsoft Ignite Room</h3>
+                        <div style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-brands fa-microsoft" style="color: #00a4ef;"></i> Women in Tech Connect
+                        </div>
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">
+                    Engaged with the global tech community in the Microsoft Ignite Room, exploring industry trends, cloud innovations, and the empowering journey of Women in Tech.
+                </p>
+                <div class="btn-container">
+                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_microsoft-igniteroom-womenintech-activity-7433750076352593920-NcQF" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post on LinkedIn</a>
+                </div>
             </div>
 
         </div>
@@ -1622,9 +1674,11 @@
                         <li><strong>Built:</strong> Hydro-Carbon AI (Green AI Linter)</li>
                         <li>Used AST parsing to predict carbon footprint before code execution.</li>
                         <li>Mapped conceptual FLOPs to real-world carbon intensity.</li>
-                        <li><strong>Learning:</strong> Built scalable, research-backed AI systems under extreme time pressure.</li>
                     </ul>
-                    <a href="nit delhi certificate.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Certificate</a>
+                    <div class="btn-container">
+                        <a href="nit delhi certificate.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Certificate</a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_hackathon-experience-nit-delhi-activity-7444579262743080960-iDhG" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                    </div>
                 </div>
             </div>
 
@@ -1634,11 +1688,13 @@
                     <span class="timeline-subtitle">Top 50 Shortlist (GDG x IIT Delhi)</span>
                     <ul>
                         <li><strong>Track:</strong> TigerGraph</li>
-                        <li><strong>Built:</strong> HealthHack 2.0 (The Graph Edition). A graph-powered decision engine for safe training and clinical nutrition formatting.</li>
-                        <li><strong>Role:</strong> Lead Developer (AI & Graph). Built the Python/Flask REST API and integrated TigerGraph Cloud.</li>
-                        <li>Mapped 15+ injury types to muscle groups to dynamically prune contraindicated exercises (like Deadlifts for lower back pain) using GSQL.</li>
+                        <li><strong>Built:</strong> HealthHack 2.0 (The Graph Edition). A graph-powered decision engine.</li>
+                        <li>Mapped 15+ injury types to muscle groups dynamically using GSQL.</li>
                     </ul>
-                    <a href="devcation participation certificate hackathon.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                    <div class="btn-container">
+                        <a href="devcation participation certificate hackathon.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_devcation-tigergraph-healthtech-activity-7448415623438680064-rmJd" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                    </div>
                 </div>
             </div>
 
@@ -1647,10 +1703,12 @@
                     <h3>HackTheRank</h3>
                     <span class="timeline-subtitle">HackerRank Online Event</span>
                     <ul>
-                        <li>Successfully participated in the intensive online quiz and coding challenge event hosted by HackerRank.</li>
-                        <li>Demonstrated rapid problem-solving, debugging skills, and algorithmic thinking under timed constraints.</li>
+                        <li>Intensive online quiz and coding challenge event.</li>
+                        <li>Demonstrated rapid problem-solving and algorithmic thinking.</li>
                     </ul>
-                    <a href="Certificate of participation.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                    <div class="btn-container">
+                        <a href="Certificate of participation.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                    </div>
                 </div>
             </div>
 
@@ -1660,54 +1718,16 @@
                     <span class="timeline-subtitle">Top 100 Offline Hackathon</span>
                     <ul>
                         <li><strong>Team:</strong> Diazonium (Selected from 2,700+ applicants)</li>
-                        <li><strong>Built:</strong> StyloGuard, a forensic stylometry tool designed to verify authorship by analyzing subconscious linguistic patterns.</li>
-                        <li><strong>Experience:</strong> 24-hour live coding sprint on campus, focusing on backend architecture and prototype execution.</li>
+                        <li><strong>Built:</strong> StyloGuard, a forensic stylometry tool for verifying authorship.</li>
+                        <li><strong>Experience:</strong> 24-hour live coding sprint on campus.</li>
                     </ul>
-                    <a href="Vihaan_Certificate.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                    <div class="btn-container">
+                        <a href="Vihaan_Certificate.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_vihaan9-ieeedtu-styloguard-activity-7449675963141074944-EQyZ" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                    </div>
                 </div>
             </div>
 
-        </div>
-    </section>
-
-    <section id="workshops" class="section">
-        <h2 class="section-title reveal">Workshops & Training</h2>
-        <div style="max-width: 900px; margin: 0 auto; width: 100%;">
-            <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
-                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon-purple);"></div>
-                
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
-                    <div>
-                        <h3 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 0.3rem;">NS2ML-DE 2026: Numerical Solvers to Data-Driven ML</h3>
-                        <div style="color: var(--neon-blue); font-family: var(--font-mono); font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
-                            <i class="fa-solid fa-building-columns"></i> IIT Ropar (Dept. of Mathematics) & ANRF
-                        </div>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fa-regular fa-calendar"></i> July 2026
-                    </div>
-                </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
-                    <div style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">
-                        <p style="margin-bottom: 1.5rem;">Selected to attend an intensive national workshop focusing on the intersection of foundational mathematics and cutting-edge AI architecture. Gained exposure to advanced concepts essential for scientific computing.</p>
-                        
-                        <h4 style="color: var(--text-main); margin-bottom: 0.8rem; font-family: var(--font-mono); font-size: 0.95rem;"><i class="fa-solid fa-lightbulb" style="color: #ffbd2e;"></i> Key Explorations:</h4>
-                        <ul style="list-style-type: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; padding-left: 0.5rem;">
-                            <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);">▹</span> <strong>Mathematical Foundations:</strong> Advanced PDEs and Finite Difference Methods for scientific computing.</li>
-                            <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);">▹</span> <strong>PINNs:</strong> Explored the exciting potential of Physics-Informed Neural Networks.</li>
-                            <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);">▹</span> <strong>GenAI & Math:</strong> The intersection of Generative AI, deep learning, and differential equations.</li>
-                            <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);">▹</span> <strong>Hands-on Labs:</strong> Practical coding sessions translating dense theory into actual code using MATLAB and Python.</li>
-                        </ul>
-                        
-                        <p style="font-style: italic; color: rgba(255,255,255,0.7); font-size: 0.95rem; border-left: 2px solid var(--surface-border); padding-left: 1rem;">"Sometimes, the best way to grow is to purposely put yourself in a room where you are the least experienced person. Grateful for the exposure, the new connections, and the realization that the AI learning curve is steep, but incredibly exciting."</p>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 2rem;">
-                    <a href="Workshop_certificate.jpeg" target="_blank" class="btn-doc"><i class="fa-solid fa-atom"></i> View Certificate</a>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1719,16 +1739,17 @@
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
                     <div class="project-links">
-                        <a href="https://utkarshbharadwaj.github.io/projects/cipherink.html" target="_blank" title="Live Website"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        <a href="https://github.com/ananyajoshi-cseai/CipherInk" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://bytenova.onrender.com" target="_blank" title="Live Website"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://github.com/ananyajoshi-cseai/ByteNova" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_asarai-bytenova-promptwars-share-7468362730605821952-LHZy" target="_blank" title="Read Post on LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
                 </div>
-                <h3 class="project-title">CipherInk</h3>
-                <p class="project-desc">A data security prototype built during a high-pressure hackathon. Engineered foundational logic prioritizing algorithmic efficiency and application structure for robust encryption workflows.</p>
+                <h3 class="project-title">Asar AI (ByteNova)</h3>
+                <p class="project-desc">AI-powered platform for NGOs built to reduce operational chaos. Features Voice-Based Reporting (Gemini 1.5 Flash), Smart Emergency Routing via React-Leaflet, and Paper-Free verification.</p>
                 <div class="project-tech">
-                    <span>Python</span>
-                    <span>Cryptography</span>
-                    <span>Algorithms</span>
+                    <span>Gemini API</span>
+                    <span>React</span>
+                    <span>Flask</span>
                 </div>
             </div>
 
@@ -1738,14 +1759,32 @@
                     <div class="project-links">
                         <a href="https://careerflow-ai.streamlit.app/" target="_blank" title="Live Website"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         <a href="https://github.com/ananyajoshi-cseai/CareerFlow-AI" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_the-verified-growth-slide-deck-structure-activity-7437837314506002432-B7WP" target="_blank" title="Read Growth Insights Post"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
                 </div>
                 <h3 class="project-title">CareerFlow AI</h3>
-                <p class="project-desc">GenAI-based career toolkit featuring an intelligent resume and cover letter generator coupled with automated job description analysis.</p>
+                <p class="project-desc">GenAI-based career toolkit featuring an intelligent resume and cover letter generator coupled with automated job description analysis and a 'Battle Mode' for comparisons.</p>
                 <div class="project-tech">
                     <span>GenAI</span>
-                    <span>React</span>
+                    <span>Streamlit</span>
                     <span>REST API</span>
+                </div>
+            </div>
+
+            <div class="project-card glass-panel">
+                <div class="project-top">
+                    <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: var(--neon-purple);"></i>
+                    <div class="project-links">
+                        <a href="https://utkarshbharadwaj.github.io/projects/cipherink.html" target="_blank" title="Project Details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://github.com/ananyajoshi-cseai/CipherInk" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">CipherInk</h3>
+                <p class="project-desc">Early-stage data security application prototype. Engineered foundational prototype logic prioritizing algorithmic efficiency and robust application structure within strict time constraints.</p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>Cryptography</span>
+                    <span>Hackathon Prototype</span>
                 </div>
             </div>
 
@@ -1755,6 +1794,7 @@
                     <div class="project-links">
                         <a href="https://after-feel-poetry-collection.vercel.app/" target="_blank" title="Live Website"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         <a href="https://github.com/ananyajoshi-cseai/After-Feel-Poetry-collection" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_python-ai-nlp-activity-7421477198735523840-i4S4" target="_blank" title="Read Post on LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
                 </div>
                 <h3 class="project-title">After-Feel</h3>
@@ -1772,6 +1812,7 @@
                     <div class="project-links">
                         <a href="https://ananyajoshi-cseai.github.io/bcs102-prep-hub/" target="_blank" title="Live Website"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         <a href="https://github.com/ananyajoshi-cseai/BAS101-Exam-Dashboard" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_webdevelopment-frontend-sideprojects-activity-7423703378511458304-Huw8" target="_blank" title="Read Post on LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                     </div>
                 </div>
                 <h3 class="project-title">IGDTUW Analytics Dashboard</h3>
@@ -1780,6 +1821,23 @@
                     <span>Data Viz</span>
                     <span>Pandas</span>
                     <span>JavaScript</span>
+                </div>
+            </div>
+
+            <div class="project-card glass-panel">
+                <div class="project-top">
+                    <i class="fa-regular fa-folder fa-folder"></i>
+                    <div class="project-links">
+                        <a href="https://github.com/Eesha0407/Health-Hack" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_healthhack-pitch-deck-a-webcam-based-health-activity-7432801498012733441-xVnL" target="_blank" title="Read Post on LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">HealthHack 2.0</h3>
+                <p class="project-desc">Medical-grade fitness engine leveraging a Knowledge Graph for real-time injury-aware exercise pruning and recommendations.</p>
+                <div class="project-tech">
+                    <span>TigerGraph</span>
+                    <span>Flask</span>
+                    <span>GSQL</span>
                 </div>
             </div>
 
@@ -1803,22 +1861,6 @@
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
                     <div class="project-links">
-                        <a href="https://github.com/Eesha0407/Health-Hack" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                </div>
-                <h3 class="project-title">HealthHack 2.0</h3>
-                <p class="project-desc">Medical-grade fitness engine leveraging a Knowledge Graph for real-time injury-aware exercise pruning and recommendations.</p>
-                <div class="project-tech">
-                    <span>TigerGraph</span>
-                    <span>Flask</span>
-                    <span>GSQL</span>
-                </div>
-            </div>
-
-            <div class="project-card glass-panel">
-                <div class="project-top">
-                    <i class="fa-regular fa-folder fa-folder"></i>
-                    <div class="project-links">
                         <a href="https://github.com/ananyajoshi-cseai/YouTube-Mood-Ring-Ananya" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
                     </div>
                 </div>
@@ -1828,22 +1870,6 @@
                     <span>Python</span>
                     <span>NLP</span>
                     <span>NLTK (VADER)</span>
-                </div>
-            </div>
-
-            <div class="project-card glass-panel">
-                <div class="project-top">
-                    <i class="fa-regular fa-folder fa-folder"></i>
-                    <div class="project-links">
-                        <a href="https://github.com/ananyajoshi-cseai" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                </div>
-                <h3 class="project-title">Python 10-in-1 Game Collection</h3>
-                <p class="project-desc">Architected a modular software package bundling 10 interactive mini-games, reducing code redundancy by 40% through reusable functions.</p>
-                <div class="project-tech">
-                    <span>Python</span>
-                    <span>Standard Libs</span>
-                    <span>Git</span>
                 </div>
             </div>
 
@@ -1858,14 +1884,13 @@
         <div class="marquee-container">
             <div class="marquee-content">
                 
-                <!-- NEW CERTIFICATE ADDED HERE -->
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-atom" style="color: var(--neon-blue);"></i>
-                    <h4>Advanced Math Workshop</h4>
-                    <p>IIT Ropar • PINNs, PDEs & MATLAB</p>
+                <div class="glass-panel cert-card flex-shrink-0" style="border-color: var(--neon-purple);">
+                    <i class="fa-solid fa-atom" style="color: var(--neon-purple);"></i>
+                    <h4>NS2ML-DE 2026 Workshop</h4>
+                    <p>IIT Ropar • Foundational Math & PINNs</p>
                     <a href="Workshop_certificate.jpeg" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-
+                
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
                     <h4>Software Engineer Intern</h4>
@@ -2070,14 +2095,13 @@
                 </div>
 
                 <!-- Duplicate Set for Seamless Loop -->
-                <!-- NEW CERTIFICATE ADDED TO DUPLICATE LOOP -->
-                <div class="glass-panel cert-card flex-shrink-0">
-                    <i class="fa-solid fa-atom" style="color: var(--neon-blue);"></i>
-                    <h4>Advanced Math Workshop</h4>
-                    <p>IIT Ropar • PINNs, PDEs & MATLAB</p>
+                <div class="glass-panel cert-card flex-shrink-0" style="border-color: var(--neon-purple);">
+                    <i class="fa-solid fa-atom" style="color: var(--neon-purple);"></i>
+                    <h4>NS2ML-DE 2026 Workshop</h4>
+                    <p>IIT Ropar • Foundational Math & PINNs</p>
                     <a href="Workshop_certificate.jpeg" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-
+                
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
                     <h4>Software Engineer Intern</h4>
@@ -2280,7 +2304,6 @@
                     <p>LeetCode • Pandas Operations Badge</p>
                     <a href="pandas intruduction badge.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-
             </div>
         </div>
     </section>
@@ -2315,7 +2338,6 @@
     </footer>
 
     <script>
-        // --- Custom Cursor ---
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
 
@@ -2326,14 +2348,12 @@
             cursorDot.style.left = `${posX}px`;
             cursorDot.style.top = `${posY}px`;
 
-            // Adding a slight delay to the outline for a fluid effect
             cursorOutline.animate({
                 left: `${posX}px`,
                 top: `${posY}px`
             }, { duration: 500, fill: "forwards" });
         });
 
-        // Add hover effect to interactive elements
         const interactives = document.querySelectorAll('a, .btn, .stat-card, .project-card, .tech-item, .profile-card, .cert-card');
         interactives.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -2350,7 +2370,6 @@
             });
         });
 
-        // --- Sticky Navbar ---
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -2360,7 +2379,6 @@
             }
         });
 
-        // --- Typing Animation ---
         const typingText = document.getElementById('typing-text');
         const phrases = [
             "I build AI systems.",
@@ -2387,20 +2405,18 @@
 
             if (!isDeleting && charIndex === currentPhrase.length) {
                 isDeleting = true;
-                typingDelay = 2000; // Pause at end of phrase
+                typingDelay = 2000; 
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 phraseIndex = (phraseIndex + 1) % phrases.length;
-                typingDelay = 500; // Pause before new phrase
+                typingDelay = 500; 
             }
 
             setTimeout(type, typingDelay);
         }
 
-        // Start typing animation after a short delay
         setTimeout(type, 1000);
 
-        // --- Scroll Reveal & Number Counters ---
         const revealElements = document.querySelectorAll('.reveal');
         const counters = document.querySelectorAll('.counter');
         let countersStarted = false;
@@ -2411,8 +2427,8 @@
 
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
-                const duration = 2000; // ms
-                const increment = target / (duration / 16); // 60fps
+                const duration = 2000; 
+                const increment = target / (duration / 16); 
                 
                 let current = 0;
                 const updateCounter = () => {
@@ -2433,7 +2449,6 @@
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                     
-                    // Check if this reveal block contains the stats grid
                     if(entry.target.querySelector('.stats-grid') || entry.target.classList.contains('stats-grid')) {
                         startCounters();
                     }
@@ -2443,12 +2458,10 @@
 
         revealElements.forEach(el => revealObserver.observe(el));
         
-        // Ensure stats trigger if in view immediately
         if(document.getElementById('stats').getBoundingClientRect().top < window.innerHeight) {
             startCounters();
         }
 
-        // --- Particle Network Background ---
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         
@@ -2459,7 +2472,6 @@
             height = canvas.height = window.innerHeight;
             particles = [];
             
-            // Adjust particle count based on screen size
             const particleCount = Math.floor((width * height) / 15000);
             
             for (let i = 0; i < particleCount; i++) {
@@ -2478,12 +2490,10 @@
             
             ctx.fillStyle = 'rgba(0, 240, 255, 0.5)';
             
-            // Update and draw nodes
             particles.forEach(p => {
                 p.x += p.vx;
                 p.y += p.vy;
                 
-                // Bounce off edges
                 if (p.x < 0 || p.x > width) p.vx *= -1;
                 if (p.y < 0 || p.y > height) p.vy *= -1;
                 
@@ -2492,7 +2502,6 @@
                 ctx.fill();
             });
             
-            // Draw connections
             ctx.strokeStyle = 'rgba(138, 43, 226, 0.1)';
             ctx.lineWidth = 0.5;
             
@@ -2506,7 +2515,6 @@
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        // Make closer lines more opaque
                         ctx.strokeStyle = `rgba(138, 43, 226, ${0.2 - dist/750})`;
                         ctx.stroke();
                     }
