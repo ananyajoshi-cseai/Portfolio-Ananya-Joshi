@@ -1671,7 +1671,7 @@
                     <h3>NIT Delhi Hackathon</h3>
                     <span class="timeline-subtitle">Top 10 Finalist (150+ Teams)</span>
                     <ul>
-                        <li><strong>Built:</strong> Hydro-Carbon AI (Green AI Linter)</li>
+                        <li><strong>Built:</strong> Hydro-Carbon AI (Green AI Linter) with <a href="https://utkarshbharadwaj.github.io/" target="_blank" style="color: var(--neon-blue); text-decoration: none;">Utkarsh Bharadwaj</a></li>
                         <li>Used AST parsing to predict carbon footprint before code execution.</li>
                         <li>Mapped conceptual FLOPs to real-world carbon intensity.</li>
                     </ul>
@@ -1781,6 +1781,9 @@
                 </div>
                 <h3 class="project-title">CipherInk</h3>
                 <p class="project-desc">Early-stage data security application prototype. Engineered foundational prototype logic prioritizing algorithmic efficiency and robust application structure within strict time constraints.</p>
+                <div style="margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">
+                    <i class="fa-solid fa-user-group" style="color: var(--neon-purple); margin-right: 5px;"></i> Built with <a href="https://utkarshbharadwaj.github.io" target="_blank" style="color: var(--neon-blue); text-decoration: none; border-bottom: 1px dashed var(--neon-blue);">Utkarsh Bharadwaj</a>
+                </div>
                 <div class="project-tech">
                     <span>Python</span>
                     <span>Cryptography</span>
@@ -1850,6 +1853,9 @@
                 </div>
                 <h3 class="project-title">Hydro-Carbon AI</h3>
                 <p class="project-desc">Flagship AI-powered sustainability profiler. Predicts carbon and water footprint of code before execution using intelligent static analysis.</p>
+                <div style="margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">
+                    <i class="fa-solid fa-user-group" style="color: var(--neon-purple); margin-right: 5px;"></i> Built with <a href="https://utkarshbharadwaj.github.io" target="_blank" style="color: var(--neon-blue); text-decoration: none; border-bottom: 1px dashed var(--neon-blue);">Utkarsh Bharadwaj</a>
+                </div>
                 <div class="project-tech">
                     <span>FastAPI</span>
                     <span>React</span>
@@ -2338,6 +2344,7 @@
     </footer>
 
     <script>
+        // --- Custom Cursor ---
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
 
@@ -2370,6 +2377,7 @@
             });
         });
 
+        // --- Sticky Navbar ---
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -2379,6 +2387,7 @@
             }
         });
 
+        // --- Typing Animation ---
         const typingText = document.getElementById('typing-text');
         const phrases = [
             "I build AI systems.",
@@ -2417,6 +2426,7 @@
 
         setTimeout(type, 1000);
 
+        // --- Scroll Reveal & Number Counters ---
         const revealElements = document.querySelectorAll('.reveal');
         const counters = document.querySelectorAll('.counter');
         let countersStarted = false;
@@ -2462,6 +2472,7 @@
             startCounters();
         }
 
+        // --- Particle Network Background ---
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         
