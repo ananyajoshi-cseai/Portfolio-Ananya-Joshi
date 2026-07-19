@@ -14,6 +14,7 @@
     <style>
         /* =========================================
            CSS VARIABLES & RESET
+           
         ========================================= */
         :root {
             --bg-color: #050508;
@@ -879,6 +880,18 @@
             margin-bottom: 0.5rem;
             color: var(--text-main);
         }
+        
+        .timeline-date {
+            display: inline-block;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
 
         .timeline-subtitle {
             font-family: var(--font-mono);
@@ -892,6 +905,7 @@
             list-style-position: inside;
             color: var(--text-muted);
             font-size: 0.95rem;
+            margin-bottom: 1.5rem;
         }
 
         .timeline-content ul li {
@@ -905,6 +919,15 @@
             position: absolute;
             left: 0;
             color: var(--neon-blue);
+        }
+        
+        .hackathon-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.1);
         }
 
         /* =========================================
@@ -1666,25 +1689,44 @@
     <section id="hackathons" class="section">
         <h2 class="section-title reveal">Hackathon Journey</h2>
         <div class="timeline reveal">
-            
+
             <div class="timeline-item left">
                 <div class="timeline-content glass-panel">
-                    <h3>NIT Delhi Hackathon</h3>
-                    <span class="timeline-subtitle">Top 10 Finalist (150+ Teams)</span>
+                    <span class="timeline-date"><i class="fa-regular fa-calendar"></i> June 2026</span>
+                    <h3>Prompt Wars by Hack2Skill</h3>
+                    <span class="timeline-subtitle">Solution Challenge 2026 (GDG)</span>
                     <ul>
-                        <li><strong>Built:</strong> Hydro-Carbon AI (Green AI Linter) with <a href="https://utkarshbharadwaj.github.io/" target="_blank" style="color: var(--neon-blue); text-decoration: none;">Utkarsh Bharadwaj</a></li>
-                        <li>Used AST parsing to predict carbon footprint before code execution.</li>
-                        <li>Mapped conceptual FLOPs to real-world carbon intensity.</li>
+                        <li><strong>Built:</strong> Asar AI (ByteNova Platform)</li>
+                        <li>An AI-driven platform built using Gemini APIs to solve real-world community challenges.</li>
+                        <li>Focused on innovative prompt engineering and intelligent agent routing.</li>
                     </ul>
-                    <div class="btn-container">
-                        <a href="nit delhi certificate.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_hackathon-experience-nit-delhi-activity-7444579262743080960-iDhG" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                    <div class="hackathon-actions">
+                        <a href="https://promptwars.in/solutionchallenge2026.html" target="_blank" class="btn-doc"><i class="fa-solid fa-globe"></i> Event Page</a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_asarai-bytenova-promptwars-activity-7469953931184488448-TgKz?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF1TTHwB7MQRIsZop5pgjxpoGkuvMlVFU3U" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Solution Pitch</a>
                     </div>
                 </div>
             </div>
 
             <div class="timeline-item right">
                 <div class="timeline-content glass-panel">
+                    <span class="timeline-date"><i class="fa-regular fa-calendar"></i> Early 2026</span>
+                    <h3>Vihaan 9.0 (DTU)</h3>
+                    <span class="timeline-subtitle">Top 100 Offline Hackathon</span>
+                    <ul>
+                        <li><strong>Team:</strong> Diazonium (Selected from 2,700+ applicants)</li>
+                        <li><strong>Built:</strong> StyloGuard, a forensic stylometry tool for verifying authorship using advanced ML.</li>
+                        <li><strong>Experience:</strong> 24-hour live coding sprint on campus.</li>
+                    </ul>
+                    <div class="hackathon-actions">
+                        <a href="Vihaan_Certificate.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_vihaan9-ieeedtu-styloguard-activity-7449675963141074944-EQyZ?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF1TTHwB7MQRIsZop5pgjxpoGkuvMlVFU3U" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content glass-panel">
+                    <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2026</span>
                     <h3>Devcation Hack 'N' Solve 2026</h3>
                     <span class="timeline-subtitle">Top 50 Shortlist (GDG x IIT Delhi)</span>
                     <ul>
@@ -1692,39 +1734,41 @@
                         <li><strong>Built:</strong> HealthHack 2.0 (The Graph Edition). A graph-powered decision engine.</li>
                         <li>Mapped 15+ injury types to muscle groups dynamically using GSQL.</li>
                     </ul>
-                    <div class="btn-container">
+                    <div class="hackathon-actions">
                         <a href="devcation participation certificate hackathon.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_devcation-tigergraph-healthtech-activity-7448415623438680064-rmJd" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item left">
-                <div class="timeline-content glass-panel">
-                    <h3>HackTheRank</h3>
-                    <span class="timeline-subtitle">HackerRank Online Event</span>
-                    <ul>
-                        <li>Intensive online quiz and coding challenge event.</li>
-                        <li>Demonstrated rapid problem-solving and algorithmic thinking.</li>
-                    </ul>
-                    <div class="btn-container">
-                        <a href="Certificate of participation.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_devcation-tigergraph-healthtech-activity-7448415623438680064-rmJd?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF1TTHwB7MQRIsZop5pgjxpoGkuvMlVFU3U" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
                     </div>
                 </div>
             </div>
 
             <div class="timeline-item right">
                 <div class="timeline-content glass-panel">
-                    <h3>Vihaan 9.0 (DTU)</h3>
-                    <span class="timeline-subtitle">Top 100 Offline Hackathon</span>
+                    <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2026</span>
+                    <h3>NIT Delhi Hackathon</h3>
+                    <span class="timeline-subtitle">Top 10 Finalist (150+ Teams)</span>
                     <ul>
-                        <li><strong>Team:</strong> Diazonium (Selected from 2,700+ applicants)</li>
-                        <li><strong>Built:</strong> StyloGuard, a forensic stylometry tool for verifying authorship.</li>
-                        <li><strong>Experience:</strong> 24-hour live coding sprint on campus.</li>
+                        <li><strong>Built:</strong> Hydro-Carbon AI (Green AI Linter) with <a href="https://utkarshbharadwaj.github.io/" target="_blank" style="color: var(--neon-blue); text-decoration: none;">Utkarsh Bharadwaj</a></li>
+                        <li>Used AST parsing to predict carbon footprint before code execution.</li>
+                        <li>Mapped conceptual FLOPs to real-world carbon intensity.</li>
                     </ul>
-                    <div class="btn-container">
-                        <a href="Vihaan_Certificate.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
-                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_vihaan9-ieeedtu-styloguard-activity-7449675963141074944-EQyZ" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                    <div class="hackathon-actions">
+                        <a href="nit delhi certificate.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Certificate</a>
+                        <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_hackathon-experience-nit-delhi-activity-7444579262743080960-iDhG?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF1TTHwB7MQRIsZop5pgjxpoGkuvMlVFU3U" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content glass-panel">
+                    <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2025</span>
+                    <h3>HackTheRank</h3>
+                    <span class="timeline-subtitle">HackerRank Online Event</span>
+                    <ul>
+                        <li>Intensive online quiz and coding challenge event.</li>
+                        <li>Demonstrated rapid problem-solving and algorithmic thinking.</li>
+                    </ul>
+                    <div class="hackathon-actions">
+                        <a href="Certificate of participation.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
                     </div>
                 </div>
             </div>
