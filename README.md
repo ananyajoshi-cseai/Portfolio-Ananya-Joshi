@@ -1,4 +1,4 @@
-# ⚡ Ananya Joshi | AI Developer Portfolio
+# ⚡ Ananya Joshi | Portfolio
 
 Welcome to the repository of my personal portfolio website! 
 
