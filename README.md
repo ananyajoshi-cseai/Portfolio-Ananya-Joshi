@@ -68,7 +68,7 @@ This project was intentionally built without heavy frontend frameworks to maximi
 
 A huge part of my journey involves building alongside amazing people. Special thanks to [Utkarsh Bharadwaj](https://utkarshbharadwaj.github.io/) for collaborating with me on **CipherInk** and **Hydro-Carbon AI**.
 
-I actively contribute to the **GirlScript Summer of Code (GSSoC 2026)** in the AI Agents track. Feel free to check out my GitHub activity!
+I actively contribute to the **GirlScript Summer of Code (GSSoC 2026)** in the AI Agents track. Feel free to check out my GitHub activity.
 
 ---
 
