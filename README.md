@@ -26,7 +26,7 @@ Here is a glimpse of the portfolio interface:
 
 ## 🚀 Features & Aesthetics
 
-I designed this portfolio to have a high-tech, futuristic, and "cybernetic" aesthetic using deep dark modes, neon blue/cyan accents, and glassmorphism.
+I designed this portfolio to have a high-tech, futuristic, and "cybernetic" aesthetic using deep dark modes, neon blue/cyan accents, and glassmorphism
 
 *   **Interactive Particle Canvas:** A dynamic, physics-based network background built from scratch using the HTML5 Canvas API to represent neural networks and nodes.
 *   **Custom Cursor:** A trailing neon cursor that reacts and expands when hovering over interactive elements.
