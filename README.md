@@ -4,8 +4,7 @@ Welcome to the repository of my personal portfolio website!
 
 This space documents my journey as a first-year B.Tech CSE (AI) student at IGDTUW. It acts as a living resume showcasing my hackathon wins, research internships, open-source contributions, deployed AI projects, and technical growth.
 
-**Live Demo:** [portfolio-ananya-joshi.vercel.app](https://portfolio-ananya-joshi.vercel.app)
-
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-View_Website-00FFFF?style=for-the-badge)](https://portfolio-ananya-joshi.vercel.app)
 ---
 
 ## 📸 Previews
