@@ -79,6 +79,10 @@
             background: rgba(0, 240, 255, 0.3);
             color: #fff;
         }
+        
+        :root[data-theme="light"] ::selection {
+            background: rgba(2, 132, 199, 0.3);
+        }
 
         /* =========================================
            CUSTOM CURSOR
@@ -320,7 +324,7 @@
             justify-content: center;
             transition: var(--transition);
             position: relative;
-            z-index: 1001; /* Ensure above overlay elements */
+            z-index: 1001;
         }
         
         #theme-toggle:hover {
@@ -493,6 +497,10 @@
             background: rgba(0, 240, 255, 0.1);
             transition: var(--transition);
         }
+        
+        :root[data-theme="light"] .btn::before {
+            background: rgba(2, 132, 199, 0.1);
+        }
 
         .btn:hover::before {
             left: 0;
@@ -500,6 +508,10 @@
 
         .btn:hover {
             box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+        
+        :root[data-theme="light"] .btn:hover {
+            box-shadow: 0 0 20px rgba(2, 132, 199, 0.3);
         }
 
         .btn-primary {
@@ -1388,8 +1400,8 @@
         <div class="stats-grid">
             <div class="stat-card glass-panel">
                 <i class="fa-solid fa-code"></i>
-                <div class="stat-number"><span class="counter" data-target="370">0</span><span class="stat-plus">+</span></div>
-                <div class="stat-label">LeetCode Solved (178+ Med)</div>
+                <div class="stat-number"><span class="counter" data-target="420">0</span><span class="stat-plus">+</span></div>
+                <div class="stat-label">LeetCode Solved (200+ Med)</div>
             </div>
             <div class="stat-card glass-panel">
                 <i class="fa-solid fa-database"></i>
@@ -1399,11 +1411,11 @@
             <div class="stat-card glass-panel">
                 <i class="fa-solid fa-trophy"></i>
                 <div class="stat-number">Top <span class="counter" data-target="10">0</span></div>
-                <div class="stat-label">NIT Delhi Hackathon Finalist</div>
+                <div class="stat-label">Finalist — NIT Delhi Hackathon</div>
             </div>
             <div class="stat-card glass-panel">
                 <i class="fa-solid fa-microchip"></i>
-                <div class="stat-number"><span class="counter" data-target="9">0</span><span class="stat-plus">+</span></div>
+                <div class="stat-number"><span class="counter" data-target="10">0</span><span class="stat-plus">+</span></div>
                 <div class="stat-label">Data & Tech Projects Built</div>
             </div>
         </div>
@@ -1413,7 +1425,7 @@
         <h2 class="section-title reveal">About Me</h2>
         <div class="about-content reveal">
             <div class="about-text">
-                <p>I am a first-year Computer Science (AI) student at <span class="highlight-text">IGDTUW (1st Year CGPA: ~9.1 | Sem 1: 9.14, Sem 2: 9.05)</span> based in Delhi, India. I don't just study algorithms; I apply them to build real-world AI systems that solve complex problems.</p>
+                <p>I am a Computer Science & Artificial Intelligence student at <span class="highlight-text">IGDTUW (1st Year CGPA: ~9.1 | Sem 1: 9.14, Sem 2: 9.05)</span> based in Delhi, India. I don't just study algorithms; I apply them to build real-world AI systems that solve complex problems.</p>
                 <p>I thrive under pressure, actively participating in hackathons to turn abstract ideas into deployed products within strict time limits. My expertise bridges the gap between data science and robust software engineering.</p>
                 <p>Whether it's building NLP pipelines, optimizing decision engines, or developing sustainability-focused developer tools, I am execution-focused and driven by impact.</p>
                 
@@ -1500,8 +1512,9 @@
                     <div class="tech-item"><i class="fa-brands fa-react"></i> React.js</div>
                     <div class="tech-item">FastAPI</div>
                     <div class="tech-item">Flask</div>
-                    <div class="tech-item">Tailwind CSS</div>
                     <div class="tech-item">REST APIs</div>
+                    <div class="tech-item"><i class="fa-solid fa-leaf"></i> MongoDB</div>
+                    <div class="tech-item">Tailwind CSS</div>
                 </div>
             </div>
             <div class="tech-category glass-panel">
@@ -1531,41 +1544,47 @@
                 
                 <div class="profile-stats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem;">
                     <div class="stat-box">
-                        <span class="stat-val" id="lc-solved">372</span>
+                        <span class="stat-val" id="lc-solved">420</span>
                         <span class="stat-name">Solved</span>
                     </div>
                     <div class="stat-box">
                         <span class="stat-val" id="lc-rating">2109</span>
-                        <span class="stat-name">Rating (<span id="lc-level" style="color: #20BEFF;">Knight</span>)</span>
+                        <span class="stat-name">Rating (<span id="lc-level" style="color: var(--neon-blue);">Knight</span>)</span>
                     </div>
                     <div class="stat-box" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <span class="stat-val" style="font-size: 1.2rem;">Top <span id="lc-top">1.48%</span></span>
+                        <span class="stat-val" style="font-size: 1.2rem;">Top <span id="lc-top">1.5%</span></span>
                         <span class="stat-name">Ranking</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val" id="lc-badges">9</span>
+                        <span class="stat-val" id="lc-badges">11</span>
                         <span class="stat-name">Badges</span>
                     </div>
                 </div>
                 
                 <div class="profile-breakdown">
                     <div class="progress-bar-container">
-                        <span class="label" style="width: 80px;">Easy (<span id="lc-easy">126</span>)</span>
-                        <div class="bar"><div id="lc-easy-bar" class="fill bg-green-500" style="width: 35%;"></div></div>
+                        <span class="label" style="width: 80px;">Easy (<span id="lc-easy">141</span>)</span>
+                        <div class="bar"><div id="lc-easy-bar" class="fill bg-green-500" style="width: 33.5%;"></div></div>
                     </div>
                     <div class="progress-bar-container">
-                        <span class="label" style="width: 80px;">Med (<span id="lc-med">178</span>)</span>
-                        <div class="bar"><div id="lc-med-bar" class="fill bg-yellow-500" style="width: 48%;"></div></div>
+                        <span class="label" style="width: 80px;">Med (<span id="lc-med">200</span>)</span>
+                        <div class="bar"><div id="lc-med-bar" class="fill bg-yellow-500" style="width: 47.6%;"></div></div>
                     </div>
                     <div class="progress-bar-container">
-                        <span class="label" style="width: 80px;">Hard (<span id="lc-hard">68</span>)</span>
-                        <div class="bar"><div id="lc-hard-bar" class="fill bg-red-500" style="width: 17%;"></div></div>
+                        <span class="label" style="width: 80px;">Hard (<span id="lc-hard">79</span>)</span>
+                        <div class="bar"><div id="lc-hard-bar" class="fill bg-red-500" style="width: 18.8%;"></div></div>
                     </div>
                 </div>
                 
                 <div class="mt-2 text-sm" style="color: var(--text-muted); line-height: 1.8; font-family: var(--font-mono); font-size: 0.85rem; margin-top: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-                        <span>Max Streak:</span> <span style="color: #FFA116; font-weight: bold;">170 Days 🔥</span>
+                        <span>Max Streak:</span> <span style="color: #FFA116; font-weight: bold;">154 Days 🔥</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                        <span>Active Days:</span> <span style="color: #00EA64; font-weight: bold;">217 Days</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem;">
+                        <span>Past Year Submissions:</span> <span style="color: var(--neon-purple); font-weight: bold;">448</span>
                     </div>
                 </div>
                 
@@ -1584,23 +1603,29 @@
                 </div>
                 <div class="profile-stats">
                     <div class="stat-box">
-                        <span class="stat-val">707</span>
-                        <span class="stat-name">Contributions</span>
+                        <span class="stat-val">726</span>
+                        <span class="stat-name">Commits</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val">13</span>
-                        <span class="stat-name">Current Streak</span>
+                        <span class="stat-val">54</span>
+                        <span class="stat-name">Pull Requests</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val">78</span>
-                        <span class="stat-name">Longest Streak</span>
+                        <span class="stat-val">48</span>
+                        <span class="stat-name">Stars Earned</span>
                     </div>
                 </div>
                 <div class="mt-2 text-sm" style="color: var(--text-muted); line-height: 1.8;">
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-                        <span>Current Streak:</span> <span style="color: var(--neon-purple); font-weight: bold;">13 Days 🔥</span>
+                        <span>Merged PRs:</span> <span style="color: var(--neon-purple); font-weight: bold;">51 (94.44%)</span>
                     </div>
-                    <p style="margin-bottom: 0.5rem;">Consistent open-source contributor focused on NLP pipelines, intelligent AI systems, and robust APIs.</p>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                        <span>Total Issues:</span> <span style="color: var(--neon-purple); font-weight: bold;">14</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
+                        <span>Contributed to:</span> <span style="color: var(--neon-purple); font-weight: bold;">5 Repos (last yr)</span>
+                    </div>
+                    <p style="margin-bottom: 0.5rem; font-size: 0.85rem;">Consistent open-source contributor focused on NLP pipelines, intelligent AI systems, and robust APIs.</p>
                 </div>
             </div>
 
@@ -1734,6 +1759,30 @@
         <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.5rem; width: 100%;">
             
             <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
+                <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon-blue);"></div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <h3 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 0.3rem;">HackGyanVerse AI Innovation Summit</h3>
+                        <div style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-location-dot"></i> Masters' Union, Gurugram
+                        </div>
+                    </div>
+                    <div style="background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-regular fa-calendar"></i> 2026
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">
+                    Attended an immersive summit focused on emerging AI product development and architecture. Gained exposure to industry-leading innovations and systems.
+                </p>
+                <ul style="list-style-type: none; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--text-muted);"><i class="fa-solid fa-angle-right"></i></span> <strong>Topics Explored:</strong> Generative AI, AI Agents, RAG, AI Studio, Cloud Run, and CX Agents.</li>
+                </ul>
+                <div class="btn-container">
+                    <a href="https://lnkd.in/p/df4iZBNa" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post on LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
                 <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #14F195;"></div> <!-- Solana Green -->
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
                     <div>
@@ -1818,6 +1867,21 @@
 
             <div class="timeline-item left">
                 <div class="timeline-content glass-panel">
+                    <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2026</span>
+                    <h3>Women Who Master Hackathon</h3>
+                    <span class="timeline-subtitle">Shortlisted for the Grand Finale</span>
+                    <ul>
+                        <li><strong>Status:</strong> Shortlisted for the Grand Finale.</li>
+                        <li>An important milestone recognizing technical innovation and execution.</li>
+                    </ul>
+                    <div class="hackathon-actions">
+                        <a href="https://lnkd.in/p/duG6tusM" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content glass-panel">
                     <span class="timeline-date"><i class="fa-regular fa-calendar"></i> June 2026</span>
                     <h3>Prompt Wars by Hack2Skill</h3>
                     <span class="timeline-subtitle">Solution Challenge 2026 (GDG)</span>
@@ -1833,7 +1897,7 @@
                 </div>
             </div>
 
-            <div class="timeline-item right">
+            <div class="timeline-item left">
                 <div class="timeline-content glass-panel">
                     <span class="timeline-date"><i class="fa-regular fa-calendar"></i> Early 2026</span>
                     <h3>Vihaan 9.0 (DTU)</h3>
@@ -1850,7 +1914,7 @@
                 </div>
             </div>
 
-            <div class="timeline-item left">
+            <div class="timeline-item right">
                 <div class="timeline-content glass-panel">
                     <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2026</span>
                     <h3>Devcation Hack 'N' Solve 2026</h3>
@@ -1867,7 +1931,7 @@
                 </div>
             </div>
 
-            <div class="timeline-item right">
+            <div class="timeline-item left">
                 <div class="timeline-content glass-panel">
                     <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2026</span>
                     <h3>NIT Delhi Hackathon</h3>
@@ -1890,6 +1954,23 @@
     <section id="projects" class="section">
         <h2 class="section-title reveal">Deployed Impact</h2>
         <div class="projects-grid reveal">
+
+            <div class="project-card glass-panel">
+                <div class="project-top">
+                    <i class="fa-regular fa-folder fa-folder"></i>
+                    <div class="project-links">
+                        <a href="https://fraudlens-9glw.onrender.com/" target="_blank" title="Live Website"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <a href="https://github.com/ananyajoshi-cseai/FraudLens" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">FraudLens</h3>
+                <p class="project-desc">AI-powered transaction risk analysis system prototype. Evaluates behavioral signals to identify suspicious activity, providing a 0–100 risk score, explainable insights, and recommended actions.</p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>FastAPI</span>
+                    <span>MongoDB</span>
+                </div>
+            </div>
 
             <div class="project-card glass-panel">
                 <div class="project-top">
@@ -1929,7 +2010,6 @@
                 <div class="project-top">
                     <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: var(--neon-purple);"></i>
                     <div class="project-links">
-                        <!-- Updated CipherInk Link below -->
                         <a href="https://cipherink.onrender.com/" target="_blank" title="Project Details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         <a href="https://github.com/ananyajoshi-cseai/CipherInk" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
                     </div>
