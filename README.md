@@ -80,4 +80,4 @@ I'm currently exploring Research & Development, advanced Neural Networks (PINNs)
 *   **LeetCode:** [ananyajoshi-cseai](https://leetcode.com/u/ananyajoshi-cseai/)
 *   **Email:** ananyajoshi.cseai@gmail.com
 
-> *"Architecting the future, one node at a time."*
+> *"Architecting the future, one node at a time"*
