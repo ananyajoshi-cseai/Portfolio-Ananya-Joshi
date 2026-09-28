@@ -27,7 +27,7 @@ Here is a glimpse of the portfolio interface:
 
 I designed this portfolio to have a high-tech, futuristic, and "cybernetic" aesthetic using deep dark modes, neon blue/cyan accents, and glassmorphism
 
-*   **Interactive Particle Canvas:** A dynamic, physics-based network background built from scratch using the HTML5 Canvas API to represent neural networks and nodes.
+*   **Interactive Particle Canvas:** A dynamic, physics-based network background built from scratch using the HTML5 Canvas API to represent neural networks and nodes
 *   **Custom Cursor:** A trailing neon cursor that reacts and expands when hovering over interactive elements.
 *   **Glassmorphism UI:** Semi-transparent, blurred backdrop panels (`backdrop-filter`) that give a modern, sleek depth to the content.
 *   **Animated Marquee:** A smooth, infinitely scrolling display of my 20+ certifications.
