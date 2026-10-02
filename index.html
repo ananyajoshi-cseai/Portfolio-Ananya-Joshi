@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ananya Joshi | AI Developer</title>
+    <meta name="description" content="Ananya Joshi — CSE AI at IGDTUW, Women Who Master 2026 Grand Finale finalist, GSSoC contributor, and builder of intelligent, user-aware systems.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -775,7 +776,7 @@
         ========================================= */
         .profile-detailed-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -1336,6 +1337,49 @@
                 padding: 80px 5vw;
             }
         }
+        /* Profile refresh and new achievement cards. */
+        .profile-updated { color: var(--text-muted); font-size: 0.75rem; margin: 1rem 0 0.5rem; }
+        .activity-summary {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+        .activity-summary div {
+            background: var(--stat-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 0.85rem 0.5rem;
+            text-align: center;
+        }
+        .activity-summary strong, .activity-summary span { display: block; }
+        .activity-summary strong { color: var(--neon-blue); font-size: 1.15rem; }
+        .activity-summary span { font-size: 0.7rem; margin-top: 0.35rem; }
+        .experience-update { border-left: 4px solid var(--neon-blue); }
+        .experience-update h3 { font-size: 1.6rem; margin: 0.5rem 0; }
+        .experience-update p { color: var(--text-muted); }
+        .experience-update .experience-organization { color: var(--neon-blue); margin-bottom: 1rem; }
+        .project-recognition { color: var(--neon-blue); font-size: 0.8rem; margin-bottom: 1.5rem; }
+        .profile-detailed-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .profile-card { min-width: 0; }
+        .progress-bar-container .label { flex: 0 0 90px; }
+        @media (max-width: 768px) {
+            .profile-detailed-grid { grid-template-columns: 1fr; }
+        }
+        .github .profile-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+        .github .stat-box { padding: 0.85rem 0.35rem; min-width: 0; }
+        .github .stat-name { overflow-wrap: anywhere; }
+        .profile-link { overflow-wrap: anywhere; }
+        @media (max-width: 480px) {
+            .activity-summary { grid-template-columns: 1fr; }
+            .profile-card { padding: 1.25rem; }
+            .timeline-item { padding-left: 50px; padding-right: 0; }
+            .timeline::after { left: 15px; }
+            .timeline-item::after { left: 5px; }
+            .timeline-item::before { left: 40px; }
+            .timeline-content { padding: 1.25rem; }
+            .btn-doc { max-width: 100%; width: auto; }
+        }
     </style>
 </head>
 <body>
@@ -1400,8 +1444,8 @@
         <div class="stats-grid">
             <div class="stat-card glass-panel">
                 <i class="fa-solid fa-code"></i>
-                <div class="stat-number"><span class="counter" data-target="420">0</span><span class="stat-plus">+</span></div>
-                <div class="stat-label">LeetCode Solved (200+ Med)</div>
+                <div class="stat-number"><span class="counter" data-target="454">454</span></div>
+                <div class="stat-label">LeetCode Solved · 217 Medium</div>
             </div>
             <div class="stat-card glass-panel">
                 <i class="fa-solid fa-database"></i>
@@ -1431,7 +1475,7 @@
                 
                 <div class="now-building">
                     <h4>Currently Building</h4>
-                    <p>Researching Graph Neural Networks & optimizing real-time data ingestion pipelines.</p>
+                    <p>Building with Team Solstice for SIH 2026: identifying Serious Injury &amp; Fatality precursors in safety reports for Oil India Limited.</p>
                 </div>
             </div>
             
@@ -1470,7 +1514,7 @@
                         <h3 style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 0.2rem;">Indira Gandhi Delhi Technical University for Women (IGDTUW)</h3>
                         <p style="color: var(--neon-blue); font-family: var(--font-mono); font-size: 0.95rem; margin-bottom: 1rem;">B.Tech in Computer Science and Artificial Intelligence (CSE AI)</p>
                         <p style="color: var(--text-muted); font-size: 0.95rem;">
-                            <strong>Current Semester:</strong> II (First Year) <br>
+                            <strong>Program:</strong> CSE AI · Class of 2029 <br>
                             <strong>CGPA:</strong> ~9.1 / 10.0 (Sem 1: 9.14, Sem 2: 9.05)
                         </p>
                         <a href="https://www.resulthubdtu.com/IGDTUW/StudentProfile/2029/02101172025" target="_blank" class="btn-doc mt-4"><i class="fa-solid fa-chart-line"></i> View Detailed Semester Results</a>
@@ -1492,6 +1536,7 @@
                 <h3><i class="fa-solid fa-code"></i> Languages</h3>
                 <div class="tech-grid">
                     <div class="tech-item"><i class="fa-brands fa-python"></i> Python</div>
+                    <div class="tech-item"><i class="fa-solid fa-code"></i> C++</div>
                     <div class="tech-item"><i class="fa-brands fa-js"></i> JavaScript (ES6+)</div>
                     <div class="tech-item"><i class="fa-solid fa-database"></i> SQL</div>
                 </div>
@@ -1531,9 +1576,10 @@
 
     <section id="profiles" class="section">
         <h2 class="section-title reveal">Developer Profiles</h2>
-        <div class="profile-detailed-grid reveal">
+        <div class="profile-detailed-grid">
             
-            <div class="glass-panel profile-card leetcode">
+            <!-- Profile snapshots supplied by Ananya; refreshed 2 October 2026. -->
+            <div class="glass-panel reveal profile-card leetcode">
                 <div class="profile-header">
                     <i class="fa-solid fa-code profile-icon"></i>
                     <div>
@@ -1544,35 +1590,35 @@
                 
                 <div class="profile-stats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem;">
                     <div class="stat-box">
-                        <span class="stat-val" id="lc-solved">420</span>
+                        <span class="stat-val" id="lc-solved">454</span>
                         <span class="stat-name">Solved</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val" id="lc-rating">2109</span>
+                        <span class="stat-val" id="lc-rating">2075</span>
                         <span class="stat-name">Rating (<span id="lc-level" style="color: var(--neon-blue);">Knight</span>)</span>
                     </div>
                     <div class="stat-box" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <span class="stat-val" style="font-size: 1.2rem;">Top <span id="lc-top">1.5%</span></span>
+                        <span class="stat-val" style="font-size: 1.2rem;">Top <span id="lc-top">1.77%</span></span>
                         <span class="stat-name">Ranking</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val" id="lc-badges">11</span>
+                        <span class="stat-val" id="lc-badges">13</span>
                         <span class="stat-name">Badges</span>
                     </div>
                 </div>
                 
                 <div class="profile-breakdown">
                     <div class="progress-bar-container">
-                        <span class="label" style="width: 80px;">Easy (<span id="lc-easy">141</span>)</span>
-                        <div class="bar"><div id="lc-easy-bar" class="fill bg-green-500" style="width: 33.5%;"></div></div>
+                        <span class="label" style="width: 80px;">Easy (<span id="lc-easy">150</span>)</span>
+                        <div class="bar"><div id="lc-easy-bar" class="fill bg-green-500" style="width: 33.04%;"></div></div>
                     </div>
                     <div class="progress-bar-container">
-                        <span class="label" style="width: 80px;">Med (<span id="lc-med">200</span>)</span>
-                        <div class="bar"><div id="lc-med-bar" class="fill bg-yellow-500" style="width: 47.6%;"></div></div>
+                        <span class="label" style="width: 80px;">Med (<span id="lc-med">217</span>)</span>
+                        <div class="bar"><div id="lc-med-bar" class="fill bg-yellow-500" style="width: 47.80%;"></div></div>
                     </div>
                     <div class="progress-bar-container">
-                        <span class="label" style="width: 80px;">Hard (<span id="lc-hard">79</span>)</span>
-                        <div class="bar"><div id="lc-hard-bar" class="fill bg-red-500" style="width: 18.8%;"></div></div>
+                        <span class="label" style="width: 80px;">Hard (<span id="lc-hard">87</span>)</span>
+                        <div class="bar"><div id="lc-hard-bar" class="fill bg-red-500" style="width: 19.16%;"></div></div>
                     </div>
                 </div>
                 
@@ -1581,19 +1627,20 @@
                         <span>Max Streak:</span> <span style="color: #FFA116; font-weight: bold;">154 Days 🔥</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-                        <span>Active Days:</span> <span style="color: #00EA64; font-weight: bold;">217 Days</span>
+                        <span>Active Days:</span> <span style="color: #00EA64; font-weight: bold;">251 Days</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem;">
-                        <span>Past Year Submissions:</span> <span style="color: var(--neon-purple); font-weight: bold;">448</span>
+                        <span>Past Year Submissions:</span> <span style="color: var(--neon-purple); font-weight: bold;">484</span>
                     </div>
                 </div>
                 
+                <p class="profile-updated">Stats updated <time datetime="2026-10-02">2 October 2026</time></p>
                 <div class="btn-container" style="margin-top: auto; padding-top: 1rem;">
-                    <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_leetcode-statics-activity-7457995134266167296-gHa2" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> View LinkedIn Update</a>
+                    <a href="https://leetcode.com/u/ananyajoshi-cseai/" target="_blank" rel="noopener noreferrer" class="btn-doc"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Current Profile</a>
                 </div>
             </div>
 
-            <div class="glass-panel profile-card github">
+            <div class="glass-panel reveal profile-card github">
                 <div class="profile-header">
                     <i class="fa-brands fa-github profile-icon"></i>
                     <div>
@@ -1603,21 +1650,21 @@
                 </div>
                 <div class="profile-stats">
                     <div class="stat-box">
-                        <span class="stat-val">726</span>
+                        <span class="stat-val">818</span>
                         <span class="stat-name">Commits</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val">54</span>
+                        <span class="stat-val">55</span>
                         <span class="stat-name">Pull Requests</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val">48</span>
+                        <span class="stat-val">52</span>
                         <span class="stat-name">Stars Earned</span>
                     </div>
                 </div>
                 <div class="mt-2 text-sm" style="color: var(--text-muted); line-height: 1.8;">
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-                        <span>Merged PRs:</span> <span style="color: var(--neon-purple); font-weight: bold;">51 (94.44%)</span>
+                        <span>Merged PRs:</span> <span style="color: var(--neon-purple); font-weight: bold;">52 (94.55%)</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
                         <span>Total Issues:</span> <span style="color: var(--neon-purple); font-weight: bold;">14</span>
@@ -1625,11 +1672,17 @@
                     <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
                         <span>Contributed to:</span> <span style="color: var(--neon-purple); font-weight: bold;">5 Repos (last yr)</span>
                     </div>
+                    <div class="activity-summary" aria-label="GitHub contribution activity">
+                        <div><strong>966</strong><span>Total contributions</span></div>
+                        <div><strong>40 days</strong><span>Current streak · Aug 23–Oct 1</span></div>
+                        <div><strong>78 days</strong><span>Longest streak · Apr 10–Jun 26</span></div>
+                    </div>
+                    <p class="profile-updated">Activity through <time datetime="2026-10-01">1 October 2026</time> · Stats updated <time datetime="2026-10-02">2 October 2026</time></p>
                     <p style="margin-bottom: 0.5rem; font-size: 0.85rem;">Consistent open-source contributor focused on NLP pipelines, intelligent AI systems, and robust APIs.</p>
                 </div>
             </div>
 
-            <div class="glass-panel profile-card kaggle" style="grid-column: 1 / -1;">
+            <div class="glass-panel reveal profile-card kaggle" style="grid-column: 1 / -1;">
                 <div class="profile-header">
                     <i class="fa-brands fa-kaggle profile-icon"></i>
                     <div>
@@ -1639,7 +1692,7 @@
                 </div>
                 <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 0.5rem;">
                     
-                    <div style="flex: 0 0 250px; background: var(--stat-bg); border: 1px solid var(--glass-border); border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <div style="flex: 0 1 250px; background: var(--stat-bg); border: 1px solid var(--glass-border); border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
                         <div style="font-size: 3rem; font-weight: bold; color: #20BEFF; line-height: 1;">129</div>
                         <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 1.5rem; margin-top: 0.5rem;">Day Login Streak 🔥</div>
                         
@@ -1655,7 +1708,7 @@
                         </div>
                     </div>
 
-                    <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column;">
+                    <div style="flex: 1; min-width: min(100%, 300px); display: flex; flex-direction: column;">
                         <h4 style="font-family: var(--font-mono); font-size: 1.1rem; margin-bottom: 1rem; color: var(--neon-blue);">Featured: My AI & Data Science Skills Tracker</h4>
                         <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
                             I treated my learning journey like a Data Science problem! I built a personal analytics dataset to log technical skills, categorize them by domain, and track quantitative growth.
@@ -1677,6 +1730,16 @@
     <section id="experience" class="section">
         <h2 class="section-title reveal">Professional Experience</h2>
         <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.5rem; width: 100%;">
+            <article class="glass-panel reveal experience-update">
+                <p class="timeline-date"><i class="fa-regular fa-calendar"></i> August 2026 – Present</p>
+                <h3>Training &amp; Placement Coordinator</h3>
+                <p class="experience-organization">Indira Gandhi Delhi Technical University for Women</p>
+                <p>Elected to represent the CSE (AI) cohort, serving as a communication bridge between students and the Training &amp; Placement Cell.</p>
+                <div class="btn-container">
+                    <a href="https://www.linkedin.com/in/ananya-joshi-cseai/" target="_blank" rel="noopener noreferrer" class="btn-doc"><i class="fa-brands fa-linkedin"></i> View LinkedIn Profile</a>
+                </div>
+            </article>
+
             
             <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
                 <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gradient-primary);"></div>
@@ -1688,7 +1751,7 @@
                         </div>
                     </div>
                     <div style="background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fa-regular fa-calendar"></i> June 2026 – July 2026
+                        <i class="fa-regular fa-calendar"></i> June 2026 – Present
                     </div>
                 </div>
                 <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">
@@ -1740,7 +1803,7 @@
                     </div>
                 </div>
                 <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1.5rem;">
-                    Actively contributing to open-source repositories as part of India's largest open-source program.
+                    Contributing to AI and agent-focused open-source projects through GirlScript Summer of Code 2026.
                 </p>
                 <ul style="list-style-type: none; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
                     <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--text-muted);"><i class="fa-solid fa-angle-right"></i></span> Enhancing project features, optimizing codebases, and resolving critical issues across multiple tech stacks.</li>
@@ -1792,7 +1855,7 @@
                         </div>
                     </div>
                     <div style="background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-family: var(--font-mono); color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fa-regular fa-calendar"></i> 2026
+                        <i class="fa-regular fa-calendar"></i> July 2026 – Present
                     </div>
                 </div>
                 
@@ -1863,24 +1926,39 @@
 
     <section id="hackathons" class="section">
         <h2 class="section-title reveal">Hackathon Journey</h2>
-        <div class="timeline reveal">
+        <div class="timeline">
 
-            <div class="timeline-item left">
+            <div class="timeline-item left reveal">
                 <div class="timeline-content glass-panel">
                     <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2026</span>
-                    <h3>Women Who Master Hackathon</h3>
-                    <span class="timeline-subtitle">Shortlisted for the Grand Finale</span>
+                    <h3>Smart India Hackathon 2026</h3>
+                    <span class="timeline-subtitle">Internal Round Cleared · IGDTUW</span>
                     <ul>
-                        <li><strong>Status:</strong> Shortlisted for the Grand Finale.</li>
-                        <li>An important milestone recognizing technical innovation and execution.</li>
+                        <li><strong>Team Solstice:</strong> Cleared the university's internal round and advanced to the next stage.</li>
+                        <li><strong>Problem statement SIH26165:</strong> Identifying Serious Injury &amp; Fatality (SIF) precursors in safety reports for Oil India Limited.</li>
+                        <li>Refined and presented the solution after earning a second opportunity to pitch.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item right reveal">
+                <div class="timeline-content glass-panel">
+                    <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2026 · Chennai</span>
+                    <h3>Women Who Master 2026</h3>
+                    <span class="timeline-subtitle">Grand Finale Finalist · North Zone Rank 11</span>
+                    <ul>
+                        <li>One of <strong>112 Grand Finale finalists</strong> at the national GenAI hackathon organized by Aspire For Her and Logitech.</li>
+                        <li><strong>Built CareerPath AI</strong> in AWS PartyRock, then adapted it into an Employment Navigator when the finale challenge shifted from learning to employment.</li>
+                        <li>Pitched the product in 3 minutes, followed by 2 minutes of Q&amp;A, and participated in a panel discussion with Logitech leadership.</li>
+                        <li>Participated in the event that earned a Guinness World Records title for the largest women-only Generative AI hackathon across multiple venues.</li>
                     </ul>
                     <div class="hackathon-actions">
-                        <a href="https://lnkd.in/p/duG6tusM" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
+                        <a href="https://lnkd.in/dEa6nGhr" target="_blank" rel="noopener noreferrer" class="btn-doc"><i class="fa-solid fa-arrow-up-right-from-square"></i> Explore CareerPath AI</a>
                     </div>
                 </div>
             </div>
 
-            <div class="timeline-item right">
+            <div class="timeline-item left reveal">
                 <div class="timeline-content glass-panel">
                     <span class="timeline-date"><i class="fa-regular fa-calendar"></i> June 2026</span>
                     <h3>Prompt Wars by Hack2Skill</h3>
@@ -1897,7 +1975,7 @@
                 </div>
             </div>
 
-            <div class="timeline-item left">
+            <div class="timeline-item right reveal">
                 <div class="timeline-content glass-panel">
                     <span class="timeline-date"><i class="fa-regular fa-calendar"></i> Early 2026</span>
                     <h3>Vihaan 9.0 (DTU)</h3>
@@ -1914,7 +1992,7 @@
                 </div>
             </div>
 
-            <div class="timeline-item right">
+            <div class="timeline-item left reveal">
                 <div class="timeline-content glass-panel">
                     <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2026</span>
                     <h3>Devcation Hack 'N' Solve 2026</h3>
@@ -1931,7 +2009,7 @@
                 </div>
             </div>
 
-            <div class="timeline-item left">
+            <div class="timeline-item right reveal">
                 <div class="timeline-content glass-panel">
                     <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2026</span>
                     <h3>NIT Delhi Hackathon</h3>
@@ -1953,9 +2031,26 @@
 
     <section id="projects" class="section">
         <h2 class="section-title reveal">Deployed Impact</h2>
-        <div class="projects-grid reveal">
+        <div class="projects-grid">
+            <article class="project-card glass-panel reveal">
+                <div class="project-top">
+                    <i class="fa-solid fa-compass" style="font-size: 2rem; color: var(--neon-blue);" aria-hidden="true"></i>
+                    <div class="project-links">
+                        <a href="https://lnkd.in/dEa6nGhr" target="_blank" rel="noopener noreferrer" aria-label="Explore CareerPath AI" title="Explore CareerPath AI"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+                <h3 class="project-title">CareerPath AI</h3>
+                <p class="project-desc">An Employment Navigator built in AWS PartyRock to turn learning into job readiness. Audits skills evidence, assesses role fit and employment readiness, checks opportunity credibility, and recommends one specific next action.</p>
+                <p class="project-recognition">Women Who Master 2026 · Grand Finale</p>
+                <div class="project-tech">
+                    <span>AWS PartyRock</span>
+                    <span>GenAI</span>
+                    <span>Product Thinking</span>
+                </div>
+            </article>
 
-            <div class="project-card glass-panel">
+
+            <div class="project-card glass-panel reveal">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
                     <div class="project-links">
@@ -1972,7 +2067,7 @@
                 </div>
             </div>
 
-            <div class="project-card glass-panel">
+            <div class="project-card glass-panel reveal">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
                     <div class="project-links">
@@ -1989,7 +2084,7 @@
                 </div>
             </div>
 
-            <div class="project-card glass-panel">
+            <div class="project-card glass-panel reveal">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
                     <div class="project-links">
@@ -2006,7 +2101,7 @@
                 </div>
             </div>
 
-            <div class="project-card glass-panel">
+            <div class="project-card glass-panel reveal">
                 <div class="project-top">
                     <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: var(--neon-purple);"></i>
                     <div class="project-links">
@@ -2026,7 +2121,7 @@
                 </div>
             </div>
 
-            <div class="project-card glass-panel">
+            <div class="project-card glass-panel reveal">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
                     <div class="project-links">
@@ -2043,7 +2138,7 @@
                 </div>
             </div>
 
-            <div class="project-card glass-panel">
+            <div class="project-card glass-panel reveal">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
                     <div class="project-links">
@@ -2060,7 +2155,7 @@
                 </div>
             </div>
             
-            <div class="project-card glass-panel">
+            <div class="project-card glass-panel reveal">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
                     <div class="project-links">
