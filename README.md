@@ -7,7 +7,44 @@ This space documents my journey as a first-year B.Tech CSE (AI) student at IGDTU
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-View_Website-00FFFF?style=for-the-badge)](https://portfolio-ananya-joshi.vercel.app)
 ---
 
-## 📸 Previews
+## Repository layout and deployment
+
+```text
+src/             Website HTML, CSS, and JavaScript
+certificates/    Certificates, badges, and acceptance proofs (original filenames)
+assets/          Profile image
+screenshots/     README preview images
+scripts/         Static build and link checks
+dist/            Generated website (ignored by Git)
+```
+
+Edit `src/index.html`, `src/styles.css`, and `src/script.js`. Add credentials to
+`certificates/` and link to them as `certificates/Original Filename.pdf` in the HTML.
+Keep the original filename, extension, and letter case. Asset URLs are relative to
+the built homepage, so preview `dist/` after building rather than opening `src/`.
+
+With Node.js installed, run:
+
+```sh
+npm run build
+npm run check
+```
+
+There are no package dependencies to install. Serve `dist/` with any static web
+server, or open `dist/index.html` for a quick preview.
+
+Vercel uses the repository root as its project Root Directory. The committed
+`vercel.json` selects the static-site preset, runs `npm run build`, and publishes
+`dist/`. The homepage remains at `/`; no redirect to `/src/` is required. These
+build and output settings override the corresponding dashboard settings. For
+other static hosts, run the same build and publish `dist/`.
+
+The build also includes root-level copies of the certificate files and profile
+image so previously shared URLs continue working. Edit only their canonical
+files in `certificates/` and `assets/`; these compatibility copies are generated.
+Screenshots stay at their existing paths for README and deployed image links.
+
+## 📸 Website previews
 
 Here is a glimpse of the portfolio interface:
 

@@ -5,1382 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ananya Joshi | AI Developer</title>
     <meta name="description" content="Ananya Joshi — CSE AI at IGDTUW, Women Who Master 2026 Grand Finale finalist, GSSoC contributor, and builder of intelligent, user-aware systems.">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        /* =========================================
-           CSS VARIABLES & RESET
-        ========================================= */
-        :root {
-            /* Dark Theme Defaults */
-            --bg-color: #050508;
-            --surface-color: rgba(20, 20, 28, 0.6);
-            --surface-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --neon-blue: #00f0ff;
-            --neon-purple: #8a2be2;
-            --gradient-primary: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            --overlay-color: rgba(5,5,8,0.6);
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --stat-bg: rgba(0, 0, 0, 0.3);
-            --code-window-bg: rgba(30, 30, 30, 0.85);
-            
-            --font-sans: 'Inter', sans-serif;
-            --font-heading: 'Space Grotesk', sans-serif;
-            --font-mono: 'Fira Code', monospace;
-            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        :root[data-theme="light"] {
-            /* Light Theme Overrides */
-            --bg-color: #f8fafc;
-            --surface-color: rgba(255, 255, 255, 0.7);
-            --surface-border: rgba(0, 0, 0, 0.1);
-            --text-main: #0f172a;
-            --text-muted: #334155;
-            --neon-blue: #0284c7; /* Darker cyan for visibility */
-            --neon-purple: #7e22ce; /* Darker purple */
-            --gradient-primary: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            --overlay-color: rgba(248,250,252,0.7);
-            --glass-bg: rgba(0, 0, 0, 0.03);
-            --glass-border: rgba(0, 0, 0, 0.1);
-            --stat-bg: rgba(0, 0, 0, 0.04);
-            /* Keep code window dark for standard terminal feel, even in light mode */
-            --code-window-bg: rgba(30, 30, 30, 0.95);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-sans);
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-            transition: background-color 0.4s ease, color 0.4s ease;
-        }
-
-        ::selection {
-            background: rgba(0, 240, 255, 0.3);
-            color: #fff;
-        }
-        
-        :root[data-theme="light"] ::selection {
-            background: rgba(2, 132, 199, 0.3);
-        }
-
-        /* =========================================
-           CUSTOM CURSOR
-        ========================================= */
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--neon-blue);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9999;
-            box-shadow: 0 0 10px var(--neon-blue);
-        }
-
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(138, 43, 226, 0.5);
-            border-radius: 50%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9998;
-            transition: width 0.15s, height 0.15s, background-color 0.15s, border-color 0.15s;
-        }
-
-        /* =========================================
-           BACKGROUND CANVAS
-        ========================================= */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            opacity: 0.7;
-        }
-        
-        :root[data-theme="light"] #bg-canvas {
-            opacity: 0.4; /* Slightly more transparent in light mode */
-        }
-
-        /* =========================================
-           TYPOGRAPHY & UTILITIES
-        ========================================= */
-        h1, h2, h3, h4 {
-            font-family: var(--font-heading);
-            font-weight: 700;
-        }
-
-        .gradient-text {
-            background: linear-gradient(270deg, var(--neon-blue), var(--neon-purple), #ff00ff, var(--neon-blue));
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-            animation: gradient-shift 6s ease infinite;
-        }
-        
-        :root[data-theme="light"] .gradient-text {
-            background: linear-gradient(270deg, #0284c7, #7e22ce, #c026d3, #0284c7);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .section {
-            padding: 100px 10vw;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
-        }
-
-        .glass-panel {
-            background: var(--surface-color);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--surface-border);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
-        
-        :root[data-theme="dark"] .glass-panel {
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-        }
-
-        .glass-panel:hover {
-            border-color: rgba(0, 240, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.1);
-            transform: translateY(-5px);
-        }
-        
-        :root[data-theme="light"] .glass-panel:hover {
-            border-color: rgba(2, 132, 199, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(2, 132, 199, 0.1);
-        }
-
-        /* =========================================
-           DOCUMENT BUTTONS
-        ========================================= */
-        .btn-container {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .btn-doc {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-family: var(--font-mono);
-            color: var(--text-main);
-            text-decoration: none;
-            transition: var(--transition);
-            width: max-content;
-        }
-        
-        .btn-doc:hover {
-            background: rgba(0, 240, 255, 0.1);
-            border-color: var(--neon-blue);
-            color: var(--neon-blue);
-            transform: translateY(-2px);
-        }
-        
-        :root[data-theme="light"] .btn-doc:hover {
-            background: rgba(2, 132, 199, 0.1);
-        }
-
-        /* =========================================
-           NAVIGATION
-        ========================================= */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 10vw;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        nav.scrolled {
-            background: var(--surface-color);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--surface-border);
-            padding: 1rem 10vw;
-        }
-
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-main);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        .nav-content {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-family: var(--font-mono);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--neon-blue);
-        }
-        
-        #theme-toggle {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            color: var(--text-main);
-            font-size: 1.1rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            position: relative;
-            z-index: 1001;
-        }
-        
-        #theme-toggle:hover {
-            border-color: var(--neon-blue);
-            color: var(--neon-blue);
-            transform: rotate(15deg);
-        }
-
-        /* =========================================
-           HERO SECTION & ANIMATIONS
-        ========================================= */
-        #hero {
-            align-items: flex-start;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .floating-icon {
-            position: absolute;
-            font-size: 4rem;
-            color: var(--glass-border);
-            z-index: 0;
-            animation: float-around 15s infinite linear;
-            pointer-events: none;
-        }
-
-        .fi-1 { top: 15%; left: 10%; animation-duration: 18s; animation-direction: reverse; color: rgba(0, 240, 255, 0.1); }
-        .fi-2 { top: 70%; left: 15%; font-size: 6rem; animation-duration: 25s; }
-        .fi-3 { top: 20%; right: 10%; font-size: 5rem; animation-duration: 20s; color: rgba(138, 43, 226, 0.1); }
-        .fi-4 { top: 65%; right: 20%; font-size: 3.5rem; animation-duration: 22s; animation-direction: reverse; }
-
-        @keyframes float-around {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(30px, -40px) rotate(90deg); }
-            50% { transform: translate(-20px, -60px) rotate(180deg); }
-            75% { transform: translate(-50px, 20px) rotate(270deg); }
-            100% { transform: translate(0, 0) rotate(360deg); }
-        }
-
-        .hero-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4rem;
-            width: 100%;
-            z-index: 10;
-        }
-
-        .hero-text {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            width: 100%;
-        }
-
-        .hero-visual {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            position: relative;
-        }
-
-        .hero-visual::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(138, 43, 226, 0.4) 0%, transparent 70%);
-            filter: blur(40px);
-            z-index: 0;
-            animation: pulse-glow 4s infinite alternate;
-        }
-
-        @keyframes pulse-glow {
-            0% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        @media (min-width: 992px) {
-            .hero-container {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .hero-text {
-                flex: 1.2;
-                padding-right: 2rem;
-            }
-            .hero-visual {
-                flex: 0.8;
-                justify-content: flex-end;
-            }
-        }
-
-        .hero-mono {
-            font-family: var(--font-mono);
-            color: var(--neon-blue);
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
-            animation: slideUp 0.8s ease-out;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 5.5rem);
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            animation: slideUp 1s ease-out;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            animation: slideUp 1.2s ease-out;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .typing-container {
-            font-family: var(--font-mono);
-            font-size: 1.2rem;
-            min-height: 30px;
-            margin-bottom: 3rem;
-            color: var(--text-muted);
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            height: 1.2rem;
-            background-color: var(--neon-purple);
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 5px;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            font-family: var(--font-mono);
-            font-weight: 500;
-            text-decoration: none;
-            color: var(--neon-blue);
-            border: 1px solid var(--neon-blue);
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-            background: transparent;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 240, 255, 0.1);
-            transition: var(--transition);
-        }
-        
-        :root[data-theme="light"] .btn::before {
-            background: rgba(2, 132, 199, 0.1);
-        }
-
-        .btn:hover::before {
-            left: 0;
-        }
-
-        .btn:hover {
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
-        }
-        
-        :root[data-theme="light"] .btn:hover {
-            box-shadow: 0 0 20px rgba(2, 132, 199, 0.3);
-        }
-
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: #fff;
-            border: none;
-        }
-
-        .btn-primary::before {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            animation: slideUp 1.4s ease-out;
-        }
-
-        .profile-img-wrapper {
-            position: relative;
-            width: 80%;
-            max-width: 320px;
-            aspect-ratio: 3 / 4; 
-            background-color: var(--glass-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
-            z-index: 1;
-        }
-        
-        :root[data-theme="dark"] .profile-img-wrapper {
-            box-shadow: 0 15px 50px rgba(0,0,0,0.8);
-        }
-
-        .profile-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .profile-img-wrapper:hover img {
-            transform: scale(1.03);
-        }
-
-        .profile-img-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, var(--overlay-color) 0%, transparent 40%);
-            pointer-events: none;
-        }
-
-        /* =========================================
-           STATS SECTION
-        ========================================= */
-        #stats {
-            min-height: auto;
-            padding: 4rem 10vw;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .stat-card i {
-            font-size: 2.5rem;
-            color: var(--neon-purple);
-            margin-bottom: 1rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            font-family: var(--font-heading);
-            color: var(--text-main);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .stat-plus {
-            color: var(--neon-blue);
-        }
-
-        .stat-label {
-            font-family: var(--font-mono);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* =========================================
-           ABOUT SECTION
-        ========================================= */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-        }
-
-        .highlight-text {
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        .now-building {
-            margin-top: 2rem;
-            padding-left: 1.5rem;
-            border-left: 2px solid var(--neon-blue);
-        }
-
-        .now-building h4 {
-            color: var(--neon-blue);
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-
-        .about-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .about-visual .code-window {
-            width: 100%;
-            max-width: 550px;
-            background: var(--code-window-bg);
-            backdrop-filter: blur(16px);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
-            border: 1px solid var(--glass-border);
-            transition: var(--transition);
-        }
-        
-        :root[data-theme="dark"] .about-visual .code-window {
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
-        }
-
-        .about-visual .code-window:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 240, 255, 0.4);
-            box-shadow: 0 30px 60px -12px rgba(0,240,255,0.15);
-        }
-        
-        :root[data-theme="light"] .about-visual .code-window:hover {
-            border-color: rgba(2, 132, 199, 0.4);
-            box-shadow: 0 30px 60px -12px rgba(2, 132, 199, 0.15);
-        }
-
-        .window-header {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 12px;
-            display: flex;
-            gap: 8px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-        .dot.red { background: #ff5f56; }
-        .dot.yellow { background: #ffbd2e; }
-        .dot.green { background: #27c93f; }
-
-        .code-content {
-            padding: 24px;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            color: #d4d4d4; /* Keep text dark mode styled for code window */
-            line-height: 1.6;
-        }
-
-        .code-content .keyword { color: #c678dd; }
-        .code-content .string { color: #98c379; } 
-        .code-content .function { color: #61afef; } 
-        .code-content .comment { color: #5c6370; font-style: italic; }
-
-        /* =========================================
-           EDUCATION SECTION
-        ========================================= */
-        #education {
-            background: var(--stat-bg);
-            border-top: 1px solid var(--surface-border);
-            border-bottom: 1px solid var(--surface-border);
-        }
-
-        /* =========================================
-           TECH STACK
-        ========================================= */
-        .tech-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .tech-category {
-            margin-bottom: 2rem;
-        }
-
-        .tech-category h3 {
-            font-family: var(--font-mono);
-            color: var(--neon-blue);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .tech-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .tech-item {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
-        }
-
-        .tech-item:hover {
-            background: rgba(138, 43, 226, 0.15);
-            border-color: var(--neon-purple);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.2);
-        }
-
-        /* =========================================
-           DEVELOPER PROFILES
-        ========================================= */
-        .profile-detailed-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .profile-card {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--surface-border);
-        }
-
-        .profile-header i.profile-icon {
-            font-size: 2.5rem;
-            transition: var(--transition);
-        }
-
-        .profile-card.leetcode i.profile-icon { color: #FFA116; }
-        .profile-card.github i.profile-icon { color: var(--text-main); }
-        .profile-card.kaggle i.profile-icon { color: #20BEFF; }
-
-        .profile-card:hover i.profile-icon {
-            transform: scale(1.1);
-        }
-
-        .profile-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.2rem;
-            color: var(--text-main);
-            font-family: var(--font-heading);
-            font-weight: 700;
-        }
-
-        .profile-link {
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .profile-link:hover {
-            color: var(--neon-blue);
-        }
-
-        .profile-stats {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .stat-box {
-            background: var(--stat-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            flex: 1;
-        }
-
-        .stat-box .stat-val {
-            display: block;
-            font-size: 1.5rem;
-            font-family: var(--font-heading);
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 0.2rem;
-        }
-
-        .stat-box .stat-name {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-        }
-
-        .profile-breakdown {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .progress-bar-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .progress-bar-container .label {
-            width: 70px;
-            font-size: 0.85rem;
-            font-family: var(--font-mono);
-            color: var(--text-muted);
-        }
-
-        .progress-bar-container .bar {
-            flex: 1;
-            height: 6px;
-            background: var(--glass-border);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .progress-bar-container .bar .fill {
-            height: 100%;
-            border-radius: 3px;
-            transition: width 1s ease-out;
-        }
-        .bg-green-500 { background-color: #00EA64 !important; }
-        .bg-yellow-500 { background-color: #FFA116 !important; }
-        .bg-red-500 { background-color: #EF4743 !important; }
-
-        /* =========================================
-           HACKATHON TIMELINE
-        ========================================= */
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background: var(--glass-border);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -1px;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background-color: transparent;
-            width: 50%;
-            margin-bottom: 2rem;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            background-color: var(--bg-color);
-            border: 4px solid var(--neon-blue);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-            box-shadow: 0 0 15px var(--neon-blue);
-            transition: background-color 0.4s ease;
-        }
-
-        .left { left: 0; }
-        .right { left: 50%; }
-
-        .left::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            right: 30px;
-            border: medium solid var(--surface-border);
-            border-width: 10px 0 10px 10px;
-            border-color: transparent transparent transparent var(--surface-border);
-        }
-
-        .right::before {
-            content: " ";
-            height: 0;
-            position: absolute;
-            top: 22px;
-            width: 0;
-            z-index: 1;
-            left: 30px;
-            border: medium solid var(--surface-border);
-            border-width: 10px 10px 10px 0;
-            border-color: transparent var(--surface-border) transparent transparent;
-        }
-
-        .right::after {
-            left: -10px;
-        }
-
-        .timeline-content {
-            padding: 20px 30px;
-            position: relative;
-            border-radius: 8px;
-        }
-
-        .timeline-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
-        
-        .timeline-date {
-            display: inline-block;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-family: var(--font-mono);
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-subtitle {
-            font-family: var(--font-mono);
-            color: var(--neon-purple);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .timeline-content ul {
-            list-style-position: inside;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .timeline-content ul li {
-            margin-bottom: 0.5rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .timeline-content ul li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--neon-blue);
-        }
-        
-        .hackathon-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px dashed var(--glass-border);
-        }
-
-        /* =========================================
-           PROJECTS GRID
-        ========================================= */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .project-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-top i.fa-folder {
-            font-size: 2rem;
-            color: var(--neon-blue);
-        }
-
-        .project-links a {
-            color: var(--text-main);
-            font-size: 1.2rem;
-            margin-left: 10px;
-            transition: var(--transition);
-        }
-
-        .project-links a:hover {
-            color: var(--neon-purple);
-        }
-
-        .project-title {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--text-main);
-        }
-
-        .project-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .project-tech {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--neon-blue);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .project-tech span {
-            background: rgba(0, 240, 255, 0.1);
-            padding: 3px 8px;
-            border-radius: 4px;
-        }
-        
-        :root[data-theme="light"] .project-tech span {
-            background: rgba(2, 132, 199, 0.1);
-        }
-
-        /* =========================================
-           MARQUEE CERTIFICATIONS
-        ========================================= */
-        #certifications {
-            min-height: auto;
-            padding: 80px 0;
-            overflow: hidden;
-        }
-
-        .marquee-container {
-            display: flex;
-            overflow: hidden;
-            user-select: none;
-            width: 100%;
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            padding: 2rem 0;
-        }
-        
-        .marquee-content {
-            display: flex;
-            gap: 2rem;
-            flex-shrink: 0;
-            animation: scroll-left 90s linear infinite; 
-            padding-left: 2rem;
-        }
-        
-        @keyframes scroll-left {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-50% - 1rem)); }
-        }
-        
-        .marquee-container:hover .marquee-content {
-            animation-play-state: paused;
-        }
-
-        .cert-card {
-            width: 320px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        .cert-card i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .cert-card h4 {
-            color: var(--text-main);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .cert-card p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            margin-bottom: 1rem;
-        }
-
-        .cert-link {
-            margin-top: auto; 
-            display: inline-block;
-            padding-top: 0.5rem;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--neon-purple);
-            text-decoration: none;
-            transition: var(--transition);
-            font-weight: 600;
-        }
-
-        .cert-link:hover {
-            color: var(--neon-blue);
-        }
-
-        /* =========================================
-           CONTACT SECTION & FOOTER
-        ========================================= */
-        #contact {
-            text-align: center;
-            align-items: center;
-            min-height: 80vh;
-        }
-
-        .contact-desc {
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 3rem;
-        }
-
-        .social-link {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--surface-color);
-            border: 1px solid var(--surface-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--text-main);
-            text-decoration: none;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-link:hover {
-            color: #fff;
-            transform: translateY(-5px);
-            border-color: var(--neon-blue);
-            background: var(--neon-blue);
-            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3);
-        }
-        
-        :root[data-theme="light"] .social-link:hover {
-            background: var(--neon-blue);
-            color: #fff;
-            box-shadow: 0 5px 15px rgba(2, 132, 199, 0.3);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--surface-border);
-        }
-
-        /* =========================================
-           SCROLL REVEAL ANIMATIONS & RESPONSIVE
-        ========================================= */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-container {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-            .hero-text {
-                align-items: center;
-                padding: 0;
-            }
-            .hero-title {
-                text-align: center;
-            }
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .timeline::after {
-                left: 31px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-
-            .timeline-item::before {
-                left: 60px;
-                border: medium solid var(--surface-border);
-                border-width: 10px 10px 10px 0;
-                border-color: transparent var(--surface-border) transparent transparent;
-            }
-
-            .left::after, .right::after {
-                left: 21px;
-            }
-
-            .right {
-                left: 0%;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-            
-            .section {
-                padding: 80px 5vw;
-            }
-        }
-        /* Profile refresh and new achievement cards. */
-        .profile-updated { color: var(--text-muted); font-size: 0.75rem; margin: 1rem 0 0.5rem; }
-        .activity-summary {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 0.75rem;
-            margin: 1.5rem 0;
-        }
-        .activity-summary div {
-            background: var(--stat-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            padding: 0.85rem 0.5rem;
-            text-align: center;
-        }
-        .activity-summary strong, .activity-summary span { display: block; }
-        .activity-summary strong { color: var(--neon-blue); font-size: 1.15rem; }
-        .activity-summary span { font-size: 0.7rem; margin-top: 0.35rem; }
-        .experience-update { border-left: 4px solid var(--neon-blue); }
-        .experience-update h3 { font-size: 1.6rem; margin: 0.5rem 0; }
-        .experience-update p { color: var(--text-muted); }
-        .experience-update .experience-organization { color: var(--neon-blue); margin-bottom: 1rem; }
-        .project-recognition { color: var(--neon-blue); font-size: 0.8rem; margin-bottom: 1.5rem; }
-        .profile-detailed-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .profile-card { min-width: 0; }
-        .progress-bar-container .label { flex: 0 0 90px; }
-        @media (max-width: 768px) {
-            .profile-detailed-grid { grid-template-columns: 1fr; }
-        }
-        .github .profile-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
-        .github .stat-box { padding: 0.85rem 0.35rem; min-width: 0; }
-        .github .stat-name { overflow-wrap: anywhere; }
-        .profile-link { overflow-wrap: anywhere; }
-        @media (max-width: 480px) {
-            .activity-summary { grid-template-columns: 1fr; }
-            .profile-card { padding: 1.25rem; }
-            .timeline-item { padding-left: 50px; padding-right: 0; }
-            .timeline::after { left: 15px; }
-            .timeline-item::after { left: 5px; }
-            .timeline-item::before { left: 40px; }
-            .timeline-content { padding: 1.25rem; }
-            .btn-doc { max-width: 100%; width: auto; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -1420,7 +52,7 @@
                 <p class="hero-mono">Hi, my name is</p>
                 <h1 class="hero-title"><span class="gradient-text">Ananya Joshi.</span></h1>
                 <h2 class="hero-subtitle">Building Scalable Intelligent Systems.</h2>
-                
+
                 <div class="typing-container">
                     <span id="typing-text"></span><span class="cursor"></span>
                 </div>
@@ -1430,10 +62,10 @@
                     <a href="#contact" class="btn">Get In Touch</a>
                 </div>
             </div>
-            
+
             <div class="hero-visual">
                 <div class="profile-img-wrapper">
-                    <img src="profile.png" onerror="this.onerror=null; this.src='https://placehold.co/400x500/050508/00f0ff?text=Ananya+Joshi';" alt="Ananya Joshi">
+                    <img src="assets/profile.png" onerror="this.onerror=null; this.src='https://placehold.co/400x500/050508/00f0ff?text=Ananya+Joshi';" alt="Ananya Joshi">
                     <div class="profile-img-overlay"></div>
                 </div>
             </div>
@@ -1472,13 +104,13 @@
                 <p>I am a Computer Science & Artificial Intelligence student at <span class="highlight-text">IGDTUW (1st Year CGPA: ~9.1 | Sem 1: 9.14, Sem 2: 9.05)</span> based in Delhi, India. I don't just study algorithms; I apply them to build real-world AI systems that solve complex problems.</p>
                 <p>I thrive under pressure, actively participating in hackathons to turn abstract ideas into deployed products within strict time limits. My expertise bridges the gap between data science and robust software engineering.</p>
                 <p>Whether it's building NLP pipelines, optimizing decision engines, or developing sustainability-focused developer tools, I am execution-focused and driven by impact.</p>
-                
+
                 <div class="now-building">
                     <h4>Currently Building</h4>
                     <p>Building with Team Solstice for SIH 2026: identifying Serious Injury &amp; Fatality precursors in safety reports for Oil India Limited.</p>
                 </div>
             </div>
-            
+
             <div class="about-visual">
                 <div class="code-window">
                     <div class="window-header">
@@ -1506,7 +138,7 @@
     <section id="education" class="section">
         <h2 class="section-title reveal">Academic Background</h2>
         <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; width: 100%;">
-            
+
             <div class="glass-panel reveal" style="padding: 2.5rem; position: relative;">
                 <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon-blue);"></div>
                 <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
@@ -1577,7 +209,7 @@
     <section id="profiles" class="section">
         <h2 class="section-title reveal">Developer Profiles</h2>
         <div class="profile-detailed-grid">
-            
+
             <!-- Profile snapshots supplied by Ananya; refreshed 2 October 2026. -->
             <div class="glass-panel reveal profile-card leetcode">
                 <div class="profile-header">
@@ -1587,7 +219,7 @@
                         <a href="https://leetcode.com/u/ananyajoshi-cseai/" target="_blank" class="profile-link">ananyajoshi-cseai <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="profile-stats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem;">
                     <div class="stat-box">
                         <span class="stat-val" id="lc-solved">454</span>
@@ -1606,7 +238,7 @@
                         <span class="stat-name">Badges</span>
                     </div>
                 </div>
-                
+
                 <div class="profile-breakdown">
                     <div class="progress-bar-container">
                         <span class="label" style="width: 80px;">Easy (<span id="lc-easy">150</span>)</span>
@@ -1621,7 +253,7 @@
                         <div class="bar"><div id="lc-hard-bar" class="fill bg-red-500" style="width: 19.16%;"></div></div>
                     </div>
                 </div>
-                
+
                 <div class="mt-2 text-sm" style="color: var(--text-muted); line-height: 1.8; font-family: var(--font-mono); font-size: 0.85rem; margin-top: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
                         <span>Max Streak:</span> <span style="color: #FFA116; font-weight: bold;">154 Days 🔥</span>
@@ -1633,7 +265,7 @@
                         <span>Past Year Submissions:</span> <span style="color: var(--neon-purple); font-weight: bold;">484</span>
                     </div>
                 </div>
-                
+
                 <p class="profile-updated">Stats updated <time datetime="2026-10-02">2 October 2026</time></p>
                 <div class="btn-container" style="margin-top: auto; padding-top: 1rem;">
                     <a href="https://leetcode.com/u/ananyajoshi-cseai/" target="_blank" rel="noopener noreferrer" class="btn-doc"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Current Profile</a>
@@ -1691,11 +323,11 @@
                     </div>
                 </div>
                 <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 0.5rem;">
-                    
+
                     <div style="flex: 0 1 250px; background: var(--stat-bg); border: 1px solid var(--glass-border); border-radius: 8px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
                         <div style="font-size: 3rem; font-weight: bold; color: #20BEFF; line-height: 1;">129</div>
                         <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 1.5rem; margin-top: 0.5rem;">Day Login Streak 🔥</div>
-                        
+
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%;">
                             <div style="background: var(--glass-bg); padding: 5px; border-radius: 4px;">
                                 <div style="font-weight: bold; color: var(--text-main);">20</div>
@@ -1717,7 +349,7 @@
                             <li style="margin-bottom: 0.3rem;">Performed EDA using <strong>Python, Pandas, and Seaborn</strong>.</li>
                             <li style="margin-bottom: 0.3rem;">Practiced structured data modeling & critical skill measurement.</li>
                         </ul>
-                        
+
                         <div class="btn-container" style="margin-top: auto;">
                             <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_datascience-kaggle-python-activity-7430920796782460928-60cx" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Kaggle Post</a>
                         </div>
@@ -1740,7 +372,7 @@
                 </div>
             </article>
 
-            
+
             <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
                 <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gradient-primary);"></div>
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
@@ -1762,7 +394,7 @@
                     <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--neon-blue);"><i class="fa-solid fa-angle-right"></i></span> <strong>Open Source:</strong> Committing production-grade code to the COE-AI GitHub repository via weekly PRs.</li>
                 </ul>
                 <div class="btn-container">
-                    <a href="MLinternship.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Acceptance Proof</a>
+                    <a href="certificates/MLinternship.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Acceptance Proof</a>
                     <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_machinelearning-generativeai-researchanddevelopment-ugcPost-7467537846665392130-Pvyj" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Announcement</a>
                 </div>
             </div>
@@ -1784,7 +416,7 @@
                     Completed 150+ hours of On-The-Job training focused on technical and functional testing of the PRAM Edu Mobile App.
                 </p>
                 <div class="btn-container">
-                    <a href="PRAM edu internship.jpeg" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Internship Certificate</a>
+                    <a href="certificates/PRAM edu internship.jpeg" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Internship Certificate</a>
                     <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_the-verified-growth-slide-deck-structure-activity-7437837314506002432-B7WP" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post on LinkedIn</a>
                 </div>
             </div>
@@ -1809,7 +441,7 @@
                     <li style="position: relative; padding-left: 1.8rem;"><span style="position: absolute; left: 0; color: var(--text-muted);"><i class="fa-solid fa-angle-right"></i></span> Enhancing project features, optimizing codebases, and resolving critical issues across multiple tech stacks.</li>
                 </ul>
                 <div class="btn-container">
-                    <a href="gssoc.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Acceptance Proof</a>
+                    <a href="certificates/gssoc.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Acceptance Proof</a>
                     <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_gssoc2026-girlscript-opensource-activity-7452196981680021504-5Bkx" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Selection Post</a>
                 </div>
             </div>
@@ -1820,7 +452,7 @@
     <section id="workshops" class="section">
         <h2 class="section-title reveal">Workshops & Programs</h2>
         <div style="max-width: 850px; margin: 0 auto; display: flex; flex-direction: column; gap: 2.5rem; width: 100%;">
-            
+
             <div class="glass-panel reveal" style="position: relative; overflow: hidden; padding: 2.5rem;">
                 <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--neon-blue);"></div>
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
@@ -1858,13 +490,13 @@
                         <i class="fa-regular fa-calendar"></i> July 2026 – Present
                     </div>
                 </div>
-                
+
                 <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
                     <div style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">
                         <p style="margin-bottom: 1.5rem;">Awarded a full global scholarship (sponsored by Solana & Phantom) to specialize in Web3 architecture, Smart Contracts, and Decentralized Finance (DeFi).</p>
                     </div>
                 </div>
-                
+
                 <div class="btn-container">
                     <a href="https://lnkd.in/p/gFSw3a3K" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Announcement on LinkedIn</a>
                 </div>
@@ -1883,11 +515,11 @@
                         <i class="fa-regular fa-calendar"></i> July 2026
                     </div>
                 </div>
-                
+
                 <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
                     <div style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">
                         <p style="margin-bottom: 1.5rem;">Selected to attend an intensive national workshop focusing on the intersection of foundational mathematics and cutting-edge AI architecture. Gained exposure to advanced concepts essential for scientific computing.</p>
-                        
+
                         <h4 style="color: var(--text-main); margin-bottom: 0.8rem; font-family: var(--font-mono); font-size: 0.95rem;"><i class="fa-solid fa-lightbulb" style="color: #ffbd2e;"></i> Key Explorations:</h4>
                         <ul style="list-style-type: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; padding-left: 0.5rem;">
                             <li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--neon-purple);">▹</span> <strong>Mathematical Foundations:</strong> Advanced PDEs and Finite Difference Methods.</li>
@@ -1896,9 +528,9 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="btn-container">
-                    <a href="Workshop_certificate.jpeg" target="_blank" class="btn-doc"><i class="fa-solid fa-atom"></i> View Certificate</a>
+                    <a href="certificates/Workshop_certificate.jpeg" target="_blank" class="btn-doc"><i class="fa-solid fa-atom"></i> View Certificate</a>
                     <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_machinelearning-artificialintelligence-iitropar-ugcPost-7482632257019740160-s5L6" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Insights on LinkedIn</a>
                 </div>
             </div>
@@ -1986,7 +618,7 @@
                         <li><strong>Experience:</strong> 24-hour live coding sprint on campus.</li>
                     </ul>
                     <div class="hackathon-actions">
-                        <a href="Vihaan_Certificate.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                        <a href="certificates/Vihaan_Certificate.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
                         <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_vihaan9-ieeedtu-styloguard-activity-7449675963141074944-EQyZ" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
                     </div>
                 </div>
@@ -2003,7 +635,7 @@
                         <li>Mapped 15+ injury types to muscle groups dynamically using GSQL.</li>
                     </ul>
                     <div class="hackathon-actions">
-                        <a href="devcation participation certificate hackathon.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
+                        <a href="certificates/devcation participation certificate hackathon.pdf" target="_blank" class="btn-doc"><i class="fa-regular fa-file-pdf"></i> View Certificate</a>
                         <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_devcation-tigergraph-healthtech-activity-7448415623438680064-rmJd" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
                     </div>
                 </div>
@@ -2020,7 +652,7 @@
                         <li>Mapped conceptual FLOPs to real-world carbon intensity.</li>
                     </ul>
                     <div class="hackathon-actions">
-                        <a href="nit delhi certificate.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Certificate</a>
+                        <a href="certificates/nit delhi certificate.png" target="_blank" class="btn-doc"><i class="fa-regular fa-image"></i> View Certificate</a>
                         <a href="https://www.linkedin.com/posts/ananya-joshi-cseai_hackathon-experience-nit-delhi-activity-7444579262743080960-iDhG" target="_blank" class="btn-doc"><i class="fa-brands fa-linkedin" style="color: #0A66C2;"></i> Read Post</a>
                     </div>
                 </div>
@@ -2154,7 +786,7 @@
                     <span>JavaScript</span>
                 </div>
             </div>
-            
+
             <div class="project-card glass-panel reveal">
                 <div class="project-top">
                     <i class="fa-regular fa-folder fa-folder"></i>
@@ -2177,36 +809,36 @@
         <div class="max-w-7xl mx-auto w-full px-6">
             <h2 class="section-title">Licenses & Certifications</h2>
         </div>
-        
+
         <div class="marquee-container">
             <div class="marquee-content">
-                
+
                 <div class="glass-panel cert-card flex-shrink-0" style="border-color: var(--neon-purple);">
                     <i class="fa-solid fa-atom" style="color: var(--neon-purple);"></i>
                     <h4>NS2ML-DE 2026 Workshop</h4>
                     <p>IIT Ropar • Foundational Math & PINNs</p>
-                    <a href="Workshop_certificate.jpeg" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="certificates/Workshop_certificate.jpeg" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                
+
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
                     <h4>Software Engineer Intern</h4>
                     <p>HackerRank • Verified Role Certification</p>
-                    <a href="software_engineer_intern certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="certificates/software_engineer_intern certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
                     <h4>SQL (Advanced)</h4>
                     <p>HackerRank • Complex query optimization</p>
-                    <a href="sql_advanced certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="certificates/sql_advanced certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                
+
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-kaggle" style="color: #20BEFF;"></i>
                     <h4>Python Coder Badge</h4>
                     <p>Kaggle • Verified coding capabilities</p>
-                    <a href="Python Coder.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="certificates/Python Coder.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <!-- Duplicate Set for Seamless Loop -->
@@ -2214,28 +846,28 @@
                     <i class="fa-solid fa-atom" style="color: var(--neon-purple);"></i>
                     <h4>NS2ML-DE 2026 Workshop</h4>
                     <p>IIT Ropar • Foundational Math & PINNs</p>
-                    <a href="Workshop_certificate.jpeg" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="certificates/Workshop_certificate.jpeg" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                
+
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
                     <h4>Software Engineer Intern</h4>
                     <p>HackerRank • Verified Role Certification</p>
-                    <a href="software_engineer_intern certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="certificates/software_engineer_intern certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-hackerrank" style="color: #00EA64;"></i>
                     <h4>SQL (Advanced)</h4>
                     <p>HackerRank • Complex query optimization</p>
-                    <a href="sql_advanced certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="certificates/sql_advanced certificate.pdf" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
-                
+
                 <div class="glass-panel cert-card flex-shrink-0">
                     <i class="fa-brands fa-kaggle" style="color: #20BEFF;"></i>
                     <h4>Python Coder Badge</h4>
                     <p>Kaggle • Verified coding capabilities</p>
-                    <a href="Python Coder.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="certificates/Python Coder.png" target="_blank" class="cert-link">View Credential <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -2245,7 +877,7 @@
         <div class="reveal">
             <h2 class="section-title">Let's Build Something</h2>
             <p class="contact-desc">I'm currently open for new opportunities, collaborations, or hackathon teams. Whether you have a question or just want to talk about AI, feel free to drop a message!</p>
-            
+
             <a href="mailto:ananyajoshi.cseai@gmail.com" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">Say Hello <i class="fa-regular fa-paper-plane" style="margin-left: 8px;"></i></a>
 
             <div class="social-links">
@@ -2270,233 +902,6 @@
         <p style="margin-top: 5px; color: var(--neon-blue); opacity: 0.7;">Architecting the future, one node at a time.</p>
     </footer>
 
-    <script>
-        // --- Theme Toggle ---
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        
-        // Setup initial theme
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-        updateThemeIcon(savedTheme);
-
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon(newTheme);
-        });
-
-        function updateThemeIcon(theme) {
-            if (theme === 'light') {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            } else {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            }
-        }
-
-        // --- Custom Cursor ---
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
-
-        const interactives = document.querySelectorAll('a, button, .btn, .stat-card, .project-card, .tech-item, .profile-card, .cert-card');
-        interactives.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorOutline.style.width = '60px';
-                cursorOutline.style.height = '60px';
-                cursorOutline.style.backgroundColor = 'rgba(0, 240, 255, 0.1)';
-                cursorOutline.style.borderColor = 'var(--neon-blue)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.style.width = '40px';
-                cursorOutline.style.height = '40px';
-                cursorOutline.style.backgroundColor = 'transparent';
-                cursorOutline.style.borderColor = 'rgba(138, 43, 226, 0.5)';
-            });
-        });
-
-        // --- Sticky Navbar ---
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // --- Typing Animation ---
-        const typingText = document.getElementById('typing-text');
-        const phrases = [
-            "I build AI systems.",
-            "I ship fast.",
-            "I solve real problems."
-        ];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingDelay = 100;
-
-        function type() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-                typingDelay = 50;
-            } else {
-                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-                typingDelay = 100;
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                isDeleting = true;
-                typingDelay = 2000; 
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typingDelay = 500; 
-            }
-
-            setTimeout(type, typingDelay);
-        }
-
-        setTimeout(type, 1000);
-
-        // --- Scroll Reveal & Number Counters ---
-        const revealElements = document.querySelectorAll('.reveal');
-        const counters = document.querySelectorAll('.counter');
-        let countersStarted = false;
-
-        function startCounters() {
-            if (countersStarted) return;
-            countersStarted = true;
-
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const duration = 2000; 
-                const increment = target / (duration / 16); 
-                
-                let current = 0;
-                const updateCounter = () => {
-                    current += increment;
-                    if (current < target) {
-                        counter.innerText = Math.ceil(current);
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                updateCounter();
-            });
-        }
-
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    
-                    if(entry.target.querySelector('.stats-grid') || entry.target.classList.contains('stats-grid')) {
-                        startCounters();
-                    }
-                }
-            });
-        }, { threshold: 0.15 });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-        
-        if(document.getElementById('stats').getBoundingClientRect().top < window.innerHeight) {
-            startCounters();
-        }
-
-        // --- Particle Network Background ---
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        let width, height, particles;
-
-        function initCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            particles = [];
-            
-            const particleCount = Math.floor((width * height) / 15000);
-            
-            for (let i = 0; i < particleCount; i++) {
-                particles.push({
-                    x: Math.random() * width,
-                    y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    radius: Math.random() * 1.5 + 0.5
-                });
-            }
-        }
-
-        function drawParticles() {
-            ctx.clearRect(0, 0, width, height);
-            
-            const isLightMode = document.documentElement.getAttribute('data-theme') === 'light';
-            
-            ctx.fillStyle = isLightMode ? 'rgba(2, 132, 199, 0.5)' : 'rgba(0, 240, 255, 0.5)';
-            
-            particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-                
-                if (p.x < 0 || p.x > width) p.vx *= -1;
-                if (p.y < 0 || p.y > height) p.vy *= -1;
-                
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fill();
-            });
-            
-            ctx.strokeStyle = isLightMode ? 'rgba(126, 34, 206, 0.15)' : 'rgba(138, 43, 226, 0.15)';
-            ctx.lineWidth = 0.5;
-            
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (dist < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        
-                        const opacity = 0.2 - dist/750;
-                        ctx.strokeStyle = isLightMode ? `rgba(126, 34, 206, ${opacity})` : `rgba(138, 43, 226, ${opacity})`;
-                        ctx.stroke();
-                    }
-                }
-            }
-            
-            requestAnimationFrame(drawParticles);
-        }
-
-        window.addEventListener('resize', initCanvas);
-        initCanvas();
-        drawParticles();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
