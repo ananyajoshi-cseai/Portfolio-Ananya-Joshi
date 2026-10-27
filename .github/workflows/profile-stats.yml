@@ -5,7 +5,7 @@ on:
     # Daily at 08:47 India time (03:17 UTC). GitHub may delay scheduled runs.
     - cron: '17 3 * * *'
   workflow_dispatch:
-  pull_request:
+  push:
     paths: ['src/**', 'scripts/**', 'tests/**', 'package.json', '.github/workflows/profile-stats.yml']
 
 permissions:
@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   validate:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -34,7 +34,7 @@ jobs:
         run: npm run update-stats -- --check
 
   refresh:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
