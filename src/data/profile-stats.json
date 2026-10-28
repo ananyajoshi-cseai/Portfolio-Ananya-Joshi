@@ -1,0 +1,30 @@
+{
+  "github": {
+    "username": "ananyajoshi-cseai",
+    "updatedAt": "2026-10-27T14:36:10.196Z",
+    "commits": 798,
+    "pullRequests": 79,
+    "mergedPRs": 75,
+    "issues": 14,
+    "stars": 46,
+    "contributedRepos": 16,
+    "contributions": 1070,
+    "currentStreak": 66,
+    "longestStreak": 78
+  },
+  "leetcode": {
+    "username": "ananyajoshi-cseai",
+    "updatedAt": "2026-10-27T14:36:10.196Z",
+    "solved": 477,
+    "easy": 156,
+    "medium": 229,
+    "hard": 92,
+    "rating": 2075.346395000384,
+    "topPercentage": 1.77,
+    "level": "Knight",
+    "badges": 13,
+    "maxStreak": 154,
+    "activeDays": 274,
+    "submissions": 516
+  }
+}

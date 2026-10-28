@@ -1,4 +1,5 @@
-import { cpSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
+import { cpSync, mkdirSync, readdirSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
+import { renderSnapshot } from '../src/stats-format.js';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 
@@ -9,6 +10,8 @@ if (output !== resolve(root, 'dist')) throw new Error('Unexpected output directo
 rmSync(output, { recursive: true, force: true });
 mkdirSync(output, { recursive: true });
 cpSync(resolve(root, 'src'), output, { recursive: true });
+const snapshot = JSON.parse(readFileSync(resolve(root, 'src/data/profile-stats.json'), 'utf8'));
+writeFileSync(resolve(output, 'index.html'), renderSnapshot(readFileSync(resolve(output, 'index.html'), 'utf8'), snapshot));
 for (const directory of ['certificates', 'assets', 'screenshots']) {
   cpSync(resolve(root, directory), resolve(output, directory), { recursive: true });
 }

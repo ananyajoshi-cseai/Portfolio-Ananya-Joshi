@@ -76,8 +76,8 @@
         <div class="stats-grid">
             <div class="stat-card glass-panel">
                 <i class="fa-solid fa-code"></i>
-                <div class="stat-number"><span class="counter" data-target="454">454</span></div>
-                <div class="stat-label">LeetCode Solved · 217 Medium</div>
+                <div class="stat-number"><span data-stat="leetcode.solved">454</span></div>
+                <div class="stat-label" data-stat="leetcode.heroLabel">LeetCode Solved · 217 Medium</div>
             </div>
             <div class="stat-card glass-panel">
                 <i class="fa-solid fa-database"></i>
@@ -210,7 +210,7 @@
         <h2 class="section-title reveal">Developer Profiles</h2>
         <div class="profile-detailed-grid">
 
-            <!-- Profile snapshots supplied by Ananya; refreshed 2 October 2026. -->
+            <!-- Fallback values are refreshed from the saved daily profile snapshots. -->
             <div class="glass-panel reveal profile-card leetcode">
                 <div class="profile-header">
                     <i class="fa-solid fa-code profile-icon"></i>
@@ -222,51 +222,51 @@
 
                 <div class="profile-stats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem;">
                     <div class="stat-box">
-                        <span class="stat-val" id="lc-solved">454</span>
+                        <span class="stat-val" id="lc-solved" data-stat="leetcode.solved">454</span>
                         <span class="stat-name">Solved</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val" id="lc-rating">2075</span>
-                        <span class="stat-name">Rating (<span id="lc-level" style="color: var(--neon-blue);">Knight</span>)</span>
+                        <span class="stat-val" id="lc-rating" data-stat="leetcode.rating">2075</span>
+                        <span class="stat-name">Rating (<span id="lc-level" data-stat="leetcode.level" style="color: var(--neon-blue);">Knight</span>)</span>
                     </div>
                     <div class="stat-box" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <span class="stat-val" style="font-size: 1.2rem;">Top <span id="lc-top">1.77%</span></span>
+                        <span class="stat-val" style="font-size: 1.2rem;">Top <span id="lc-top" data-stat="leetcode.topPercentage">1.77%</span></span>
                         <span class="stat-name">Ranking</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val" id="lc-badges">13</span>
+                        <span class="stat-val" id="lc-badges" data-stat="leetcode.badges">13</span>
                         <span class="stat-name">Badges</span>
                     </div>
                 </div>
 
                 <div class="profile-breakdown">
                     <div class="progress-bar-container">
-                        <span class="label" style="width: 80px;">Easy (<span id="lc-easy">150</span>)</span>
-                        <div class="bar"><div id="lc-easy-bar" class="fill bg-green-500" style="width: 33.04%;"></div></div>
+                        <span class="label" style="width: 80px;">Easy (<span id="lc-easy" data-stat="leetcode.easy">150</span>)</span>
+                        <div class="bar"><div id="lc-easy-bar" data-progress="leetcode.easyWidth" class="fill bg-green-500" style="width: 33.04%;"></div></div>
                     </div>
                     <div class="progress-bar-container">
-                        <span class="label" style="width: 80px;">Med (<span id="lc-med">217</span>)</span>
-                        <div class="bar"><div id="lc-med-bar" class="fill bg-yellow-500" style="width: 47.80%;"></div></div>
+                        <span class="label" style="width: 80px;">Med (<span id="lc-med" data-stat="leetcode.medium">217</span>)</span>
+                        <div class="bar"><div id="lc-med-bar" data-progress="leetcode.mediumWidth" class="fill bg-yellow-500" style="width: 47.80%;"></div></div>
                     </div>
                     <div class="progress-bar-container">
-                        <span class="label" style="width: 80px;">Hard (<span id="lc-hard">87</span>)</span>
-                        <div class="bar"><div id="lc-hard-bar" class="fill bg-red-500" style="width: 19.16%;"></div></div>
+                        <span class="label" style="width: 80px;">Hard (<span id="lc-hard" data-stat="leetcode.hard">87</span>)</span>
+                        <div class="bar"><div id="lc-hard-bar" data-progress="leetcode.hardWidth" class="fill bg-red-500" style="width: 19.16%;"></div></div>
                     </div>
                 </div>
 
                 <div class="mt-2 text-sm" style="color: var(--text-muted); line-height: 1.8; font-family: var(--font-mono); font-size: 0.85rem; margin-top: 1.5rem;">
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-                        <span>Max Streak:</span> <span style="color: #FFA116; font-weight: bold;">154 Days 🔥</span>
+                        <span>Max Streak:</span> <span style="color: #FFA116; font-weight: bold;" data-stat="leetcode.maxStreak">154 Days 🔥</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-                        <span>Active Days:</span> <span style="color: #00EA64; font-weight: bold;">251 Days</span>
+                        <span>Active Days:</span> <span style="color: #00EA64; font-weight: bold;" data-stat="leetcode.activeDays">251 Days</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem;">
-                        <span>Past Year Submissions:</span> <span style="color: var(--neon-purple); font-weight: bold;">484</span>
+                        <span>Past Year Submissions:</span> <span style="color: var(--neon-purple); font-weight: bold;" data-stat="leetcode.submissions">484</span>
                     </div>
                 </div>
 
-                <p class="profile-updated">Stats updated <time datetime="2026-10-02">2 October 2026</time></p>
+                <p class="profile-updated">Stats updated <time data-stat="leetcode.updatedAt" datetime="2026-10-02T00:00:00Z">2 October 2026</time></p>
                 <div class="btn-container" style="margin-top: auto; padding-top: 1rem;">
                     <a href="https://leetcode.com/u/ananyajoshi-cseai/" target="_blank" rel="noopener noreferrer" class="btn-doc"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Current Profile</a>
                 </div>
@@ -282,34 +282,34 @@
                 </div>
                 <div class="profile-stats">
                     <div class="stat-box">
-                        <span class="stat-val">818</span>
-                        <span class="stat-name">Commits</span>
+                        <span class="stat-val" data-stat="github.commits">818</span>
+                        <span class="stat-name">Commits (last yr)</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val">55</span>
+                        <span class="stat-val" data-stat="github.pullRequests">55</span>
                         <span class="stat-name">Pull Requests</span>
                     </div>
                     <div class="stat-box">
-                        <span class="stat-val">52</span>
+                        <span class="stat-val" data-stat="github.stars">52</span>
                         <span class="stat-name">Stars Earned</span>
                     </div>
                 </div>
                 <div class="mt-2 text-sm" style="color: var(--text-muted); line-height: 1.8;">
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-                        <span>Merged PRs:</span> <span style="color: var(--neon-purple); font-weight: bold;">52 (94.55%)</span>
+                        <span>Merged PRs:</span> <span style="color: var(--neon-purple); font-weight: bold;" data-stat="github.mergedPRs">52 (94.55%)</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-                        <span>Total Issues:</span> <span style="color: var(--neon-purple); font-weight: bold;">14</span>
+                        <span>Total Issues:</span> <span style="color: var(--neon-purple); font-weight: bold;" data-stat="github.issues">14</span>
                     </div>
                     <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem; margin-bottom: 0.5rem;">
-                        <span>Contributed to:</span> <span style="color: var(--neon-purple); font-weight: bold;">5 Repos (last yr)</span>
+                        <span>Committed to:</span> <span style="color: var(--neon-purple); font-weight: bold;" data-stat="github.contributedRepos">5 Repos (last yr)</span>
                     </div>
                     <div class="activity-summary" aria-label="GitHub contribution activity">
-                        <div><strong>966</strong><span>Total contributions</span></div>
-                        <div><strong>40 days</strong><span>Current streak · Aug 23–Oct 1</span></div>
-                        <div><strong>78 days</strong><span>Longest streak · Apr 10–Jun 26</span></div>
+                        <div><strong data-stat="github.contributions">966</strong><span>Contributions (last yr)</span></div>
+                        <div><strong data-stat="github.currentStreak">40 days</strong><span>Current streak</span></div>
+                        <div><strong data-stat="github.longestStreak">78 days</strong><span>Longest streak (last yr)</span></div>
                     </div>
-                    <p class="profile-updated">Activity through <time datetime="2026-10-01">1 October 2026</time> · Stats updated <time datetime="2026-10-02">2 October 2026</time></p>
+                    <p class="profile-updated">Stats updated <time data-stat="github.updatedAt" datetime="2026-10-02T00:00:00Z">2 October 2026</time></p>
                     <p style="margin-bottom: 0.5rem; font-size: 0.85rem;">Consistent open-source contributor focused on NLP pipelines, intelligent AI systems, and robust APIs.</p>
                 </div>
             </div>
@@ -903,5 +903,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script type="module" src="profile-stats.js"></script>
 </body>
 </html>

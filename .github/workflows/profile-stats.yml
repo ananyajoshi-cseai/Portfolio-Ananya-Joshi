@@ -1,0 +1,65 @@
+name: Profile stats
+
+on:
+  schedule:
+    # Daily at 08:47 India time (03:17 UTC). GitHub may delay scheduled runs.
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+  push:
+    paths: ['src/**', 'scripts/**', 'tests/**', 'package.json', '.github/workflows/profile-stats.yml']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: profile-stats-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm run build && npm run check
+      - name: Check live profile queries without publishing
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: npm run update-stats -- --check
+
+  refresh:
+    if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Fetch profiles independently, retaining failed providers
+        id: refresh
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: npm run update-stats
+      - run: npm run build && npm run check
+      - name: Commit only the public stats snapshot
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/profile-stats.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh public GitHub and LeetCode stats'
+            git push origin HEAD:main
+          fi
+      - name: Report partial refresh failures
+        if: steps.refresh.outcome == 'failure'
+        run: exit 1

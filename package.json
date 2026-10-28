@@ -1,9 +1,11 @@
 {
   "name": "ananya-joshi-portfolio",
   "private": true,
+  "type": "module",
   "version": "1.0.0",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "check": "node --check src/script.js && node scripts/check.mjs"
+    "check": "node --check src/script.js && node --check src/profile-stats.js && node scripts/check.mjs && node --test tests/*.test.mjs",
+    "update-stats": "node scripts/update-stats.mjs"
   }
 }

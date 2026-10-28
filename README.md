@@ -44,7 +44,49 @@ image so previously shared URLs continue working. Edit only their canonical
 files in `certificates/` and `assets/`; these compatibility copies are generated.
 Screenshots stay at their existing paths for README and deployed image links.
 
-## 📸 Website previews
+## Automatic GitHub and LeetCode updates
+
+The **Profile stats** GitHub Actions workflow refreshes both profiles daily at
+**08:47 IST (03:17 UTC)**. It starts after this workflow is merged into `main`.
+For an immediate refresh, open **Actions → Profile stats → Run workflow** on `main`.
+GitHub may delay scheduled runs and disables schedules in public repositories
+after 60 days without repository activity; re-enable the workflow if necessary.
+
+The scheduled job is authorized to commit **only `src/data/profile-stats.json`**
+to `main`. Website code changes still go through pull requests. It uses GitHub's
+automatically supplied `GITHUB_TOKEN`, so no personal token or LeetCode password
+is needed. Repository policies must permit this workflow to update that file;
+if branch protection blocks the push, the run fails without bypassing protection.
+
+The build renders the saved snapshot into the page. On each visit, the browser
+also checks the public snapshot on GitHub, allowing daily updates to appear
+without relying on a Vercel rebuild. No token is sent to visitors. Each provider
+has its own last-successful-update date. If a service is unavailable, rate limited,
+or returns incomplete data, its previous values and date remain visible; the
+other service can still update. A partial failure marks the Actions run failed
+after saving any successful provider, so it is visible in Actions.
+
+GitHub commits, contributed repositories, total contributions and streaks use
+the last year's contribution calendar; "Committed to" counts repositories with
+commits. PRs, merged PRs and issues are lifetime counts visible to the workflow.
+Stars are summed across all pages of owned public, non-fork repositories. A day
+still in progress does not break yesterday's current streak. Private contribution
+visibility follows GitHub's profile settings and API permissions.
+
+LeetCode solved counts are unique accepted problems by difficulty; submissions
+are attempts in the profile's default past-year calendar, not solved problems.
+Contest rating, rank badge, percentile, badges, streak and active days come from
+LeetCode's profile query. This endpoint is not a guaranteed public API and may
+change or rate limit; the saved-data fallback handles failures.
+
+To validate locally with Node.js 24, run `npm run build` and `npm run check`.
+`npm run update-stats -- --provider=leetcode` refreshes only LeetCode.
+`npm run update-stats` refreshes both when `GITHUB_TOKEN` is available in the
+environment. Add `-- --check` to fetch/validate without writing. Unit tests cover
+partial failures, invalid data, zero values, pagination, streak boundaries and
+rendered stats. Pull requests also check the live queries without publishing.
+
+## 📸 Preview images
 
 Here is a glimpse of the portfolio interface:
 
